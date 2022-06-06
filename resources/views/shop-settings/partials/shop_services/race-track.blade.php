@@ -1,0 +1,749 @@
+@extends('layout.default')
+<!-- leftcode -->
+@section('content')
+@include('shop-settings.leftshowmenu')
+<div class="account-settings__content-wr">
+   <div class="account-settings__content-form">
+      <div class="grid-view-shop">
+         <div class="common-wrap">
+            <div class="cmn-content">
+               @csrf
+               <input type="hidden" id="servicedata" name="carShopService" value="@if(isset($_GET['servicedata'])){{ $_GET['servicedata'] }} @endif">
+               <div class="race-track">
+                  <div class="row" style="row-gap:25px;">
+
+                     <div class="col-md-6">
+                        <div class="cst-wrap">
+                           <h2 class="text-center w-100 mb-4">TRACK</h2>
+
+                           <div class="form-box">
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">Track Name:</label>
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-8 col-12">
+                                       <input type="text" class="form-control border-0" style="height:35px" name="track_name" value="@if($serviceData){{$serviceData->track_name}}@endif" id="track_name">
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">Location:</label>
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-8 col-12">
+                                       <input type="text" class="form-control border-0" style="height:35px" name="track_location" value="@if($serviceData){{$serviceData->location}}@endif" id="track_location">
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">Track Type:</label>
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-8 col-12">
+                                       <input type="text" class="form-control border-0" style="height:35px" name="track_type" value="@if($serviceData){{$serviceData->track_type}}@endif" id="track_type">
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">0-60 mph:</label>
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-8 col-12 d-flex">
+                                       <input type="text" class="form-control border-0 zero_to_sixty_mph numberonly" name="zero_to_sixty_mph" value="@if($serviceData){{$serviceData->zero_to_sixty_mph}}@endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+
+
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">Lap 1:</label>
+                                    </div>
+                                    <!--col-->
+                                    
+                                    <div class="col-md-8 col-12 d-flex">
+                                       <input type="text" class="form-control border-0 numberonly lap_one_min" value="@if($serviceData)@if($serviceData->lap_one){{json_decode($serviceData->lap_one)->lap_one_min}} @endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
+                                     
+                                       <input type="text" class="form-control border-0 lap_one_sec numberonly" value="@if($serviceData)@if($serviceData->lap_one){{json_decode($serviceData->lap_one)->lap_one_sec}}@endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">Lap 2:</label>
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-8 col-12 d-flex">
+                                       <input type="text" class="form-control border-0 lap_two_min numberonly" value="@if($serviceData)@if($serviceData->lap_two){{json_decode($serviceData->lap_two)->lap_two_min}}@endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
+
+                                       <input type="text" class="form-control border-0 lap_two_sec numberonly" value="@if($serviceData)@if($serviceData->lap_two){{json_decode($serviceData->lap_two)->lap_two_sec}}@endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+
+
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">Lap 3:</label>
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-8 col-12 d-flex">
+                                       <input type="text" class="form-control border-0 lap_three_min numberonly" value="@if($serviceData)@if($serviceData->lap_three){{json_decode($serviceData->lap_three)->lap_three_min}}@endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
+
+                                       <input type="text" class="form-control border-0 lap_three_sec numberonly" value="@if($serviceData)@if($serviceData->lap_three){{json_decode($serviceData->lap_three)->lap_three_sec}}@endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+
+
+                              <div class="form-group my-4 align-items-center">
+                                 <div class="row d-flex align-items-center">
+                                    <div class="col-md-4 col-12">
+                                       <label class="p-0">Lap 4:</label>
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-8 col-12 d-flex">
+                                       <input type="text" class="form-control border-0 lap_four_min numberonly" value="@if($serviceData)@if($serviceData->lap_four){{json_decode($serviceData->lap_four)->lap_four_min}}@endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
+
+                                       <input type="text" class="form-control border-0 lap_four_sec numberonly" value="@if($serviceData)@if($serviceData->lap_four){{json_decode($serviceData->lap_four)->lap_four_sec}}@endif @endif" style="height:35px">
+                                       <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
+                                    </div>
+                                    <!--col-->
+                                 </div>
+                                 <!--row-->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!--col-->
+
+                     <div class="col-md-6">
+                        <div class="cst-border-left">
+                           <h2 class="text-center w-100 mb-4">DRAG STRIP</h2>
+                           <ul class="nav nav-pills nav-tabs" role="tablist">
+                              <li class="nav-item" role="presentation">
+                                 <button class="nav-link navTabs active"  id="correction-tab" data-bs-toggle="tab" data-bs-target="#correction" type="button" role="tab" aria-controls="correction" aria-selected="true">RUN 1</button>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                 <button class="nav-link navTabs" id="coating-tab" @if($serviceData) @if(empty($serviceData->run_one)) style="pointer-events:none"      @endif @endif data-bs-toggle="tab" data-bs-target="#coating" type="button" role="tab" aria-controls="coating" aria-selected="false">RUN 2</button>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                 <button class="nav-link navTabs" id="cleaning-tab" @if($serviceData) @if(empty($serviceData->run_one) && empty($serviceData->run_two)) style="pointer-events:none"      @endif @endif data-bs-toggle="tab" data-bs-target="#cleaning" type="button" role="tab" aria-controls="cleaning" aria-selected="false">RUN 3</button>
+                              </li>
+                           </ul>
+                           <div class="tab-content" id="myTabContent">
+                              {{-- run 1 start --}}
+                              <div class="tab-pane fade show active" id="correction" role="tabpanel" aria-labelledby="correction-tab">
+                                 <div class="form-box">
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <input type="hidden" id="runonecheck" name="runonecheck" value="@if($serviceData) @if($serviceData->run_one){{json_decode($serviceData->run_one)->stripe_name_run_one}}@endif @endif">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Strip Name:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0 " id="stripe_name_run_one" value="@if($serviceData) @if($serviceData->run_one){{json_decode($serviceData->run_one)->stripe_name_run_one}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Location:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0" id="stripe_location_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_location_run_one}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Opponent:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0" id="stripe_opponent_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_opponent_run_one}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">R/T:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 numberonly" id="stripe_r_or_t_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_r_or_t_run_one}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">60’:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 numberonly" id="stripe_sixty_degree_run_one" value="@if($serviceData) @if($serviceData->run_one){{json_decode($serviceData->run_one)->stripe_sixty_degree_run_one}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">300':</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 numberonly" id="stripe_three_hundred_degree_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_three_hundred_degree_run_one}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">0-60 mph:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 numberonly" id="zero_to_sixty_mph_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->zero_to_sixty_mph_run_one}}@endif @endif"  style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">1/8 mile:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 numberonly" id="one_or_eight_mile_run_one" value="@if($serviceData)@if($serviceData->run_one) {{json_decode($serviceData->run_one)->one_or_eight_mile_run_one}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">MPH:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 numberonly" id="mph_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->mph_run_one}}@endif @endif" style="height:35px;width:52%;">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">1/4 mile:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 numberonly" id="one_or_four_mile_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->one_or_four_mile_run_one}}@endif @endif"  style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                   
+                                    <div class="row align-items-center vinyl-other-warranty cmn-radio">
+                                       <div class="col-12 col-md-4">
+                                       </div>
+                                       <div class="col-12 col-md-8 d-flex">
+                                          <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
+                                             <div class="custom-check__field-wr m-0">
+                                                <input class="custom-check__field notifications win_run_one" id="vinyl-other-warn1" type="radio" value="Win" name="status" @if($serviceData) @if($serviceData->run_one) @if(json_decode($serviceData->run_one)->status == "Win") checked @endif @endif @endif>
+                                                <div class="custom-check__customize">
+                                                   <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
+                                                   </svg>
+                                                </div>
+                                             </div>
+                                             <label class="custom-check__label cmn-label" for="serviceCheck">Win</label>
+                                          </div>
+                                          <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
+                                             <div class="custom-check__field-wr">
+                                                <input class="custom-check__field notifications lost_run_one" id="vinyl-other-warn2" type="radio" value="lost" name="status" @if($serviceData) @if($serviceData->run_one) @if(json_decode($serviceData->run_one)->status == "lost") checked @endif @endif @endif>
+                                                <div class="custom-check__customize">
+                                                   <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
+                                                   </svg>
+                                                </div>
+                                             </div>
+                                             <label class="custom-check__label cmn-label" for="serviceCheck">Lost</label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <input type="hidden" value="1" class="tab_one">
+                                    <div class="row">
+                                       <div class="col-md-4 col-12">&nbsp;</div>
+                                       <div class="col-md-8 col-12">
+                                          <button class="car-adding__btn btn btn--accent cmn-btn mx-0 mb-5" id="saveRunOne" type="button">Save</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              {{-- run 1 end --}}
+                              {{-- run 2 start --}}
+                              <div class="tab-pane fade" id="coating" role="tabpanel" aria-labelledby="coating-tab">
+                                 <div class="form-box">
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Strip Name:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0 stripe_name_run_two" value="@if($serviceData) @if($serviceData->run_two){{json_decode($serviceData->run_two)->stripe_name_run_two}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Location:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0 stripe_location_run_two" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_location_run_two}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Opponent:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0 stripe_opponent_run_two" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_opponent_run_two}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">R/T:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 stripe_r_or_t_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_r_or_t_run_two}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">60’:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 stripe_sixty_degree_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_sixty_degree_run_two}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">300':</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 stripe_three_hundred_degree_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_three_hundred_degree_run_two}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">0-60 mph:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 zero_to_sixty_mph_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->zero_to_sixty_mph_run_two}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">1/8 mile:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 one_or_eight_mile_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->one_or_eight_mile_run_two}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">MPH:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 mph_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two){{json_decode($serviceData->run_two)->mph_run_two}}@endif @endif" style="height:35px;width:52%;">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">1/4 mile:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 one_or_four_mile_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->one_or_four_mile_run_two}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    
+                                    <div class="row align-items-center vinyl-other-warranty cmn-radio">
+                                       <div class="col-12 col-md-4">
+                                       </div>
+                                       <div class="col-12 col-md-8 d-flex">
+                                          <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
+                                             <div class="custom-check__field-wr m-0">
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn3" type="radio" value="Win" name="status_two" @if($serviceData) @if($serviceData->run_two) @if(json_decode($serviceData->run_two)->status_two == "Win") checked @endif @endif @endif>
+                                                <div class="custom-check__customize">
+                                                   <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
+                                                   </svg>
+                                                </div>
+                                             </div>
+                                             <label class="custom-check__label cmn-label" for="serviceCheck">Win</label>
+                                          </div>
+                                          <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
+                                             <div class="custom-check__field-wr">
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn4" type="radio" value="lost" name="status_two" @if($serviceData) @if($serviceData->run_two) @if(json_decode($serviceData->run_two)->status_two == "lost") checked @endif @endif @endif>
+                                                <div class="custom-check__customize">
+                                                   <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
+                                                   </svg>
+                                                </div>
+                                             </div>
+                                             <label class="custom-check__label cmn-label" for="serviceCheck">Lost</label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <input type="hidden" value="2" class="tab_two">
+                                    <div class="row">
+                                       <div class="col-md-4 col-12">&nbsp;</div>
+                                       <div class="col-md-8 col-12">
+                                          <button class="car-adding__btn btn btn--accent cmn-btn mx-0 mb-5" id="saveRunTwo" type="button">Save</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              {{-- run 2 end --}}
+                              {{-- run 3 start --}}
+                              <div class="tab-pane fade" id="cleaning" role="tabpanel" aria-labelledby="cleaning-tab">
+                                 <div class="form-box">
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Strip Name:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0 stripe_name_run_three" value="@if($serviceData) @if($serviceData->run_three){{json_decode($serviceData->run_three)->stripe_name_run_three}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Location:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0 stripe_location_run_three" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_location_run_three}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">Opponent:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12">
+                                             <input type="text" class="form-control border-0 stripe_opponent_run_three" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_opponent_run_three}}@endif @endif" style="height:35px">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">R/T:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 stripe_r_or_t_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_r_or_t_run_three}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">60’:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 stripe_sixty_degree_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_sixty_degree_run_three}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">300':</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 stripe_three_hundred_degree_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_three_hundred_degree_run_three}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">0-60 mph:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 zero_to_sixty_mph_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->zero_to_sixty_mph_run_three}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">1/8 mile:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 one_or_eight_mile_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->one_or_eight_mile_run_three}}@endif @endif"  style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">MPH:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 mph_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three){{json_decode($serviceData->run_three)->mph_run_three}}@endif @endif" style="height:35px;width:52%;">
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    <div class="form-group my-4 align-items-center">
+                                       <div class="row d-flex align-items-center">
+                                          <div class="col-md-4 col-12">
+                                             <label class="p-0">1/4 mile:</label>
+                                          </div>
+                                          <!--col-->
+                                          <div class="col-md-8 col-12 d-flex">
+                                             <input type="text" class="form-control border-0 one_or_four_mile_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->one_or_four_mile_run_three}}@endif @endif" style="height:35px">
+                                             <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
+                                          </div>
+                                          <!--col-->
+                                       </div>
+                                       <!--row-->
+                                    </div>
+                                    
+                                    <div class="row align-items-center vinyl-other-warranty cmn-radio">
+                                       <div class="col-12 col-md-4">
+                                       </div>
+                                       <div class="col-12 col-md-8 d-flex">
+                                          <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
+                                             <div class="custom-check__field-wr m-0">
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn5" type="radio" value="25" name="status_three" @if($serviceData) @if($serviceData->run_three) @if(json_decode($serviceData->run_three)->status_three == "Win") checked @endif @endif @endif>
+                                                <div class="custom-check__customize">
+                                                   <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
+                                                   </svg>
+                                                </div>
+                                             </div>
+                                             <label class="custom-check__label cmn-label" for="serviceCheck">Win</label>
+                                          </div>
+                                          <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
+                                             <div class="custom-check__field-wr">
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn6" type="radio" value="25" name="status_three" @if($serviceData) @if($serviceData->run_three) @if(json_decode($serviceData->run_three)->status_three == "lost") checked @endif @endif @endif>
+                                                <div class="custom-check__customize">
+                                                   <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
+                                                   </svg>
+                                                </div>
+                                             </div>
+                                             <label class="custom-check__label cmn-label" for="serviceCheck">Lost</label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <input type="hidden" value="3" class="tab_three">
+                                    <div class="row">
+                                       <div class="col-md-4 col-12">&nbsp;</div>
+                                       <div class="col-md-8 col-12">
+                                          <button class="car-adding__btn btn btn--accent cmn-btn mx-0 mb-5" id="saveRunThree" type="button">Save</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              {{-- run 3 end --}}
+                           </div>
+                        </div>
+                        <!--col-->
+                     </div>
+                  </div>
+                  <div class="form-box w-100">
+                     <div class="form-group">
+                        <div class="upload-wrap" style="border-top: 2px solid #D8D8D8;padding-top: 20px;margin: 0;">
+                           <div class="row align-items-center">
+                              <div class="col-md-4 col-12">
+                                 <button class="btn uplaod">UPLOAD <br />
+                                    Photos & Docs<input type="file" name="products_uploaded[]" id="insert_products_uploaded" class="form-control products_uploaded_image" value="Upload" multiple="multiple"> </button>
+                              </div>
+                              <div class="col-md-8 col-12 text-center display_image_list3">
+                                 <ul>
+                                    @if($serviceData && $serviceData->document)
+
+                                    @foreach(explode(',',$serviceData->document) as $key=>$value)
+                                    <?php $chkextension = explode('.', $value); ?>
+                                    @if(trim($chkextension[5])=="pdf")
+                                    <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
+                                    @else
+                                    <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
+                                    @endif
+
+                                    @endforeach
+                                    @endif
+                                 </ul>
+                              </div>
+                              <!--col-->
+                           </div>
+                           <!--row-->
+                        </div>
+                     </div>
+                  </div>
+                  <button class="car-adding__btn btn btn--accent cmn-btn" id="saveRaceTrack" type="button">Save</button>
+               </div>
+            </div>
+         </div>
+         @include('shop-settings.partials.rightvinnumber')
+      </div>
+   </div>
+</div>
+</main>
+@endsection
