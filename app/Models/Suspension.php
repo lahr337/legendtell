@@ -10,4 +10,18 @@ class Suspension extends Model
     use HasFactory;
     protected $guarded = [];
     protected $primaryKey = 'suspension_id';
+
+    public function shop_service()
+    {
+        return $this->hasOne(ShopServices::class,'service_id','service_id');
+    }
+
+    public function shop_user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
+    public function car_user()
+    {
+        return $this->hasOne(Car::class,'id','car_id');
+    }
 }

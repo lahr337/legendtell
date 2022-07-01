@@ -56,41 +56,42 @@ class GlassServicesController extends Controller
         $img_arr = array();
 
 
-        $glass_service_check =  GlassServices::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $glass_service_check =  GlassServices::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($glass_service_check) {
-            if (!empty($glass_service_check->document)) {
+        // if ($glass_service_check) {
+        //     if (!empty($glass_service_check->document)) {
 
-                $documents = explode(',', $glass_service_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $glass_service_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('image_uploaded')) {
             $imgdoc = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'glassservices', $img_arr);
-        } else {
-            $imgdoc = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $imgdoc = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
 
         $glassServices = new GlassServices;
-        $checkAcData = GlassServices::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($checkAcData) {
-            $glassServices = $glassServices->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $checkAcData = GlassServices::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($checkAcData) {
+        //     $glassServices = $glassServices->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
         $windhshield = implode(',',$request->windhshield);
         $glassServices->user_id = auth()->user()->id;
         $glassServices->car_id = $car_id;

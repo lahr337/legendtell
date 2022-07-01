@@ -6,11 +6,45 @@ use Illuminate\Http\Request;
 use App\Services\CarQueryApi;
 use App\Http\Requests\Common\GetMakesRequest;
 use App\Http\Requests\Common\GetModelsRequest;
+use App\Models\AcServices;
+use App\Models\BatteryService;
+use App\Models\BreakServices;
 use App\Models\Car;
 use App\Models\User;
 use App\Models\CarOwnerHistory;
+use App\Models\CarWashServices;
+use App\Models\CeramicCoating;
+use App\Models\CollisionRepair;
+use App\Models\ConciergeServices;
+use App\Models\CustomBuildBody;
+use App\Models\DealerShip;
+use App\Models\ElectricControl;
+use App\Models\EngineBlockServices;
+use App\Models\ExhaustServices;
+use App\Models\FabricationWelding;
+use App\Models\FrameAlignment;
+use App\Models\FuelSystem;
+use App\Models\GlassServices;
+use App\Models\Lubrication;
+use App\Models\Mechanical;
+use App\Models\Nitrous;
+use App\Models\OilServices;
+use App\Models\PaintBody;
+use App\Models\PaintlessDentRepair;
+use App\Models\PaintProtectionFilm;
+use App\Models\Parts;
+use App\Models\PerformanceDynoTuning;
+use App\Models\PowderCoating;
+use App\Models\RaceTrack;
+use App\Models\RimRepair;
 use App\Models\ShopApparisal;
 use App\Models\ShopServices;
+use App\Models\SpecialtyOther;
+use App\Models\Suspension;
+use App\Models\TintServices;
+use App\Models\Tires;
+use App\Models\Transmission;
+use App\Models\Vinyl;
 use Illuminate\Support\Facades\Storage;
 
 class CommonController extends Controller
@@ -162,8 +196,9 @@ class CommonController extends Controller
         $service_date_new= date("Y-m-d H:i:s");
         $ownerhistory = Car::where('id', $car_id)->first();
         if ($ownerhistory) {
-            if (in_array($serviceId, explode(',', $ownerhistory->service_id))) {
-            } else {
+            // if (in_array($serviceId, explode(',', $ownerhistory->service_id))) {
+            //     $ownerinsert = Car::where('id', $car_id)->update(['updated_at'=>$service_date]);
+            // } else {
                 if ($ownerhistory->service_id == "" || $ownerhistory->service_id == null) {
                     $ownerinsert = Car::where('id', $car_id)->update(['service_id' => $serviceId,'service_date'=>$service_date,'allservice_date'=>$service_date]);
                 } else {
@@ -179,7 +214,7 @@ class CommonController extends Controller
                         $ownerinsert = Car::where('id', $car_id)->update(['service_id' => implode(',', $Service_id),'service_date'=>$service_date,'allservice_date'=>implode(',', $Service_newdate)]);
                     }
                 }
-            }
+            // }
         }
     }
     public static function getServiceName($serviceId) {
@@ -193,6 +228,192 @@ class CommonController extends Controller
           
         }
         return $data;
+    }
+
+
+    public static function latest_services($shop_service, $car_id, $serviceId)
+    {
+        $car = Car::find($car_id);
+        $car_id = Car::where('vin', $car['vin'])->orderBy('service_date', 'ASC')->get()->pluck('id');
+        
+        if ($shop_service == "AC Service") {
+            $shopAllServices = AcServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('ac_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Battery Service") {
+            $shopAllServices = BatteryService::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('battery_service_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Brake Service") {
+            $shopAllServices = BreakServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('break_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Car-Wash") {
+            $shopAllServices = CarWashServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('wash_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Ceramic Coating") {
+            $shopAllServices = CeramicCoating::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('ceramic_coating_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+        if ($shop_service == "Collision Repair") {
+            $shopAllServices = CollisionRepair::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('collision_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Concierge Service") {
+            $shopAllServices = ConciergeServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('conc_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Custom Build & Body") {
+            $shopAllServices = CustomBuildBody::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('custom_build_body_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Dealership Service") {
+            $shopAllServices = DealerShip::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('dealer_ship_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        // if ($shop_service == "Detailing - Professional") {
+        //     $shopAllServices = AcServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('battery_service_id', 'DESC')->latest('created_at')->first();
+        //     return $shopAllServices;
+        // }
+
+        if ($shop_service == "Electrical|Controls /Specialty") {
+            $shopAllServices = ElectricControl::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('electric_controls_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Engine Block Specialty") {
+            $shopAllServices = EngineBlockServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('engine_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Exhaust") {
+            $shopAllServices = ExhaustServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('exhaust_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Fabrication & Welding") {
+            $shopAllServices = FabricationWelding::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('fabrication_welding', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Frame & Alignment") {
+            $shopAllServices = FrameAlignment::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('frame_alignment_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Fuel System") {
+            $shopAllServices = FuelSystem::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('fuel_system_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Glass Service") {
+            $shopAllServices = GlassServices::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('glass_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Lubrication") {
+            $shopAllServices = Lubrication::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('lubrication_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Mechanical") {
+            $shopAllServices = Mechanical::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('mechanical_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Nitrous") {
+            $shopAllServices = Nitrous::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('nitrous_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Oil Service") {
+            $shopAllServices = OilServices::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('oil_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Paint & Body") {
+            $shopAllServices = PaintBody::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('paint_body_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Paint Protection Film (PPF)") {
+            $shopAllServices = PaintProtectionFilm::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('paint_protection_film_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Paintless Dent Repair (PDR)") {
+            $shopAllServices = PaintlessDentRepair::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('paintless_dent_repair_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Parts") {
+            $shopAllServices = Parts::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('part_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Performance | Dyno | Tuning") {
+            $shopAllServices = PerformanceDynoTuning::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('performance_dyno_tuning_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Powder Coating") {
+            $shopAllServices = PowderCoating::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('powder_coating_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Race & Track") {
+            $shopAllServices = RaceTrack::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('race_track_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Rim Repair") {
+            $shopAllServices = RimRepair::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('rim_repair_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        // if ($shop_service == "Rims") {
+        //     $shopAllServices = AcServices::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('battery_service_id', 'DESC')->latest('created_at')->first();
+        //     return $shopAllServices;
+        // }
+
+        if ($shop_service == "Specialty-Other") {
+            $shopAllServices = SpecialtyOther::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('specialty_other_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Suspension") {
+            $shopAllServices = Suspension::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('suspension_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Tint") {
+            $shopAllServices = TintServices::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('tint_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Tires") {
+            $shopAllServices = Tires::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('tire_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Transmission") {
+            $shopAllServices = Transmission::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('transmission_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
+
+        if ($shop_service == "Vinyl Wraps") {
+            $shopAllServices = Vinyl::with('shop_user', 'shop_service.shop_detail')->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('vinyl_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
     }
 
     public static function getUserInfo($user_id)

@@ -1,5 +1,5 @@
     <div class="content-tab" id="appraisal">
-      <section class="appraisal">
+      <section class="container appraisal">
         <div class="section-heading">
           <h1 class="section-heading__title">Appraisal</h1>
         </div>

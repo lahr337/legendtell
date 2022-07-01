@@ -22,7 +22,7 @@
     
       {{-- {{count($allShopSerives)}} --}}
       @foreach($allShopSerives as $listshop)
-      
+      @if($listshop->service_id != 5)
       <div id="mm-{{$listshop->service_id}}" class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl @if (in_array($listshop->service_id, explode(',',auth()->user()->shop_services))) mychkcls @endif">
           <div class="custom-check__field-wr">
               <input class="custom-check__field notifications myallservices" id="{{$listshop->service_id}}" type="checkbox" value="{{$listshop->service_id}}" name="serviceCheck[]" @if (in_array($listshop->service_id, explode(',',auth()->user()->shop_services))) checked @endif/>
@@ -34,6 +34,7 @@
           </div>
           <label for="{{$listshop->service_id}}" class="custom-check__label"  >{{$listshop->service_name}}</label>
       </div>
+      @endif
       @endforeach
 
    

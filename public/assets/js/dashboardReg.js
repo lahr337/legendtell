@@ -33263,7 +33263,7 @@ function initGallery(_ref) {
       Swal.fire({
         title: 'Default!',
         text: 'Do you want to set default',
-        icon: 'error',
+        icon: 'success',
         confirmButtonText: 'Yes',
         showCancelButton: true,
         cancelButtonText: 'No'

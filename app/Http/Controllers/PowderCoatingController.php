@@ -28,9 +28,6 @@ class PowderCoatingController extends Controller
 
     public function savePowderCoating(Request $request)
     {
-        // echo "<pre>";
-        // print_r($request->all());
-        // die;
         $input = $request->except(['_token']);
         $commonClass = new CommonController;
         $mainid = base64_decode($request->carShopService);
@@ -55,40 +52,41 @@ class PowderCoatingController extends Controller
         $img_arr = array();
 
 
-        $powder_coating_check =  PowderCoating::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $powder_coating_check =  PowderCoating::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($powder_coating_check) {
-            if (!empty($powder_coating_check->document)) {
+        // if ($powder_coating_check) {
+        //     if (!empty($powder_coating_check->document)) {
 
-                $documents = explode(',', $powder_coating_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $powder_coating_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('products_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('products_uploaded'), 'powder_coating', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
         }
+        //  else {
+        //     $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
         $powder_coating = new PowderCoating();
-        $serviceData = PowderCoating::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $powder_coating = $powder_coating->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $serviceData = PowderCoating::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $powder_coating = $powder_coating->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
         $powder_coating->user_id = auth()->user()->id;
         $powder_coating->car_id = $car_id;
         $powder_coating->service_id = $serviceId;

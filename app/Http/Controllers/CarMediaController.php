@@ -21,27 +21,25 @@ class CarMediaController extends Controller
 
     public function uplaodFiles(Request $request){
        
+        
         if( $files = $request->file('files') ){
             $user = auth()->user();
             $html = '';
             foreach($files as $file_index => $file) {
                 $type = preg_match('/images?/', $file->getMimeType()) == 1 ? 'image' : (preg_match('/videos?/', $file->getMimeType()) == 1 ? 'video' : null);
                 if($type){
-                    // $fileName = time() . rand(999,9999) .'.'.$file->getClientOriginalExtension();
-                    // $file->move(getStoragePath($request->type, $request->car_id), $fileName);
                     $path1 = Storage::disk('s3')->put('service_video', $file);
                     $path1 = Storage::disk('s3')->url($path1);
-                    //$insert[$file_index]['path'] = $path1;
-
-                    
+                   
                     if($request->type == 'carmedia'){
+                        
                         $car_media = CarMedia::create([
                             'filename'  => $path1,
                             'type'      => $type,
                             'car_id'    => $request->car_id,
                             'user_id'    => $user->id, 
                         ]);
-                       // echo "<pre>"; print_r($car_media); die;
+                      
                         $html .= view('cars.partials._tab-contents._media._items',['media' => $car_media])->render();
                     }
                 }

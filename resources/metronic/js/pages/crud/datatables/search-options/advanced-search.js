@@ -196,7 +196,7 @@ var KTDatatablesSearchOptionsAdvancedSearch = function() {
 				rightArrow: '<i class="la la-angle-right"></i>',
 			},
 		});
-
+ 
 	};
 
 	return {

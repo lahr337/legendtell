@@ -2,6 +2,14 @@
 <!-- leftcode -->
 @section('content')
 @include('shop-settings.leftshowmenu')
+<style> 
+.run_two{
+   pointer-events: none;
+}
+.run_three{
+   pointer-events: none;
+}
+</style>
 <div class="account-settings__content-wr">
    <div class="account-settings__content-form">
       <div class="grid-view-shop">
@@ -9,6 +17,7 @@
             <div class="cmn-content">
                @csrf
                <input type="hidden" id="servicedata" name="carShopService" value="@if(isset($_GET['servicedata'])){{ $_GET['servicedata'] }} @endif">
+               <input type="hidden" class="race_track_id" value="">
                <div class="race-track">
                   <div class="row" style="row-gap:25px;">
 
@@ -24,7 +33,7 @@
                                     </div>
                                     <!--col-->
                                     <div class="col-md-8 col-12">
-                                       <input type="text" class="form-control border-0" style="height:35px" name="track_name" value="@if($serviceData){{$serviceData->track_name}}@endif" id="track_name">
+                                       <input type="text" class="form-control border-0" style="height:35px" name="track_name" value="" id="track_name">
                                     </div>
                                     <!--col-->
                                  </div>
@@ -37,7 +46,7 @@
                                     </div>
                                     <!--col-->
                                     <div class="col-md-8 col-12">
-                                       <input type="text" class="form-control border-0" style="height:35px" name="track_location" value="@if($serviceData){{$serviceData->location}}@endif" id="track_location">
+                                       <input type="text" class="form-control border-0" style="height:35px" name="track_location" value="" id="track_location">
                                     </div>
                                     <!--col-->
                                  </div>
@@ -50,7 +59,7 @@
                                     </div>
                                     <!--col-->
                                     <div class="col-md-8 col-12">
-                                       <input type="text" class="form-control border-0" style="height:35px" name="track_type" value="@if($serviceData){{$serviceData->track_type}}@endif" id="track_type">
+                                       <input type="text" class="form-control border-0" style="height:35px" name="track_type" value="" id="track_type">
                                     </div>
                                     <!--col-->
                                  </div>
@@ -64,7 +73,7 @@
                                     </div>
                                     <!--col-->
                                     <div class="col-md-8 col-12 d-flex">
-                                       <input type="text" class="form-control border-0 zero_to_sixty_mph numberonly" name="zero_to_sixty_mph" value="@if($serviceData){{$serviceData->zero_to_sixty_mph}}@endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 zero_to_sixty_mph numberonly" name="zero_to_sixty_mph" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                     </div>
                                     <!--col-->
@@ -81,10 +90,10 @@
                                     <!--col-->
                                     
                                     <div class="col-md-8 col-12 d-flex">
-                                       <input type="text" class="form-control border-0 numberonly lap_one_min" value="@if($serviceData)@if($serviceData->lap_one){{json_decode($serviceData->lap_one)->lap_one_min}} @endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 numberonly lap_one_min" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
                                      
-                                       <input type="text" class="form-control border-0 lap_one_sec numberonly" value="@if($serviceData)@if($serviceData->lap_one){{json_decode($serviceData->lap_one)->lap_one_sec}}@endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 lap_one_sec numberonly" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
                                     </div>
                                     <!--col-->
@@ -99,10 +108,10 @@
                                     </div>
                                     <!--col-->
                                     <div class="col-md-8 col-12 d-flex">
-                                       <input type="text" class="form-control border-0 lap_two_min numberonly" value="@if($serviceData)@if($serviceData->lap_two){{json_decode($serviceData->lap_two)->lap_two_min}}@endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 lap_two_min numberonly" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
 
-                                       <input type="text" class="form-control border-0 lap_two_sec numberonly" value="@if($serviceData)@if($serviceData->lap_two){{json_decode($serviceData->lap_two)->lap_two_sec}}@endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 lap_two_sec numberonly" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
                                     </div>
                                     <!--col-->
@@ -118,10 +127,10 @@
                                     </div>
                                     <!--col-->
                                     <div class="col-md-8 col-12 d-flex">
-                                       <input type="text" class="form-control border-0 lap_three_min numberonly" value="@if($serviceData)@if($serviceData->lap_three){{json_decode($serviceData->lap_three)->lap_three_min}}@endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 lap_three_min numberonly" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
 
-                                       <input type="text" class="form-control border-0 lap_three_sec numberonly" value="@if($serviceData)@if($serviceData->lap_three){{json_decode($serviceData->lap_three)->lap_three_sec}}@endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 lap_three_sec numberonly" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
                                     </div>
                                     <!--col-->
@@ -137,10 +146,10 @@
                                     </div>
                                     <!--col-->
                                     <div class="col-md-8 col-12 d-flex">
-                                       <input type="text" class="form-control border-0 lap_four_min numberonly" value="@if($serviceData)@if($serviceData->lap_four){{json_decode($serviceData->lap_four)->lap_four_min}}@endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 lap_four_min numberonly" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">min</label>
 
-                                       <input type="text" class="form-control border-0 lap_four_sec numberonly" value="@if($serviceData)@if($serviceData->lap_four){{json_decode($serviceData->lap_four)->lap_four_sec}}@endif @endif" style="height:35px">
+                                       <input type="text" class="form-control border-0 lap_four_sec numberonly" value="" style="height:35px">
                                        <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;width:auto;">sec</label>
                                     </div>
                                     <!--col-->
@@ -160,10 +169,10 @@
                                  <button class="nav-link navTabs active"  id="correction-tab" data-bs-toggle="tab" data-bs-target="#correction" type="button" role="tab" aria-controls="correction" aria-selected="true">RUN 1</button>
                               </li>
                               <li class="nav-item" role="presentation">
-                                 <button class="nav-link navTabs" id="coating-tab" @if($serviceData) @if(empty($serviceData->run_one)) style="pointer-events:none"      @endif @endif data-bs-toggle="tab" data-bs-target="#coating" type="button" role="tab" aria-controls="coating" aria-selected="false">RUN 2</button>
+                                 <button class="nav-link navTabs run_two" id="coating-tab"  data-bs-toggle="tab" data-bs-target="#coating" type="button" role="tab" aria-controls="coating" aria-selected="false">RUN 2</button>
                               </li>
                               <li class="nav-item" role="presentation">
-                                 <button class="nav-link navTabs" id="cleaning-tab" @if($serviceData) @if(empty($serviceData->run_one) && empty($serviceData->run_two)) style="pointer-events:none"      @endif @endif data-bs-toggle="tab" data-bs-target="#cleaning" type="button" role="tab" aria-controls="cleaning" aria-selected="false">RUN 3</button>
+                                 <button class="nav-link navTabs run_three" id="cleaning-tab" data-bs-toggle="tab" data-bs-target="#cleaning" type="button" role="tab" aria-controls="cleaning" aria-selected="false">RUN 3</button>
                               </li>
                            </ul>
                            <div class="tab-content" id="myTabContent">
@@ -172,13 +181,13 @@
                                  <div class="form-box">
                                     <div class="form-group my-4 align-items-center">
                                        <div class="row d-flex align-items-center">
-                                          <input type="hidden" id="runonecheck" name="runonecheck" value="@if($serviceData) @if($serviceData->run_one){{json_decode($serviceData->run_one)->stripe_name_run_one}}@endif @endif">
+                                          <input type="hidden" id="runonecheck" name="runonecheck" value="">
                                           <div class="col-md-4 col-12">
                                              <label class="p-0">Strip Name:</label>
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0 " id="stripe_name_run_one" value="@if($serviceData) @if($serviceData->run_one){{json_decode($serviceData->run_one)->stripe_name_run_one}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 " id="stripe_name_run_one" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -191,7 +200,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0" id="stripe_location_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_location_run_one}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0" id="stripe_location_run_one" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -204,7 +213,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0" id="stripe_opponent_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_opponent_run_one}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0" id="stripe_opponent_run_one" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -217,7 +226,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 numberonly" id="stripe_r_or_t_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_r_or_t_run_one}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 numberonly" id="stripe_r_or_t_run_one" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -231,7 +240,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 numberonly" id="stripe_sixty_degree_run_one" value="@if($serviceData) @if($serviceData->run_one){{json_decode($serviceData->run_one)->stripe_sixty_degree_run_one}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 numberonly" id="stripe_sixty_degree_run_one" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -245,7 +254,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 numberonly" id="stripe_three_hundred_degree_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->stripe_three_hundred_degree_run_one}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 numberonly" id="stripe_three_hundred_degree_run_one" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -259,7 +268,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 numberonly" id="zero_to_sixty_mph_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->zero_to_sixty_mph_run_one}}@endif @endif"  style="height:35px">
+                                             <input type="text" class="form-control border-0 numberonly" id="zero_to_sixty_mph_run_one" value=""  style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -273,7 +282,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 numberonly" id="one_or_eight_mile_run_one" value="@if($serviceData)@if($serviceData->run_one) {{json_decode($serviceData->run_one)->one_or_eight_mile_run_one}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 numberonly" id="one_or_eight_mile_run_one" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -287,7 +296,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 numberonly" id="mph_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->mph_run_one}}@endif @endif" style="height:35px;width:52%;">
+                                             <input type="text" class="form-control border-0 numberonly" id="mph_run_one" value="" style="height:35px;width:52%;">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -300,7 +309,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 numberonly" id="one_or_four_mile_run_one" value="@if($serviceData) @if($serviceData->run_one) {{json_decode($serviceData->run_one)->one_or_four_mile_run_one}}@endif @endif"  style="height:35px">
+                                             <input type="text" class="form-control border-0 numberonly" id="one_or_four_mile_run_one" value=""  style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -314,7 +323,7 @@
                                        <div class="col-12 col-md-8 d-flex">
                                           <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
                                              <div class="custom-check__field-wr m-0">
-                                                <input class="custom-check__field notifications win_run_one" id="vinyl-other-warn1" type="radio" value="Win" name="status" @if($serviceData) @if($serviceData->run_one) @if(json_decode($serviceData->run_one)->status == "Win") checked @endif @endif @endif>
+                                                <input class="custom-check__field notifications win_run_one" id="vinyl-other-warn1" type="radio" value="Win" name="status">
                                                 <div class="custom-check__customize">
                                                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
@@ -325,7 +334,7 @@
                                           </div>
                                           <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
                                              <div class="custom-check__field-wr">
-                                                <input class="custom-check__field notifications lost_run_one" id="vinyl-other-warn2" type="radio" value="lost" name="status" @if($serviceData) @if($serviceData->run_one) @if(json_decode($serviceData->run_one)->status == "lost") checked @endif @endif @endif>
+                                                <input class="custom-check__field notifications lost_run_one" id="vinyl-other-warn2" type="radio" value="lost" name="status">
                                                 <div class="custom-check__customize">
                                                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
@@ -356,7 +365,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0 stripe_name_run_two" value="@if($serviceData) @if($serviceData->run_two){{json_decode($serviceData->run_two)->stripe_name_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_name_run_two" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -369,7 +378,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0 stripe_location_run_two" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_location_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_location_run_two" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -382,7 +391,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0 stripe_opponent_run_two" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_opponent_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_opponent_run_two" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -395,7 +404,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 stripe_r_or_t_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_r_or_t_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_r_or_t_run_two numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -409,7 +418,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 stripe_sixty_degree_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_sixty_degree_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_sixty_degree_run_two numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -423,7 +432,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 stripe_three_hundred_degree_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->stripe_three_hundred_degree_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_three_hundred_degree_run_two numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -437,7 +446,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 zero_to_sixty_mph_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->zero_to_sixty_mph_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 zero_to_sixty_mph_run_two numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -451,7 +460,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 one_or_eight_mile_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->one_or_eight_mile_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 one_or_eight_mile_run_two numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -465,7 +474,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 mph_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two){{json_decode($serviceData->run_two)->mph_run_two}}@endif @endif" style="height:35px;width:52%;">
+                                             <input type="text" class="form-control border-0 mph_run_two numberonly" value="" style="height:35px;width:52%;">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -478,7 +487,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 one_or_four_mile_run_two numberonly" value="@if($serviceData) @if($serviceData->run_two) {{json_decode($serviceData->run_two)->one_or_four_mile_run_two}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 one_or_four_mile_run_two numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -492,7 +501,7 @@
                                        <div class="col-12 col-md-8 d-flex">
                                           <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
                                              <div class="custom-check__field-wr m-0">
-                                                <input class="custom-check__field notifications" id="vinyl-other-warn3" type="radio" value="Win" name="status_two" @if($serviceData) @if($serviceData->run_two) @if(json_decode($serviceData->run_two)->status_two == "Win") checked @endif @endif @endif>
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn3" type="radio" value="Win" name="status_two">
                                                 <div class="custom-check__customize">
                                                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
@@ -503,7 +512,7 @@
                                           </div>
                                           <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
                                              <div class="custom-check__field-wr">
-                                                <input class="custom-check__field notifications" id="vinyl-other-warn4" type="radio" value="lost" name="status_two" @if($serviceData) @if($serviceData->run_two) @if(json_decode($serviceData->run_two)->status_two == "lost") checked @endif @endif @endif>
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn4" type="radio" value="lost" name="status_two">
                                                 <div class="custom-check__customize">
                                                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
@@ -534,7 +543,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0 stripe_name_run_three" value="@if($serviceData) @if($serviceData->run_three){{json_decode($serviceData->run_three)->stripe_name_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_name_run_three" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -547,7 +556,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0 stripe_location_run_three" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_location_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_location_run_three" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -560,7 +569,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12">
-                                             <input type="text" class="form-control border-0 stripe_opponent_run_three" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_opponent_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_opponent_run_three" value="" style="height:35px">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -573,7 +582,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 stripe_r_or_t_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_r_or_t_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_r_or_t_run_three numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -587,7 +596,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 stripe_sixty_degree_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_sixty_degree_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_sixty_degree_run_three numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -601,7 +610,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 stripe_three_hundred_degree_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->stripe_three_hundred_degree_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 stripe_three_hundred_degree_run_three numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -615,7 +624,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 zero_to_sixty_mph_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->zero_to_sixty_mph_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 zero_to_sixty_mph_run_three numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -629,7 +638,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 one_or_eight_mile_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->one_or_eight_mile_run_three}}@endif @endif"  style="height:35px">
+                                             <input type="text" class="form-control border-0 one_or_eight_mile_run_three numberonly" value=""  style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -643,7 +652,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 mph_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three){{json_decode($serviceData->run_three)->mph_run_three}}@endif @endif" style="height:35px;width:52%;">
+                                             <input type="text" class="form-control border-0 mph_run_three numberonly" value="" style="height:35px;width:52%;">
                                           </div>
                                           <!--col-->
                                        </div>
@@ -656,7 +665,7 @@
                                           </div>
                                           <!--col-->
                                           <div class="col-md-8 col-12 d-flex">
-                                             <input type="text" class="form-control border-0 one_or_four_mile_run_three numberonly" value="@if($serviceData) @if($serviceData->run_three) {{json_decode($serviceData->run_three)->one_or_four_mile_run_three}}@endif @endif" style="height:35px">
+                                             <input type="text" class="form-control border-0 one_or_four_mile_run_three numberonly" value="" style="height:35px">
                                              <label class="p-0" style="text-align: left;display: flex;align-items: center;margin-left: 10px;">sec</label>
                                           </div>
                                           <!--col-->
@@ -670,7 +679,7 @@
                                        <div class="col-12 col-md-8 d-flex">
                                           <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
                                              <div class="custom-check__field-wr m-0">
-                                                <input class="custom-check__field notifications" id="vinyl-other-warn5" type="radio" value="25" name="status_three" @if($serviceData) @if($serviceData->run_three) @if(json_decode($serviceData->run_three)->status_three == "Win") checked @endif @endif @endif>
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn5" type="radio" value="25" name="status_three">
                                                 <div class="custom-check__customize">
                                                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>
@@ -681,7 +690,7 @@
                                           </div>
                                           <div class="manage-notifications__item custom-check custom-check--with-label custom-check--with-label-xl mt-0">
                                              <div class="custom-check__field-wr">
-                                                <input class="custom-check__field notifications" id="vinyl-other-warn6" type="radio" value="25" name="status_three" @if($serviceData) @if($serviceData->run_three) @if(json_decode($serviceData->run_three)->status_three == "lost") checked @endif @endif @endif>
+                                                <input class="custom-check__field notifications" id="vinyl-other-warn6" type="radio" value="25" name="status_three">
                                                 <div class="custom-check__customize">
                                                    <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <path d="M1 7.66667L7 12.3333L12.3333 1" stroke="white"></path>

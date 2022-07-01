@@ -49,40 +49,41 @@ class PaintBodyController extends Controller
         $img_arr = array();
 
 
-        $paint_body_check =  PaintBody::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $paint_body_check =  PaintBody::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($paint_body_check) {
-            if (!empty($paint_body_check->document)) {
+        // if ($paint_body_check) {
+        //     if (!empty($paint_body_check->document)) {
 
-                $documents = explode(',', $paint_body_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $paint_body_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('image_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'paint_body', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
         $paint_body = new PaintBody();
-        $serviceData = PaintBody::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $paint_body = $paint_body->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $serviceData = PaintBody::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $paint_body = $paint_body->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
        
         $paint_body->user_id = auth()->user()->id;
         $paint_body->car_id = $car_id;

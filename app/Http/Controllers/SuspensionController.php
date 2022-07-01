@@ -50,42 +50,43 @@ class SuspensionController extends Controller
         $img_arr = array();
 
 
-        $suspension_check =  Suspension::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $suspension_check =  Suspension::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($suspension_check) {
-            if (!empty($suspension_check->document)) {
+        // if ($suspension_check) {
+        //     if (!empty($suspension_check->document)) {
 
-                $documents = explode(',', $suspension_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //         $documents = explode(',', $suspension_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
 
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         // print_r($img_arr); die;
 
         if ($request->hasfile('products_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('products_uploaded'), 'suspension', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
         $suspension = new Suspension();
-        $serviceData = Suspension::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $suspension = $suspension->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $serviceData = Suspension::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $suspension = $suspension->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
         $suspension->user_id = auth()->user()->id;
         $suspension->car_id = $car_id;
         $suspension->service_id = $serviceId;

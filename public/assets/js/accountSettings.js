@@ -16507,17 +16507,17 @@ var emailExists = function emailExists() {
 FormValidation.validators.emailExists = emailExists;
 var validation = FormValidation.formValidation(document.getElementById('editProfile'), {
   fields: {
-    avatar: {
-      validators: {
-        file: {
-          maxFiles: 1,
-          maxSize: 512000,
-          extension: 'jpg,png,jpeg,webp',
-          type: 'image/jpeg,image/png,image/webp',
-          message: 'Please choose a Image file'
-        }
-      }
-    },
+    // avatar: {
+    //   validators: {
+    //     file: {
+    //       maxFiles: 1,
+    //       maxSize: 512000,
+    //       extension: 'jpg,png,jpeg,webp,jfif,pjpeg,pjp,gif,svg,bmp,ico,cur,tif,tiff,apng,avif',
+    //       type: 'image/jpeg,image/jpg,image/BMP,image/png,image/webp,image/gif,image/svg+xml,image/bmp,image/tiff,image/x-icon,image/apng,image/avif',
+    //       message: 'Please choose a Image file'
+    //     }
+    //   }
+    // },
     first_name: {
       validators: {
         notEmpty: {
@@ -16641,7 +16641,7 @@ jquery__WEBPACK_IMPORTED_MODULE_6___default()('#kt_edit_profile_submit').on('cli
         setTimeout(function () {
           changesSaved.classList.remove(changesSavedActiveClass);
         }, 2000);
-        toastr.success('edit profile successfully!', 'Account Settings');
+        toastr.success('Profile edited successfully!', 'Account Settings');
       }, function (error) {
         toastr.error('edit profile failed!', 'Account Settings');
       });
@@ -17173,4 +17173,8 @@ window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a;
 /***/ })
 
 /******/ });
+
+
+
+
 //# sourceMappingURL=accountSettings.js.map

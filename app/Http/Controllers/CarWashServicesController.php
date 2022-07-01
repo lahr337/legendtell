@@ -77,42 +77,43 @@ class CarWashServicesController extends Controller
         $img_arr = array();
 
 
-        $car_wash_service_check =  CarWashServices::where('car_id', $car_id)->where('services_name',$request->services_name)->where('user_id', auth()->user()->id)->first();
+        $car_wash_service_check = new CarWashServices();
 
 
-        if ($car_wash_service_check) {
-            if (!empty($car_wash_service_check->documents)) {
+        // if ($car_wash_service_check) {
+        //     if (!empty($car_wash_service_check->documents)) {
 
-                $documents = explode(',', $car_wash_service_check->documents);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $car_wash_service_check->documents);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('image_uploaded')) {
             $imgdoc = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'carwashservices', $img_arr);
-        } else {
-            $imgdoc = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $imgdoc = implode(" , ", array_column($img_arr, 'path'));
+        // }
      
         
         $carwashservices=new CarWashServices;
-        $checkAcData=CarWashServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();
-        if($checkAcData)
-        {
-        $carwashservices=$carwashservices->where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();   
-        }
+        // $checkAcData=CarWashServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();
+        // if($checkAcData)
+        // {
+        // $carwashservices=$carwashservices->where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();   
+        // }
         
         $carwashservices->user_id=auth()->user()->id;
         $carwashservices->car_id=$car_id;
@@ -145,9 +146,6 @@ class CarWashServicesController extends Controller
     //car tunnel
     public function CarTunnelStore(Request $request)
     {
-    //    echo "<pre>"; print_r($request->all());
-    //     // echo implode(',',$request->serviceData);
-    //     die();
         $input = $request->except(['_token']);
         $commonClass = new CommonController;
       
@@ -174,43 +172,44 @@ class CarWashServicesController extends Controller
      
         
         $carwashservices=new CarWashServices;
-        $checkAcData=CarWashServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();
-        if($checkAcData)
-        {
-            $imgdoc=$checkAcData->documents;
-        $carwashservices=$carwashservices->where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();   
-        }
+        // $checkAcData=CarWashServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();
+        // if($checkAcData)
+        // {
+        //     $imgdoc=$checkAcData->documents;
+        // $carwashservices=$carwashservices->where('car_id',$car_id)->where('service_id',$serviceId)->where('services_name',$request->services_name)->where('user_id',auth()->user()->id)->first();   
+        // }
         $img_arr = array();
 
 
-        $car_wash_service_check =  CarWashServices::where('car_id', $car_id)->where('services_name',$request->services_name)->where('user_id', auth()->user()->id)->first();
+        // $car_wash_service_check =  CarWashServices::where('car_id', $car_id)->where('services_name',$request->services_name)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($car_wash_service_check) {
-            if (!empty($car_wash_service_check->documents)) {
+        // if ($car_wash_service_check) {
+        //     if (!empty($car_wash_service_check->documents)) {
 
-                $documents = explode(',', $car_wash_service_check->documents);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $car_wash_service_check->documents);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('image_uploaded')) {
             $imgdoc = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'carwashservices', $img_arr);
-        } else {
-            $imgdoc = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $imgdoc = implode(" , ", array_column($img_arr, 'path'));
+        // }
         $carwashservices->user_id=auth()->user()->id;
         $carwashservices->car_id=$car_id;
         $carwashservices->service_id=$request->servicedataid; 
@@ -232,8 +231,6 @@ class CarWashServicesController extends Controller
                 $carid=base64_encode($car_id);
                 $redirecturl='/shop-settings/completedshop/'.$carid;
             }
-
-            // return response()->json(['status'=>true,'message' => $redirecturl,'type' => 'object'], 422);
             return  $redirecturl;
         }
         else{

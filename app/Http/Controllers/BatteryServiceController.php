@@ -27,9 +27,6 @@ class BatteryServiceController extends Controller
 
     public function saveBatteryService(Request $request)
     {
-        // echo "<pre>";
-        // print_r($request->all());
-        // die;
         $input = $request->except(['_token']);
         $commonClass = new CommonController;
         $mainid = base64_decode($request->carShopService);
@@ -54,40 +51,42 @@ class BatteryServiceController extends Controller
         $img_arr = array();
 
 
-        $battery_service_check =  BatteryService::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $battery_service_check =  BatteryService::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
+        $battery_service_check = new BatteryService();
+        // if ($battery_service_check) {
+        //     if (!empty($battery_service_check->document)) {
 
-        if ($battery_service_check) {
-            if (!empty($battery_service_check->document)) {
+        //         $documents = explode(',', $battery_service_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                $documents = explode(',', $battery_service_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
-
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('products_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('products_uploaded'), 'battery_service', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
         $battery_service = new BatteryService();
-        $serviceData = BatteryService::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $battery_service = $battery_service->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        
+        // $serviceData = BatteryService::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $battery_service = $battery_service->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
        
         $battery_service->user_id = auth()->user()->id;
         $battery_service->car_id = $car_id;

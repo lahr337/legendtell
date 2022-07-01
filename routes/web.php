@@ -182,7 +182,7 @@ Route::group(['middleware' => ['auth']], function(){
 
         //services
         Route::put('/save-shop-service', 'ShopSettingController@saveShopService')->name('.save-shop-service');
-        Route::put('/save-issue-repair', 'CarIssueController@IssueStore')->name('.save-issue-repair');
+        Route::post('/save-issue-repair', 'CarIssueController@IssueStore')->name('.save-issue-repair');
         
         
 
@@ -263,7 +263,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/rim-repair','RimRepairController@indexRimRepair')->name('.rim-repair');
         Route::post('/save-rim-repair','RimRepairController@saveRimRepair')->name('.save-rim-repair');
         Route::get('/paint-protection-film-ppf','PaintProtectionFilmController@indexPaintProtectionFilm')->name('.paint-protection-film-ppf');
-       
+        Route::post('/save-paint-protection-film-ppf','PaintProtectionFilmController@savePaintProtectionFilm')->name('.save-paint-protection-film-ppf');
+
        Route::get('/suspension','SuspensionController@indexSuspension')->name('.suspension');
        Route::post('/save-suspension','SuspensionController@saveSuspension')->name('.save-suspension');
        Route::get('/race-track','RaceTrackController@indexRaceTrack')->name('.race-track');
@@ -275,7 +276,34 @@ Route::group(['middleware' => ['auth']], function(){
        Route::post('/save-fabrication-welding','FabricationWeldingController@saveFabricationWelding')->name('.save-fabrication-welding');
        Route::get('/custom-build-body','CustomBuildBodyController@indexCustomBuildBody')->name('.custom-build-body');
        Route::post('/save-custom-build-body','CustomBuildBodyController@saveCustomBuildBody')->name('.save-custom-build-body');
-        // Route::get('/race-track/{vinid?}', 'GlassServicesController@raceIndex')->name('.race-track');
+       Route::get('/paintless-dent-repair-pdr','PaintlessDentRepairController@indexPaintlessDentRepairPdr')->name('.paintless-dent-repair-pdr');
+       Route::post('/save-paintless-dent-repair-pdr','PaintlessDentRepairController@savePaintlessDentRepairPdr')->name('.save-paintless-dent-repair-pdr');
+       Route::get('/frame-alignment','FrameAlignmentController@indexFrameAlignment')->name('.frame-alignment');
+       Route::post('/save-frame-alignment','FrameAlignmentController@saveFrameAlignment')->name('.save-frame-alignment');
+       Route::get('/detailing-professional','DetailingProfessionalController@indexDetailingProfessional')->name('.detailing-professional');
+       Route::get('/detailing-correction','DetailingProfessionalController@indexDetailingCorrection')->name('.detailing-correction');
+       Route::get('/detailing-correction','DetailingProfessionalController@indexDetailingCorrection')->name('.detailing-correction');
+       Route::post('/save-detailing','DetailingProfessionalController@saveDetailing')->name('.save-detailing');
+
+       
+       Route::post('/save-detailing-professional','DetailingProfessionalController@saveDetailingProfessional')->name('.save-detailing-professional');
+       Route::get('/install-details','PaintProtectionFilmController@installDetails')->name('.install-details');
+       Route::post('/save-ppf-install-details','PaintProtectionFilmController@savePPFDetails')->name('.save-ppf-install-details');
+       Route::get('/ceramic-coating','CeramicCoatingController@indexCreamicCoating')->name('.ceramic-coating');
+       Route::post('/save-ceramic-coating','CeramicCoatingController@saveCreamicCoating')->name('.save-ceramic-coating');
+
+       Route::get('/dealership-service','DealerShipController@indexDealerShip')->name('.dealership-service');
+       Route::post('/save-dealership-service','DealerShipController@saveDealerShip')->name('.save-dealership-service');
+       Route::get('/fuel-system','FuelSystemController@indexFuelSystem')->name('.fuel-system');
+       Route::post('/save-fuel-system','FuelSystemController@saveFuelSystem')->name('.save-fuel-system');
+       Route::get('/lubrication','LubricationController@indexLubrication')->name('.lubrication');
+       Route::post('/save-lubrication','LubricationController@saveLubrication')->name('.save-lubrication');
+       Route::get('/nitrous','NitrousController@indexNitrous')->name('.nitrous');
+       Route::post('/save-nitrous','NitrousController@saveNitrous')->name('.save-nitrous');
+       Route::get('/performance-dyno-tuning','PerformanceDynoTuningController@indexPDT')->name('.performance-dyno-tuning');
+       Route::post('/save-performance-dyno-tuning','PerformanceDynoTuningController@savePDT')->name('.save-performance-dyno-tuning');
+
+       // Route::get('/race-track/{vinid?}', 'GlassServicesController@raceIndex')->name('.race-track');
         // Route::get('/shop-issue-repair', function () {
         //     return view('shop-settings.partials.shop_services.shop_issue_repair');
         // });

@@ -112,42 +112,43 @@ class ShopServicesController extends Controller
         $img_arr = array();
 
 
-        $ac_service_check =  AcServices::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        $ac_service_check = new AcServices();
 
 
-        if ($ac_service_check) {
-            if (!empty($ac_service_check->documents)) {
+        // if ($ac_service_check) {
+        //     if (!empty($ac_service_check->documents)) {
 
-                $documents = explode(',', $ac_service_check->documents);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $ac_service_check->documents);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('image_uploaded')) {
             $acdoc = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'acservices', $img_arr);
-        } else {
-            $acdoc = implode(" , ", array_column($img_arr, 'path'));
         }
+        //  else {
+        //     $acdoc = implode(" , ", array_column($img_arr, 'path'));
+        // }
      
        
         $acservices=new AcServices;
-        $checkAcData=AcServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();
-        if($checkAcData)
-        {
-        $acservices=$acservices->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();   
-        }
+        // $checkAcData=AcServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();
+        // if($checkAcData)
+        // {
+        // $acservices=$acservices->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();   
+        // }
        
         $acservices->user_id=auth()->user()->id;
         $acservices->car_id=$car_id;

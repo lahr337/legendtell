@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Transmission;
 use Illuminate\Http\Request;
 
@@ -27,9 +28,6 @@ class TransmissionController extends Controller
 
     public function saveTransmission(Request $request)
     {
-        // echo "<pre>";
-        // print_r($request->all());
-        // die;
         $input = $request->except(['_token']);
         $commonClass = new CommonController;
         $mainid = base64_decode($request->carShopService);
@@ -54,40 +52,41 @@ class TransmissionController extends Controller
         $img_arr = array();
 
 
-        $transmission_check =  Transmission::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $transmission_check =  Transmission::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($transmission_check) {
-            if (!empty($transmission_check->document)) {
+        // if ($transmission_check) {
+        //     if (!empty($transmission_check->document)) {
 
-                $documents = explode(',', $transmission_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $transmission_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('products_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('products_uploaded'), 'transmission', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
         }
+        //  else {
+        //     $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
         $transmission = new Transmission();
-        $serviceData = Transmission::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $transmission = $transmission->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $serviceData = Transmission::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $transmission = $transmission->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
         $transmission->user_id = auth()->user()->id;
         $transmission->car_id = $car_id;
         $transmission->service_id = $serviceId;
@@ -100,6 +99,9 @@ class TransmissionController extends Controller
         $transmission->mileage = $request->mileage;
         $transmission->transmission_notes = $request->transmission_notes;
         if ($transmission->save()) {
+            $vin_find = Car::find($car_id);
+
+            $cardata=Car::where('vin', $vin_find['vin'])->update(['milage' => $request->mileage]);
             $commonClass = new CommonController;
             $commonClass->addServiceData($car_id, $serviceId);
 

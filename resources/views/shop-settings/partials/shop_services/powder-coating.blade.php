@@ -20,7 +20,7 @@
                                  <label class="p-0">What was powder coated<span class="astrick">*</span>:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <textarea class="form-control was_powder_coating myerr" name="was_powder_coating" rows="2">@if($serviceData){{$serviceData->was_powder_coating}}@endif</textarea>
+                                 <textarea class="form-control was_powder_coating myerr" name="was_powder_coating" rows="2"></textarea>
                               </div>
                            </div>
                         </div>
@@ -30,7 +30,7 @@
                                  <label class="p-0">Powder Coating Manufacturer<span class="astrick">*</span>:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 manufacturer_by myerr" name="manufacturer_by" value="@if($serviceData){{$serviceData->manufacturer_by}}@endif" style="height:35px">
+                                 <input type="text" class="form-control border-0 manufacturer_by myerr" name="manufacturer_by" value="" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -40,7 +40,7 @@
                                  <label class="p-0">Powder Coating System<span class="astrick">*</span>:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 pc_system myerr" value="@if($serviceData){{$serviceData->pc_system}}@endif" name="pc_system" style="height:35px">
+                                 <input type="text" class="form-control border-0 pc_system myerr" value="" name="pc_system" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -50,7 +50,7 @@
                                  <label class="p-0">Color CODE<span class="astrick">*</span>:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 color_code myerr" value="@if($serviceData){{$serviceData->color_code}}@endif" name="color_code" style="height:35px">
+                                 <input type="text" class="form-control border-0 color_code myerr" value="" name="color_code" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -60,7 +60,7 @@
                                  <label class="p-0">Paint COLOR<span class="astrick">*</span>:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 myerr paint_color" value="@if($serviceData){{$serviceData->paint_color}}@endif" name="paint_color" style="height:35px">
+                                 <input type="text" class="form-control border-0 myerr paint_color" value="" name="paint_color" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -75,11 +75,11 @@
                               <div class="col-md-8 col-12">
                                  <div class="btn-group d-flex flex-row cmn-radio is_waranty myerr" role="group" style="column-gap: 10px;">
                                     <div class="form-btnw-wrap">
-                                       <input type="radio" value="Yes" class="btn-check powderWarrenty" name="is_waranty" id="btnradio30" autocomplete="off" @if($serviceData) @if($serviceData->is_waranty == "Yes") checked @endif @endif>
+                                       <input type="radio" value="Yes" class="btn-check powderWarrenty" name="is_waranty" id="btnradio30" autocomplete="off">
                                        <label for="btnradio30">YES</label>
                                     </div>
                                     <div class="form-btnw-wrap">
-                                       <input type="radio" value="No" class="btn-check powderWarrenty" name="is_waranty" id="btnradio31" autocomplete="off" @if($serviceData) @if($serviceData->is_waranty == "No") checked @endif @endif>
+                                       <input type="radio" value="No" class="btn-check powderWarrenty" name="is_waranty" id="btnradio31" autocomplete="off">
                                        <label for="btnradio31">NO</label>
                                     </div>
                                  </div>
@@ -92,7 +92,7 @@
                                  <label class="p-0">WARRANTY COMPANY:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 powderwarentycompany waranty_company myerr" value="@if($serviceData){{$serviceData->waranty_company}}@endif" name="waranty_company" style="height:35px" @if($serviceData) @if($serviceData->is_waranty == "No") readonly @endif @endif>
+                                 <input type="text" class="form-control border-0 powderwarentycompany waranty_company myerr" value="" name="waranty_company" style="height:35px" @if($serviceData) @if($serviceData->is_waranty == "No") readonly @endif @endif>
                               </div>
                            </div>
                         </div>
@@ -103,7 +103,7 @@
                                  <label class="p-0">NOTES:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <textarea class="form-control powder_coating_note" name="powder_coating_note" rows="5">@if($serviceData){{$serviceData->powder_coating_note}}@endif</textarea>
+                                 <textarea class="form-control powder_coating_note" name="powder_coating_note" rows="5"></textarea>
                               </div>
                            </div>
                         </div>
@@ -121,20 +121,7 @@
                                        Photos & Docs<input type="file" name="products_uploaded[]" id="insert_products_uploaded" class="form-control products_uploaded_image" value="Upload" multiple="multiple"> </button>
                                  </div>
                                  <div class="col-md-8 col-12 text-center display_image_list3">
-                                    <ul>
-                                       @if($serviceData && $serviceData->document)
-
-                                       @foreach(explode(',',$serviceData->document) as $key=>$value)
-                                       <?php $chkextension = explode('.', $value); ?>
-                                       @if(trim($chkextension[5])=="pdf")
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                       @else
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                       @endif
-
-                                       @endforeach
-                                       @endif
-                                    </ul>
+                                    <ul></ul>
                                  </div>
                                  <!--col-->
                               </div>

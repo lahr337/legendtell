@@ -32,56 +32,35 @@
                            <div class="car-handwash">
                               <div class="btn-group" role="group">
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash1" autocomplete="off" value="HANDWASH" @if($checkwasData) @if(in_array('HANDWASH', explode(',',$checkwasData->service_name)))
-                                    checked
-                                    @endif @endif >
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash1" autocomplete="off" value="HANDWASH">
                                     <label for="handwash1">HANDWASH</label>
                                  </div>
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash2" autocomplete="off" value="RIM CLEANSE" @if($checkwasData) @if(in_array('RIM CLEANSE', explode(',',$checkwasData->service_name)))
-                                    checked
-                                    @endif @endif>
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash2" autocomplete="off" value="RIM CLEANSE">
                                     <label for="handwash2">RIM CLEANSE</label>
                                  </div>
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash3" autocomplete="off" value="INTERIOR VACUUM" @if($checkwasData) @if(in_array('INTERIOR VACUUM', explode(',',$checkwasData->service_name)))
-                                    checked @endif
-                                    @endif>
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash3" autocomplete="off" value="INTERIOR VACUUM">
                                     <label for="handwash3">INTERIOR VACUUM</label>
                                  </div>
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash4" autocomplete="off" value="CLAY" @if($checkwasData) @if(in_array('CLAY', explode(',',$checkwasData->service_name)))
-                                    checked
-                                    @endif
-                                    @endif>
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash4" autocomplete="off" value="CLAY">
                                     <label for="handwash4">CLAY</label>
                                  </div>
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash5" autocomplete="off" value="INTERIOR SHAMPOO" @if($checkwasData) @if(in_array('INTERIOR SHAMPOO', explode(',',$checkwasData->service_name)))
-                                    checked
-                                    @endif
-                                    @endif>
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash5" autocomplete="off" value="INTERIOR SHAMPOO">
                                     <label for="handwash5">INTERIOR SHAMPOO</label>
                                  </div>
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash6" autocomplete="off" value="LIGHT POLISH" @if($checkwasData) @if(in_array('LIGHT POLISH', explode(',',$checkwasData->service_name)))
-                                    checked
-                                    @endif
-                                    @endif>
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash6" autocomplete="off" value="LIGHT POLISH">
                                     <label for="handwash6">LIGHT POLISH</label>
                                  </div>
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash7" autocomplete="off" value="ENGINE BAY CLEANSE" @if($checkwasData) @if(in_array('ENGINE BAY CLEANSE', explode(',',$checkwasData->service_name)))
-                                    checked
-                                    @endif
-                                    @endif>
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash7" autocomplete="off" value="ENGINE BAY CLEANSE">
                                     <label for="handwash7">ENGINE BAY CLEANSE</label>
                                  </div>
                                  <div class="form-btnw-wrap">
-                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash8" autocomplete="off" value="WAX/SEALANT APPLICATION" @if($checkwasData) @if(in_array('WAX/SEALANT APPLICATION', explode(',',$checkwasData->service_name)))
-                                    checked
-                                    @endif
-                                    @endif>
+                                    <input type="checkbox" class="btn-check" name="serviceData[]" id="handwash8" autocomplete="off" value="WAX/SEALANT APPLICATION">
                                     <label for="handwash8">WAX / SEALANT
                                        APPLICATION</label>
                                  </div>
@@ -92,7 +71,7 @@
                                        <label class="p-0">Notes:</label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                       <textarea class="form-control" name="notesdata" rows="5">@if($checkwasData){{$checkwasData->notes}}@endif</textarea>
+                                       <textarea class="form-control" name="notesdata" rows="5"></textarea>
                                     </div>
                                  </div>
                               </div>
@@ -106,17 +85,7 @@
                                           </div>
 
                                           <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
-                                             <ul>@if($checkwasData && $checkwasData->documents)
-                                                @foreach(explode(',',$checkwasData->documents) as $key=>$value)
-                                                <?php $chkextension = explode('.', $value); ?>
-                                                @if($chkextension[5]=='pdf')
-                                                <li id="{{$key}}"><span><button type='button' class="btn cross" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                                @else
-                                                <li id="{{$key}}"><span><button type='button' class="btn cross" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                                @endif
-
-                                                @endforeach
-                                                @endif
+                                             <ul>
                                              </ul>
                                           </div>
                                        </div>
@@ -141,12 +110,7 @@
                                  <div class="tunnel-wrap row">
                                     <div class="col-12 col-md-4">
                                        <div class="form-btnw-wrap">
-                                          <input type="radio" class="btn-check" name="tunnelserviceData[]" id="tunnelwash1" autocomplete="off" value="Basic Wash" @if($checkwasData) @if(in_array('Basic Wash', explode(',',$checkwasData->service_name)))
-                                          checked
-                                          @endif
-                                          @else
-                                          checked
-                                          @endif>
+                                          <input type="radio" class="btn-check" name="tunnelserviceData[]" id="tunnelwash1" autocomplete="off" value="Basic Wash">
                                           <label for="tunnelwash1">Basic Wash</label>
                                        </div>
                                     </div>
@@ -157,10 +121,7 @@
                                  <div class="tunnel-wrap row">
                                     <div class="col-12 col-md-4">
                                        <div class="form-btnw-wrap">
-                                          <input type="radio" class="btn-check" value="Deluxe Wash" name="tunnelserviceData[]" id="tunnelwash2" autocomplete="off" @if($checkwasData) @if(in_array('Deluxe Wash', explode(',',$checkwasData->service_name)))
-                                          checked
-                                          @endif
-                                          @endif>
+                                          <input type="radio" class="btn-check" value="Deluxe Wash" name="tunnelserviceData[]" id="tunnelwash2" autocomplete="off">
                                           <label for="tunnelwash2">Deluxe Wash</label>
                                        </div>
                                     </div>
@@ -171,10 +132,7 @@
                                  <div class="tunnel-wrap row">
                                     <div class="col-12 col-md-4">
                                        <div class="form-btnw-wrap">
-                                          <input type="radio" class="btn-check" value="Premier Wash" name="tunnelserviceData[]" id="tunnelwash3" autocomplete="off" @if($checkwasData) @if(in_array('Premier Wash', explode(',',$checkwasData->service_name)))
-                                          checked
-                                          @endif
-                                          @endif>
+                                          <input type="radio" class="btn-check" value="Premier Wash" name="tunnelserviceData[]" id="tunnelwash3" autocomplete="off">
                                           <label for="tunnelwash3">Premier Wash</label>
                                        </div>
                                     </div>
@@ -190,7 +148,7 @@
                                           <label class="p-0">Additional Notes:</label>
                                        </div>
                                        <div class="col-12 col-md-8">
-                                          <textarea class="form-control" name="tunnelnotesdata" rows="5">@if($checkwasData){{$checkwasData->notes}}@endif</textarea>
+                                          <textarea class="form-control" name="tunnelnotesdata" rows="5"></textarea>
                                        </div>
                                     </div>
                                  </div>
@@ -204,17 +162,7 @@
                                              </div>
 
                                              <div class="col-lg-8 col-12 text-center display_image_list2" id="display_image_list2">
-                                                <ul>@if($checkwasData && $checkwasData->documents)
-                                                   @foreach(explode(',',$checkwasData->documents) as $key=>$value)
-                                                   <?php $chkextension = explode('.', $value); ?>
-                                                   @if($chkextension[5]=='pdf')
-                                                   <li id="repair{{$key}}"><span><button type='button' class="btn cross_two" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                                   @else
-                                                   <li id="repair{{$key}}"><span><button type='button' class="btn cross_two" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                                   @endif
-
-                                                   @endforeach
-                                                   @endif
+                                                <ul>
                                                 </ul>
                                              </div>
                                           </div>
@@ -238,12 +186,7 @@
                                  <div class="tunnel-wrap row">
                                     <div class="col-12 col-md-4">
                                        <div class="form-btnw-wrap">
-                                          <input type="radio" class="btn-check" id="touchwash1" autocomplete="off" value="Basic Wash" name="tunnelserviceData[]" @if($checkwasData) @if(in_array('Basic Wash', explode(',',$checkwasData->service_name)))
-                                          checked
-                                          @endif
-                                          @else
-                                          checked
-                                          @endif>
+                                          <input type="radio" class="btn-check" id="touchwash1" autocomplete="off" value="Basic Wash" name="tunnelserviceData[]">
                                           <label for="touchwash1">Basic Wash</label>
                                        </div>
                                     </div>
@@ -254,10 +197,7 @@
                                  <div class="tunnel-wrap row">
                                     <div class="col-12 col-md-4">
                                        <div class="form-btnw-wrap">
-                                          <input type="radio" class="btn-check" id="touchwash2" autocomplete="off" value="Deluxe Wash" name="tunnelserviceData[]" @if($checkwasData) @if(in_array('Deluxe Wash', explode(',',$checkwasData->service_name)))
-                                          checked
-                                          @endif
-                                          @endif>
+                                          <input type="radio" class="btn-check" id="touchwash2" autocomplete="off" value="Deluxe Wash" name="tunnelserviceData[]">
                                           <label for="touchwash2">Deluxe Wash</label>
                                        </div>
                                     </div>
@@ -268,10 +208,7 @@
                                  <div class="tunnel-wrap row">
                                     <div class="col-12 col-md-4">
                                        <div class="form-btnw-wrap">
-                                          <input type="radio" class="btn-check" id="touchwash3" autocomplete="off" value="Premier Wash" name="tunnelserviceData[]" @if($checkwasData) @if(in_array('Premier Wash', explode(',',$checkwasData->service_name)))
-                                          checked
-                                          @endif
-                                          @endif>
+                                          <input type="radio" class="btn-check" id="touchwash3" autocomplete="off" value="Premier Wash" name="tunnelserviceData[]">
                                           <label for="touchwash3">Premier Wash</label>
                                        </div>
                                     </div>
@@ -287,7 +224,7 @@
                                           <label class="p-0">Additional Notes:</label>
                                        </div>
                                        <div class="col-12 col-md-8">
-                                          <textarea class="form-control" name="tunnelnotesdata" rows="5">@if($checkwasData){{$checkwasData->notes}}@endif</textarea>
+                                          <textarea class="form-control" name="tunnelnotesdata" rows="5"></textarea>
                                        </div>
                                     </div>
                                  </div>
@@ -301,17 +238,7 @@
                                              </div>
 
                                              <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
-                                                <ul>@if($checkwasData && $checkwasData->documents)
-                                                   @foreach(explode(',',$checkwasData->documents) as $key=>$value)
-                                                   <?php $chkextension = explode('.', $value); ?>
-                                                   @if(trim($chkextension[5])=='pdf')
-                                                   <li id="estimate{{$key}}"><span><button type='button' class="btn cross_one" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                                   @else
-                                                   <li id="estimate{{$key}}"><span><button type='button' class="btn cross_one" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                                   @endif
-
-                                                   @endforeach
-                                                   @endif
+                                                <ul>
                                                 </ul>
                                              </div>
                                           </div>

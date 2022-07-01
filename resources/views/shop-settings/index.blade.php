@@ -13,7 +13,7 @@ use App\Http\Controllers\CommonController as CommonController;
             <div class="page-heading page-heading--with-buttons">
             <div class="account-settings__heading page-heading__title-wr">
                 <?php $newdatetime = new DateTime( "now", new DateTimeZone( "Asia/Kolkata" ) ); ?>
-                <h1 class="page-heading__title">Welcome {{ucwords(auth()->user()->shop_name)}}   </h1>
+                <h1 class="page-heading__title shop_title">Welcome {{ucwords(auth()->user()->shop_name)}}   </h1>
                 <!-- <h1 class="page-heading__title" id="clocktxt"></h1> -->
                 <p>Today is {{$newdatetime->format('l - F d, Y - h:i A')}}</p>
             </div>

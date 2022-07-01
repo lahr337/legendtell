@@ -65,7 +65,7 @@
                   <span class="user-nav__item-title">Profile</span></a
                 >
               </li>
-              <li class="user-nav__item">
+              <!-- <li class="user-nav__item">
                 <a class="user-nav__link" href="{{route('account-settings.index',['vindashboard'])}}"  id="vindashboardNew"
                   ><div class="user-nav__icon-wr">
                     <svg>
@@ -76,7 +76,7 @@
                   </div>
                   <span class="user-nav__item-title">Dashboard</span></a
                 >
-              </li>
+              </li> -->
               <li class="user-nav__item">
                 <a class="user-nav__link" href="{{route('car.index')}}"
                   ><div class="user-nav__icon-wr">

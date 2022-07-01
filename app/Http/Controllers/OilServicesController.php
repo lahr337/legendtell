@@ -7,6 +7,7 @@ use App\Models\OilServices;
 use App\Models\ShopServices;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\ShopSettingController;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
 class OilServicesController extends Controller
@@ -59,41 +60,42 @@ class OilServicesController extends Controller
         $img_arr = array();
 
 
-        $oil_service_check =  OilServices::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $oil_service_check =  OilServices::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($oil_service_check) {
-            if (!empty($oil_service_check->document)) {
+        // if ($oil_service_check) {
+        //     if (!empty($oil_service_check->document)) {
 
-                $documents = explode(',', $oil_service_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $oil_service_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('image_uploaded')) {
             $imgdoc = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'oilservices', $img_arr);
-        } else {
-            $imgdoc = implode(" , ", array_column($img_arr, 'path'));
         }
+        //  else {
+        //     $imgdoc = implode(" , ", array_column($img_arr, 'path'));
+        // }
       
         $oilServices=new OilServices;
-        $checkAcData=OilServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();
-        if($checkAcData)
-        {
-        $oilServices=$oilServices->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();   
-        }
+        // $checkAcData=OilServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();
+        // if($checkAcData)
+        // {
+        // $oilServices=$oilServices->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();   
+        // }
         
         $oilServices->user_id=auth()->user()->id;
         $oilServices->car_id=$car_id;
@@ -113,6 +115,10 @@ class OilServicesController extends Controller
         $oilServices->document=$imgdoc;
         if($oilServices->save())
         {
+
+            $vin_find = Car::find($car_id);
+
+            $cardata=Car::where('vin', $vin_find['vin'])->update(['milage' => $request->oil_mileage]);
             $commonClass = new CommonController;
             $commonClass->addServiceData($car_id,$serviceId);
             $checkservice=explode(',',auth()->user()->shop_services);

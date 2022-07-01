@@ -22,7 +22,7 @@
                                  <label class="p-0">LIST SPECIALTY:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" name="list_of_specialty" value="@if($serviceData){{$serviceData->list_of_specialty}}@endif" class="form-control border-0 myerr list_of_specialty" style="height:35px">
+                                 <input type="text" name="list_of_specialty" value="" class="form-control border-0 myerr list_of_specialty" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -32,7 +32,7 @@
                                  <label class="p-0">DETAILS OF SERVICE:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <textarea class="form-control myerr detail_of_services" name="detail_of_services" rows="5">@if($serviceData){{$serviceData->detail_of_services}}@endif</textarea>
+                                 <textarea class="form-control myerr detail_of_services" name="detail_of_services" rows="5"></textarea>
                               </div>
                            </div>
                         </div>
@@ -49,20 +49,7 @@
                                        Photos & Docs<input type="file" name="products_uploaded[]" id="insert_products_uploaded" class="form-control products_uploaded" value="Upload" multiple="multiple"> </button>
                                  </div>
                                  <div class="col-md-8 col-12 text-center display_image_list3">
-                                    <ul>
-                                       @if($serviceData && $serviceData->document)
-
-                                       @foreach(explode(',',$serviceData->document) as $key=>$value)
-                                       <?php $chkextension = explode('.', $value); ?>
-                                       @if(trim($chkextension[5])=="pdf")
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                       @else
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                       @endif
-
-                                       @endforeach
-                                       @endif
-                                    </ul>
+                                    <ul></ul>
                                  </div>
                                  <!--col-->
                               </div>

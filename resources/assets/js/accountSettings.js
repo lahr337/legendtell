@@ -240,6 +240,9 @@ $('#kt_edit_profile_submit').on('click', function (e) {
     console.log('clicked')
     validation.validate().then(function(status) {
         if(status=='Valid'){
+
+            $(".fv-plugins-message-container").html('');
+            
             var data = new FormData();
 
             //Form data

@@ -58,39 +58,40 @@ class ElectricControlController extends Controller
         $img_arr = array();
         
 
-        $electric_control =  ElectricControl::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
-        if ($electric_control) {
-            if (!empty($electric_control->documents)) {
+        // $electric_control =  ElectricControl::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // if ($electric_control) {
+        //     if (!empty($electric_control->documents)) {
 
-                $documents = explode(',', $electric_control->documents);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $electric_control->documents);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
             
-        }
+        // }
 
         if ($request->hasfile('products_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('products_uploaded'), 'electroniccontrol', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
         $electricControl = new ElectricControl();
-        $serviceData = ElectricControl::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $electricControl = $electricControl->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $serviceData = ElectricControl::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $electricControl = $electricControl->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
         $electricControl->user_id = auth()->user()->id;
         $electricControl->car_id = $car_id;
         $electricControl->service_id = $serviceId;
@@ -115,6 +116,7 @@ class ElectricControlController extends Controller
                 return redirect()->route('shop-settings.mydashboard', ['myshopServices']);
                 $redirecturl = '/shop-settings/mydashboard';
             } else {
+                
                 $carid = base64_encode($car_id);
                 $redirecturl = '/shop-settings/completedshop/' . $carid;
             }

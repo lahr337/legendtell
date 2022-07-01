@@ -45,23 +45,25 @@ class VinShopController extends Controller
     }
     public function vinInput(Request $request)
     {
+
+       
         $ownerdoc = '';
         $insert = array();
         $img_arr = array();
-        $service = auth()->user()->shop_services; 
-        
+        $service = auth()->user()->shop_services;
+
 
         if(empty($service))
         {
             return ['status' => false, 'message' => 'Add Service First', 'data' => 'all-services', 'type' => 'string'];
         }
-         
-     
+
+
             $ownerHistory =  CarOwnerHistory::where('car_id', $request->car_id)->first();
             $remove_products_ids = explode(",", $_POST['remove_products_ids']);
             if($ownerHistory && $request->vin){
             $owner_document = explode(',', $ownerHistory->owner_document);
-          
+
 
             if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
 
@@ -82,7 +84,7 @@ class VinShopController extends Controller
         }
 
         if ($request->hasfile('products_uploaded')) {
-            
+
             if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
                 $remove_products_ids = explode(",", $_POST['remove_products_ids']);
             }
@@ -104,10 +106,7 @@ class VinShopController extends Controller
         }
 
         $input = $request->except(['_token']);
-        // if($request->vin) {
-        //     $data = NhtsaApi::getByVIN($request->vin);
-        //     return $data; 
-        // }
+    
         if ($request->vin) {
             if (!empty($request->car_id) || $request->car_id != '') {
                 $insertdata['car_id'] = $request->car_id;
@@ -119,6 +118,8 @@ class VinShopController extends Controller
                 $insertdata['service_completed'] = $request->service_completed;
                 $insertdata['service_done'] = $request->service_done;
                 $insertdata['owner_document'] = $ownerdoc;
+                $insertdata['owner_mileage']=$request->owner_mileage;
+                $insertdata['color']=$request->color;
                 $insertdata = $this->ownerData($insertdata, 'update');
                 return $insertdata;
             }
@@ -142,6 +143,8 @@ class VinShopController extends Controller
                     $car->year = $result['ModelYear'];
                     $car->drive = $result['DriveType'];
                     $car->vin = $result['VIN'];
+                    $car->milage = $request->owner_mileage;
+                    $car->color = $request->color;
                     $car->user_id = auth()->user()->id;
                     $car->model_engine_cc = $result['EngineCycles'];
                     $car->model_engine_cyl = $result['EngineCylinders'];
@@ -199,6 +202,8 @@ class VinShopController extends Controller
             if ($status == 'update') {
                 $meesageback = "update";
                 $ownerHistory = $ownerHistory->where('car_id', $data["car_id"])->first();
+                $vin_find = Car::find($data["car_id"]);
+                $cardata=Car::where('vin', $vin_find["vin"])->update(['milage' => $data["owner_mileage"],'color' => $data['color']]);
             }
 
             $ownerHistory->car_id = $data["car_id"];
@@ -224,7 +229,7 @@ class VinShopController extends Controller
                 $SelectServices = ShopServices::where('service_id', $user['shop_services'])->first();
                 $vinid =  base64_encode($vinid . '%%%' . $SelectServices->service_id);
                 if($SelectServices->service_name == "Car-Wash")
-                {                
+                {
                     return ['status' => true, 'message' => 'Insert Vin Number Successfully', 'data' => $vinid, 'type_data' => 1, 'type' => 'string', 'messagestatus' => $meesageback];
                 }else{
                     return ['status' => true, 'message' => 'Insert Vin Number Successfully', 'data' => $vinid, 'type_data' => 0, 'type' => 'string', 'messagestatus' => $meesageback];

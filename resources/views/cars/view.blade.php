@@ -16,7 +16,7 @@
   @include('cars.partials._modals._add-service-record-modal')
   @include('cars.partials._modals._edit-service-record-modal')
 
-</main>
+</main> 
 @endsection
 
 {{-- Styles Section --}}

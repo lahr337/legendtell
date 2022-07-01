@@ -4,7 +4,7 @@ INSERT INTO `shop_services` (`service_id`, `service_name`, `service_page`, `user
 (2, 'Brake Service', 'brake-service', '1', 1, '2022-03-03 22:48:39', '2022-03-03 22:48:39', NULL, 'brakes.png'),
 (3, 'Battery Service','battery-service','1',1,'2022-04-19 16:09:50','2022-04-19 16:09:50',NULL,'battery.png'),
 (4, 'Car-Wash', 'car-wash-self-serve', '1', 1, '2022-03-03 22:49:23', '2022-03-03 22:49:23', NULL, 'carwash.png'),
-(5, 'Car-Wash | Touchless', 'car-wash-touchless', '1', 2, '2022-03-03 22:50:06', '2022-03-03 22:50:06', NULL, 'carwash.png'),
+(5, 'Ceramic Coating', 'ceramic-coating', '1', 2, '2022-03-03 22:50:06', '2022-03-03 22:50:06', NULL, 'ceramic.png'),
 (6, 'Collision Repair', 'collision-repair', '1', 1, '2022-03-03 22:50:29', '2022-03-03 22:50:29', NULL, 'collision.png'),
 (7, 'Concierge Service', 'concierge-service', '1', 1, '2022-03-03 22:50:56', '2022-03-03 22:50:56', NULL, 'conicerge.png'),
 (8, 'Custom Build & Body', 'custom-build-body', '1', 1, '2022-03-03 22:51:18', '2022-03-03 22:51:18', NULL, 'custom-1.png'),

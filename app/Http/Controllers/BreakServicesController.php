@@ -63,43 +63,16 @@ class BreakServicesController extends Controller
         $img_arr = array();
 
 
-        $battery_service_check =  BreakServices::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
-
-
-        if ($battery_service_check) {
-            if (!empty($battery_service_check->document)) {
-
-                $documents = explode(',', $battery_service_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
 
 
         if ($request->hasfile('image_uploaded')) {
             $imgdoc = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'breakservices', $img_arr);
-        } else {
-            $imgdoc = implode(" , ", array_column($img_arr, 'path'));
         }
+    
        
       
         $breakServices=new BreakServices;
-        $checkAcData=BreakServices::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();
-        if($checkAcData)
-        {
-        $breakServices=$breakServices->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();   
-        }
-        // echo "<pre>"; print_r($request->all()); die;
+    
         $breakServices->user_id=auth()->user()->id;
         $breakServices->car_id=$car_id;
         $breakServices->service_id=$serviceId; 

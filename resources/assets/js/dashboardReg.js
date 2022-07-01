@@ -127,10 +127,11 @@ function initGallery({
         // media
         var media_id = $(`${radioBoxInput}:checked`).val()
         if(media_id != ''){
+           
             Swal.fire({
                 title: 'Default!',
                 text: 'Do you want to set default',
-                icon: 'error',
+                icon: 'success',
                 confirmButtonText: 'Yes',
                 showCancelButton: true,
                 cancelButtonText: 'No',

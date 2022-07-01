@@ -52,11 +52,7 @@ class CarIssueController extends Controller
             return "wroungdata";
         }
             $carIssueData=new CarIssue;
-            $checkCarData=CarIssue::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();
-            if($checkCarData)
-            {
-            $carIssueData=$carIssueData->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->first();   
-            }
+           
             $carIssueData->car_id=$car_id;
             $carIssueData->user_id=auth()->user()->id;
             $carIssueData->service_id=$serviceId;
@@ -68,7 +64,6 @@ class CarIssueController extends Controller
             $carIssueData->repair_info=$request->repair_info;
             if($carIssueData->save())
             {
-                // return redirect()->route('shop-settings/'.$serviceData['service_page'], [$request->carShopService]);
                 return $redirecturl='/shop-settings/'.$serviceData['service_page'].'?servicedata='.$request->carShopService;
               
             }

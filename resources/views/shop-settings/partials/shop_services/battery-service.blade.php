@@ -28,7 +28,7 @@
                                  <label class="p-0">BATTERY TYPE:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 battery_type" name="battery_type" value="@if($serviceData){{$serviceData->battery_type}}@endif" style="height:35px">
+                                 <input type="text" class="form-control border-0 battery_type" name="battery_type" value="" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -38,7 +38,7 @@
                                  <label class="p-0">BATTERY BRAND:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 battery_brand" name="battery_brand" value="@if($serviceData){{$serviceData->battery_brand}}@endif" style="height:35px">
+                                 <input type="text" class="form-control border-0 battery_brand" name="battery_brand" value="" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -48,17 +48,17 @@
                                  <label class="p-0">PART NUMBER:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="text" class="form-control border-0 part_number" name="part_number" value="@if($serviceData){{$serviceData->part_number}}@endif" style="height:35px">
+                                 <input type="text" class="form-control border-0 part_number" name="part_number" value="" style="height:35px">
                               </div>
                            </div>
                         </div>
                         <div class="form-group">
-                           <div class="row d-flex align-items-center">
+                           <div class="row d-flex align-items-center"> 
                               <div class="col-md-4 col-12">
                                  <label class="p-0">MANUFACTURED DATE:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="date" class="form-control border-0 manufactured_date" name="manufactured_date" value="@if($serviceData){{$serviceData->manufactured_date}}@endif" style="height:35px">
+                                 <input type="text" class="form-control border-0 manufactured_date" id="datepicker" name="manufactured_date" value="" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -68,7 +68,7 @@
                                  <label class="p-0">EXPIRATION DATE:</label>
                               </div>
                               <div class="col-md-8 col-12">
-                                 <input type="date" class="form-control border-0 expiration_date" name="expiration_date" value="@if($serviceData){{$serviceData->expiration_date}}@endif" style="height:35px">
+                                 <input type="date" class="form-control border-0 expiration_date" name="expiration_date" value="" style="height:35px">
                               </div>
                            </div>
                         </div>
@@ -83,18 +83,7 @@
                                  </div>
                                  <div class="col-md-8 col-12 text-center display_image_list3">
                                     <ul>
-                                       @if($serviceData && $serviceData->document)
-
-                                       @foreach(explode(',',$serviceData->document) as $key=>$value)
-                                       <?php $chkextension = explode('.', $value); ?>
-                                       @if(trim($chkextension[5])=="pdf")
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                       @else
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                       @endif
-
-                                       @endforeach
-                                       @endif
+                                      
                                     </ul>
                                  </div>
                                  <!--col-->

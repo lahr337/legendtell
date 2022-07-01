@@ -12,4 +12,9 @@ class ShopServices extends Model
     protected $table = 'shop_services';
     protected $guarded = [];
     protected $primaryKey = 'service_id';
+
+    public function shop_detail()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
 }

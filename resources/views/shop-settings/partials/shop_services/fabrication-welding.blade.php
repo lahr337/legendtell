@@ -26,18 +26,6 @@
                                             </div>
                                             <div class="col-md-8 col-12 text-center display_image_list3">
                                                 <ul>
-                                                    @if($serviceData && $serviceData->document)
-
-                                                    @foreach(explode(',',$serviceData->document) as $key=>$value)
-                                                    <?php $chkextension = explode('.', $value); ?>
-                                                    @if(trim($chkextension[5])=="pdf")
-                                                    <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                                    @else
-                                                    <li id="{{$key}}"><span><button type='button' class="btn cross_img" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                                    @endif
-
-                                                    @endforeach
-                                                    @endif
                                                 </ul>
                                             </div>
                                             <!--col-->

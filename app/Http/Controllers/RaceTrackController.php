@@ -27,7 +27,7 @@ class RaceTrackController extends Controller
     public function saveRaceTrack(Request $request)
     {
 
-     
+
         $input = $request->except(['_token']);
         $commonClass = new CommonController;
         $mainid = base64_decode($request->carShopService);
@@ -52,42 +52,18 @@ class RaceTrackController extends Controller
         $img_arr = array();
 
 
-        $race_track_check =  RaceTrack::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
-
-
-        if ($race_track_check) {
-            if (!empty($race_track_check->document)) {
-
-                $documents = explode(',', $race_track_check->document);
-                if (isset($_POST['remove_products_ids'])) {
-                    $remove_products_ids = explode(",", $_POST['remove_products_ids']);
-
-                    if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                        foreach ($documents as $doc_key => $doc_value) {
-                            if (!in_array($doc_key, $remove_products_ids)) {
-                                $img_arr[$doc_key]['path'] = $doc_value;
-                            }
-                        }
-                    } else {
-                        foreach ($documents as $doc_key => $doc_value) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                }
-            }
-        }
-
         if ($request->hasfile('products_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('products_uploaded'), 'race_track', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
         }
 
-        $race_track = new RaceTrack();
-        $serviceData = RaceTrack::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $race_track = $race_track->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        if($request->race_track_id != '')
+        {
+            $race_track = RaceTrack::where('race_track_id',$request->race_track_id)->first();
+        }else{
+            $race_track = new RaceTrack();
         }
+        
+
 
         $lap_one = array('lap_one_min' => $request->lap_one_min, 'lap_one_sec' => $request->lap_one_sec);
         $lap_one = json_encode($lap_one);
@@ -115,8 +91,7 @@ class RaceTrackController extends Controller
         }
 
         if ($request->tab == '2') {
-            if($request->get('runonecheck') !="")
-            {
+            if ($request->get('runonecheck') != "") {
                 $tab_two = array(
                     'stripe_name_run_two' => $request->stripe_name_run_two,
                     'stripe_location_run_two' => $request->stripe_location_run_two,
@@ -130,17 +105,13 @@ class RaceTrackController extends Controller
                     'one_or_four_mile_run_two' => $request->one_or_four_mile_run_two,
                     'status_two' => $request->status_two,
                 );
-            }
-            else{
+            } else {
                 return 'runout1';
             }
-           
-            
         }
 
         if ($request->tab == '3') {
-            if($request->runtwocheck !="" && $request->get('runonecheck') !="")
-            {
+            if ($request->runtwocheck != "" && $request->get('runonecheck') != "") {
                 $tab_three = array(
                     'stripe_name_run_three' => $request->stripe_name_run_three,
                     'stripe_location_run_three' => $request->stripe_location_run_three,
@@ -154,11 +125,9 @@ class RaceTrackController extends Controller
                     'one_or_four_mile_run_three' => $request->one_or_four_mile_run_three,
                     'status_three' => $request->status_three,
                 );
-            }
-            else{
+            } else {
                 return 'runtwocheck';
             }
-            
         }
 
         $tab_one  = json_encode($tab_one);
@@ -172,8 +141,8 @@ class RaceTrackController extends Controller
         $race_track->location = $request->track_location;
         $race_track->track_type = $request->track_type;
         if ($request->tab == '') {
-           
-            
+
+
             $race_track->zero_to_sixty_mph = $request->zero_to_sixty_mph;
             $race_track->lap_one = $lap_one;
             $race_track->lap_two = $lap_two;
@@ -184,25 +153,37 @@ class RaceTrackController extends Controller
             $race_track->run_one = $tab_one;
         }
         if ($request->tab == '2') {
+
             $race_track->run_two = $tab_two;
         }
         if ($request->tab == '3') {
             $race_track->run_three = $tab_three;
         }
+
         if ($race_track->save()) {
+
+
             $commonClass = new CommonController;
             $commonClass->addServiceData($car_id, $serviceId);
 
             $checkservice = explode(',', auth()->user()->shop_services);
             if (count($checkservice) < 1) {
 
+
                 return redirect()->route('shop-settings.mydashboard', ['myshopServices']);
                 $redirecturl = '/shop-settings/mydashboard';
             } else {
-                $carid = base64_encode($car_id);
-                $redirecturl = '/shop-settings/completedshop/' . $carid;
+                if ($request->tab == '1' || $request->tab == '2' || $request->tab == '3') {
+                    $id = $race_track->race_track_id;
+                    $data = array('status' => "tab",'id'=>$id);
+                    return json_encode($data);
+              
+                } else {
+                    $carid = base64_encode($car_id);
+                    $redirecturl = '/shop-settings/completedshop/' . $carid;
+                    return $redirecturl;
+                }
             }
-            return $redirecturl;
         } else {
             return "fail";
         }

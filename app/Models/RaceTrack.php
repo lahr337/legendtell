@@ -8,6 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class RaceTrack extends Model
 {
     use HasFactory;
+    protected $table = 'race_tracks';
+
     protected $guarded = [];
     protected $primaryKey = 'race_track_id';
+
+    public function shop_service()
+    {
+        return $this->hasOne(ShopServices::class,'service_id','service_id');
+    }
+
+    public function shop_user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
+
+    public function car_user()
+    {
+        return $this->hasOne(Car::class,'id','car_id');
+    }
 }

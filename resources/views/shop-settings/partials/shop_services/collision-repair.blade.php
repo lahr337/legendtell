@@ -19,7 +19,7 @@
                                  <label>Notes:</label>
                               </div>
                               <div class="col-lg-8">
-                                 <textarea class="form-control" name="collision_notes" rows="5">@if($serviceData){{$serviceData->collision_notes}}@endif</textarea>
+                                 <textarea class="form-control" name="collision_notes" rows="5"></textarea>
                               </div>
                            </div>
                            <div class="form-group">
@@ -30,18 +30,6 @@
                                     </div>
                                     <div class="col-12 col-md-8 text-center display_product_list_before">
                                        <ul>
-                                          @if($serviceData && $serviceData->before_image)
-
-                                          @foreach(explode(',',$serviceData->before_image) as $before_image_key=>$before_image_value)
-                                          <?php $chkextension = explode('.', $before_image_value); ?>
-                                          @if((trim($chkextension[5])=='pdf'))
-                                          <li id="before{{$before_image_key}}"><span><button type='button' class="btn cross_before" id="{{$before_image_key}}">&nbsp;</button><img id="{{$before_image_key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                          @else
-                                          <li id="before{{$before_image_key}}"><span><button type='button' class="btn cross_before" id="{{$before_image_key}}">&nbsp;</button><img id="{{$before_image_key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                          @endif
-
-                                          @endforeach
-                                          @endif
                                        </ul>
                                     </div>
                                     <!--col-->
@@ -56,18 +44,6 @@
                                     </div>
                                     <div class="col-12 col-md-8 text-center display_product_list_estimate">
                                        <ul>
-                                          @if($serviceData && $serviceData->document_of_estimate)
-
-                                          @foreach(explode(',',$serviceData->document_of_estimate) as $document_of_estimate_key=>$document_of_estimate_value)
-                                          <?php $chkextension = explode('.', $document_of_estimate_value); ?>
-                                          @if((trim($chkextension[5])=='pdf'))
-                                          <li id="estimate{{$document_of_estimate_key}}"><span><button type='button' class="btn cross_one" id="{{$document_of_estimate_key}}">&nbsp;</button><img id="{{$document_of_estimate_key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                          @else
-                                          <li id="estimate{{$document_of_estimate_key}}"><span><button type='button' class="btn cross_one" id="{{$document_of_estimate_key}}">&nbsp;</button><img id="{{$document_of_estimate_key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                          @endif
-
-                                          @endforeach
-                                          @endif
                                        </ul>
                                     </div>
                                     <!--col-->
@@ -82,18 +58,6 @@
                                     </div>
                                     <div class="col-12 col-md-8 text-center display_product_list_repair_document">
                                        <ul>
-                                          @if($serviceData && $serviceData->document_of_repair)
-
-                                          @foreach(explode(',',$serviceData->document_of_repair) as $document_of_repair_key=>$document_of_repair_value)
-                                          <?php $chkextension = explode('.', $document_of_repair_value); ?>
-                                          @if((trim($chkextension[5])=='pdf'))
-                                          <li id="repair{{$document_of_repair_key}}"><span><button type='button' class="btn cross_two" id="{{$document_of_repair_key}}">&nbsp;</button><img id="{{$document_of_repair_key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                          @else
-                                          <li id="repair{{$document_of_repair_key}}"><span><button type='button' class="btn cross_two" id="{{$document_of_repair_key}}">&nbsp;</button><img id="{{$document_of_repair_key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                          @endif
-
-                                          @endforeach
-                                          @endif
                                        </ul>
                                     </div>
                                     <!--col-->
@@ -108,18 +72,6 @@
                                     </div>
                                     <div class="col-12 col-md-8 text-center display_product_list_after_image">
                                        <ul>
-                                          @if($serviceData && $serviceData->after_image)
-
-                                          @foreach(explode(',',$serviceData->after_image) as $key=>$value)
-                                          <?php $chkextension = explode('.', $value); ?>
-                                          @if((trim($chkextension[5])=='pdf'))
-                                          <li id="after{{$key}}"><span><button type='button' class="btn cross_three" id="{{$key}}" data-id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png" class="imgupdate"></span></li>
-                                          @else
-                                          <li id="after{{$key}}"><span><button type='button' class="btn cross_three" id="{{$key}}" data-id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png" class="imgupdate"></span></li>
-                                          @endif
-
-                                          @endforeach
-                                          @endif
                                        </ul>
                                     </div>
                                     <!--col-->

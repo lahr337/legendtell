@@ -247,6 +247,22 @@
                         jQuery('.owner_email_error').hide();
                         jQuery('.owner_email_error').html('');
                     }
+                    if ($.trim(jQuery('#owner_mileage').val()) == '') {
+                        error++;
+                        jQuery('.owner_mileage_error').show();
+                        jQuery('.owner_mileage_error').html('Enter Mileage');
+                    } else {
+                        jQuery('.owner_mileage_error').hide();
+                        jQuery('.owner_mileage_error').html('');
+                    }
+                    if ($.trim(jQuery('#owner_color').val()) == '') {
+                        error++;
+                        jQuery('.owner_color_error').show();
+                        jQuery('.owner_color_error').html('Enter Color');
+                    } else {
+                        jQuery('.owner_color_error').hide();
+                        jQuery('.owner_color_error').html('');
+                    }
                 } else {
 
                     if ($.trim(jQuery('#edit_vin').val()) == '') {
@@ -390,6 +406,10 @@
                             $('#edit_owner_address').val(response.data.owner_history.owner_address);
                             $('#edit_owner_date').val(response.data.owner_history.owner_date);
                             $('#edit_service_completed').val(response.data.owner_history.service_completed);
+
+                            $('#edit_owner_mileage').val(response.data.milage);
+                            $('#edit_owner_color').val(response.data.color);
+
                             $('#edit_owner_completeservice').val(response.data.owner_history.service_done);
 
                             if (response.data.owner_history.owner_document != null || response.data.owner_history.owner_document != '') {
@@ -433,7 +453,7 @@
                 var email_search = $('#email_search').val();
                 var searchdate_search = $('#searchdate_search').val();
                 // console.log('vvv',myid)
-                // var array1 = new Array(); 
+                // var array1 = new Array();
                 // console.log('ccc',$(this).val());
                 // $(".searchClick").each(function() {
                 // 	console.log('clll');
@@ -16943,17 +16963,17 @@
         FormValidation.validators.emailExists = emailExists;
         var validation = FormValidation.formValidation(document.getElementById('editProfile'), {
             fields: {
-                avatar: {
-                    validators: {
-                        file: {
-                            maxFiles: 1,
-                            maxSize: 512000,
-                            extension: 'jpg,png,jpeg,webp',
-                            type: 'image/jpeg,image/png,image/webp',
-                            message: 'Please choose a Image file'
-                        }
-                    }
-                },
+                // avatar: {
+                //     validators: {
+                //         file: {
+                //             maxFiles: 1,
+                //             maxSize: 512000,
+                //             extension: 'jpg,png,jpeg,webp,jfif,pjpeg,pjp,gif,svg,bmp,ico,cur,tif,tiff,apng,avif',
+                //             type: 'image/jpeg,image/jpg,image/BMP,image/png,image/webp,image/gif,image/svg+xml,image/bmp,image/tiff,image/x-icon,image/apng,image/avif',
+                //             message: 'Please choose a Image file'
+                //         }
+                //     }
+                // },
                 shopName: {
                     validators: {
                         notEmpty: {
@@ -17084,6 +17104,7 @@
                         data.append("avatar", file_data[i]);
                     }
                     var file_data_shop = jquery__WEBPACK_IMPORTED_MODULE_6___default()('input[name="shop_photo"]')[0].files;
+                   
                     for (var i = 0; i < file_data_shop.length; i++) {
                         data.append("shop_photo", file_data_shop[i]);
                     }
@@ -17093,7 +17114,20 @@
                         setTimeout(function() {
                             changesSaved.classList.remove(changesSavedActiveClass);
                         }, 2000);
-                        toastr.success('edit profile successfully!', 'Account Settings');
+
+                        var shop_name = $("#shopName").val().trim();
+                        if(shop_name != "")
+                        {
+                            var str = "welcome "+ shop_name;
+                            str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                                return letter.toUpperCase();
+                            });
+
+                            $(".shop_title").html(str);
+                        }
+                        
+
+                        toastr.success('Profile edited successfully!', 'Account Settings');
                     }, function(error) {
                         toastr.error('edit profile failed!', 'Account Settings');
                     });
@@ -17155,8 +17189,7 @@
 
             imgInp.onchange = function(evt) {
                 var _imgInp$files = _slicedToArray(imgInp.files, 1),
-                    file = _imgInp$files[0];
-
+                    file = _imgInp$files[0]; 
                 if (file) {
                     avatarImg.src = URL.createObjectURL(file);
                     jquery__WEBPACK_IMPORTED_MODULE_6___default()('.avatarImg').attr('src', URL.createObjectURL(file));
@@ -17166,10 +17199,12 @@
 
         if (document.getElementById('shop_photo')) {
             console.log('user shop');
+            
             var imgInpshop = document.getElementById('shop_photo'),
                 shopImg = document.getElementById('shopImg');
 
             imgInpshop.onchange = function(evt) {
+               
                 var _imgInpshop$files = _slicedToArray(imgInpshop.files, 1),
                     file = _imgInpshop$files[0];
 
@@ -17347,7 +17382,7 @@
     // 				$('#submit').html('Submit');
     // 				$("#submit"). attr("disabled", false);
     // 				alert('Ajax form has been submitted successfully');
-    // 				document.getElementById("contactUsForm").reset(); 
+    // 				document.getElementById("contactUsForm").reset();
     // 				}
     // 				});
     // 		console.log('ok data');

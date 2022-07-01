@@ -18,23 +18,23 @@
                            </h3>
                            <div class="btn-group" role="group">
                               <div class="form-btnw-wrap good-checked">
-                                 <input type="radio" class="btn-check" value="Good" name="exhaust_manifold" id="exhaust_manifold" autocomplete="off"  @if($serviceData) @if($serviceData->exhaust_manifold == 'Good') checked  @endif @endif>
+                                 <input type="radio" class="btn-check" value="Good" name="exhaust_manifold" id="exhaust_manifold" autocomplete="off">
                                  <label for="exhaust_manifold">Good</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_manifold" id="exhaustradio2" autocomplete="off"  @if($serviceData) @if($serviceData->exhaust_manifold == 'Serviced') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_manifold" id="exhaustradio2" autocomplete="off">
                                  <label for="exhaustradio2">Serviced</label>
                               </div>
                               <div class="form-btnw-wrap replaced-checked">
-                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_manifold" id="exhaustradio3" autocomplete="off"  @if($serviceData) @if($serviceData->exhaust_manifold == 'Replaced') checked  @endif @endif>
+                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_manifold" id="exhaustradio3" autocomplete="off">
                                  <label for="exhaustradio3">Replaced</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_manifold" id="exhaustradio4"  @if($serviceData) @if($serviceData->exhaust_manifold == 'Upgraded') checked  @endif  @endif autocomplete="off">
+                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_manifold" id="exhaustradio4">
                                  <label for="exhaustradio4">Upgraded</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_manifold" id="exhaustradio5" autocomplete="off"  @if($serviceData) @if($serviceData->exhaust_manifold == 'Fabricated') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_manifold" id="exhaustradio5" autocomplete="off">
                                  <label for="exhaustradio5">Fabricated</label>
                               </div>
                            </div>
@@ -45,23 +45,23 @@
                            </h3>
                            <div class="btn-group" role="group">
                               <div class="form-btnw-wrap good-checked">
-                                 <input type="radio" class="btn-check" value="Good" name="exhaust_resonator" id="exhaustradio6" autocomplete="off"  @if($serviceData) @if($serviceData->exhaust_resonator=='Good') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Good" name="exhaust_resonator" id="exhaustradio6" autocomplete="off">
                                  <label for="exhaustradio6">Good</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_resonator" id="exhaustradio7" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_resonator=='Serviced') checked  @endif @endif>
+                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_resonator" id="exhaustradio7" autocomplete="off">
                                  <label for="exhaustradio7">Serviced</label>
                               </div>
                               <div class="form-btnw-wrap replaced-checked">
-                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_resonator" id="exhaustradio8" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_resonator=='Replaced') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_resonator" id="exhaustradio8" autocomplete="off">
                                  <label for="exhaustradio8">Replaced</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_resonator" id="exhaustradio9" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_resonator=='Upgraded') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_resonator" id="exhaustradio9" autocomplete="off">
                                  <label for="exhaustradio9">Upgraded</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_resonator" id="exhaustradio10" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_resonator=='Fabricated') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_resonator" id="exhaustradio10" autocomplete="off">
                                  <label for="exhaustradio10">Fabricated</label>
                               </div>
                            </div>
@@ -72,23 +72,23 @@
                            </h3>
                            <div class="btn-group" role="group">
                               <div class="form-btnw-wrap good-checked">
-                                 <input type="radio" class="btn-check" value="Good" name="exhaust_muffler" id="exhaustradio11" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_muffler=='Good') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Good" name="exhaust_muffler" id="exhaustradio11" autocomplete="off">
                                  <label for="exhaustradio11">Good</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_muffler" id="exhaustradio12" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_muffler=='Serviced') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_muffler" id="exhaustradio12" autocomplete="off">
                                  <label for="exhaustradio12">Serviced</label>
                               </div>
                               <div class="form-btnw-wrap replaced-checked">
-                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_muffler" id="exhaustradio13" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_muffler=='Replaced') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_muffler" id="exhaustradio13" autocomplete="off">
                                  <label for="exhaustradio13">Replaced</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_muffler" id="exhaustradio14" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_muffler=='Upgraded') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_muffler" id="exhaustradio14" autocomplete="off">
                                  <label for="exhaustradio14">Upgraded</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_muffler" id="exhaustradio15" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_muffler=='Fabricated') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_muffler" id="exhaustradio15" autocomplete="off">
                                  <label for="exhaustradio15">Fabricated</label>
                               </div>
                            </div>
@@ -99,23 +99,23 @@
                            </h3>
                            <div class="btn-group" role="group">
                               <div class="form-btnw-wrap good-checked">
-                                 <input type="radio" class="btn-check" value="Good" name="exhaust_pipes" id="exhaustradio16" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_pipes=='Good') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Good" name="exhaust_pipes" id="exhaustradio16" autocomplete="off">
                                  <label for="exhaustradio16">Good</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_pipes" id="exhaustradio17" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_pipes=='Serviced') checked  @endif   @endif>
+                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_pipes" id="exhaustradio17" autocomplete="off">
                                  <label for="exhaustradio17">Serviced</label>
                               </div>
                               <div class="form-btnw-wrap replaced-checked">
-                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_pipes" id="exhaustradio18" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_pipes=='Replaced') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_pipes" id="exhaustradio18" autocomplete="off">
                                  <label for="exhaustradio18">Replaced</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_pipes" id="exhaustradio19" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_pipes=='Upgraded') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_pipes" id="exhaustradio19" autocomplete="off">
                                  <label for="exhaustradio19">Upgraded</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_pipes" id="exhaustradio20" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_pipes=='Fabricated') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_pipes" id="exhaustradio20" autocomplete="off">
                                  <label for="exhaustradio20">Fabricated</label>
                               </div>
                            </div>
@@ -126,23 +126,23 @@
                            </h3>
                            <div class="btn-group" role="group">
                               <div class="form-btnw-wrap good-checked">
-                                 <input type="radio" class="btn-check" value="Good" name="exhaust_isolators" id="exhaustradio21" @if($serviceData) @if($serviceData->exhaust_isolators=='Good') checked  @endif  @endif autocomplete="off">
+                                 <input type="radio" class="btn-check" value="Good" name="exhaust_isolators" id="exhaustradio21" autocomplete="off">
                                  <label for="exhaustradio21">Good</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_isolators" id="exhaustradio22" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_isolators=='Serviced') checked  @endif  @endif >
+                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_isolators" id="exhaustradio22" autocomplete="off">
                                  <label for="exhaustradio22">Serviced</label>
                               </div>
                               <div class="form-btnw-wrap replaced-checked">
-                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_isolators" id="exhaustradio23" @if($serviceData) @if($serviceData->exhaust_isolators=='Replaced') checked  @endif  @endif  autocomplete="off">
+                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_isolators" id="exhaustradio23" autocomplete="off">
                                  <label for="exhaustradio23">Replaced</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_isolators" id="exhaustradio24" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_isolators=='Upgraded') checked  @endif  @endif >
+                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_isolators" id="exhaustradio24" autocomplete="off">
                                  <label for="exhaustradio24">Upgraded</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_isolators" id="exhaustradio25" @if($serviceData) @if($serviceData->exhaust_isolators=='Fabricated') checked  @endif  @endif  autocomplete="off" >
+                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_isolators" id="exhaustradio25" autocomplete="off" >
                                  <label for="exhaustradio25">Fabricated</label>
                               </div>
                            </div>
@@ -153,23 +153,23 @@
                            </h3>
                            <div class="btn-group" role="group">
                               <div class="form-btnw-wrap good-checked">
-                                 <input type="radio" class="btn-check" value="Good" name="exhaust_o2sensor" id="exhaustradio26" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_o2sensor=='Good') checked  @endif  @endif >
+                                 <input type="radio" class="btn-check" value="Good" name="exhaust_o2sensor" id="exhaustradio26" autocomplete="off">
                                  <label for="exhaustradio26">Good</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_o2sensor" id="exhaustradio27" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_o2sensor=='Serviced') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Serviced" name="exhaust_o2sensor" id="exhaustradio27" autocomplete="off">
                                  <label for="exhaustradio27">Serviced</label>
                               </div>
                               <div class="form-btnw-wrap replaced-checked">
-                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_o2sensor" id="exhaustradio28" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_o2sensor=='Replaced') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Replaced" name="exhaust_o2sensor" id="exhaustradio28" autocomplete="off">
                                  <label for="exhaustradio28">Replaced</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_o2sensor" id="exhaustradio29" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_o2sensor=='Upgraded') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Upgraded" name="exhaust_o2sensor" id="exhaustradio29" autocomplete="off">
                                  <label for="exhaustradio29">Upgraded</label>
                               </div>
                               <div class="form-btnw-wrap upgrade-checked">
-                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_o2sensor" id="exhaustradio30" autocomplete="off" @if($serviceData) @if($serviceData->exhaust_o2sensor=='Fabricated') checked  @endif  @endif>
+                                 <input type="radio" class="btn-check" value="Fabricated" name="exhaust_o2sensor" id="exhaustradio30" autocomplete="off">
                                  <label for="exhaustradio30">Fabricated</label>
                               </div>
                            </div>
@@ -181,7 +181,7 @@
                                           <label class="p-0">Notes:</label>
                                  </div>
                                  <div class="col-12 col-md-8">
-                                       <textarea class="form-control"  name="exhasut_notes" rows="5">@if($serviceData) {{$serviceData->exhasut_notes}} @endif</textarea>
+                                       <textarea class="form-control"  name="exhasut_notes" rows="5"></textarea>
                                  </div>
                            </div> 
                      </div>         
@@ -196,19 +196,7 @@
                                  </div>
                
                                  <div class="col-lg-8 col-12 text-center display_image_list"  id="display_image_list">
-                                    <ul>@if($serviceData && $serviceData->document)
-                                   
-                                       @foreach(explode(',',$serviceData->document) as $key=>$value)
-                                       <?php  $chkextension= explode('.',$value);?>
-                                       @if((trim($chkextension[5])=='pdf'))
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/pdf.png"  class="imgupdate"></span></li>
-                                       @else
-                                       <li id="{{$key}}"><span><button type='button' class="btn cross" id="{{$key}}">&nbsp;</button><img id="{{$key}}" src="/assets/images/jpg.png"  class="imgupdate"></span></li>
-                                       @endif
-                                      
-                                       @endforeach
-                                       @endif
-                                       
+                                    <ul>
                                     </ul>                  
                                  </div>
                               </div>

@@ -8,4 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class PaintProtectionFilm extends Model
 {
     use HasFactory;
-}
+    protected $guarded = [];
+    protected $primaryKey = 'paint_protection_film_id';
+
+    public function shop_service()
+    {
+        return $this->hasOne(ShopServices::class,'service_id','service_id');
+    }
+
+    public function shop_user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
+
+    public function PPFInstall_Detail()
+    {
+     return $this->hasOne(PPFInstallDetail::class,'paint_protection_films_id','paint_protection_film_id');
+    }
+
+    public function car_user()
+    {
+        return $this->hasOne(Car::class,'id','car_id');
+    }
+} 

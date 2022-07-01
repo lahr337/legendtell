@@ -4,9 +4,9 @@
         <div class="container">
         <div class="account-settings page">
             <div class="page-heading page-heading--with-buttons">
-            <div class="account-settings__heading page-heading__title-wr">
-                <h1 class="page-heading__title">Account Settings</h1>
-            </div>
+            {{-- <div class="account-settings__heading page-heading__title-wr">
+                <!-- <h1 class="page-heading__title">Account Settings</h1> -->
+            </div> --}}
             <div class="page-heading__btns account-settings__btns " id="headingButtons">
                 <div class="reports-available">
                     <span class="reports-available__title">Reports available</span>
@@ -96,7 +96,7 @@
 <script>
     $(document).ready(function(){
         $('.nav-tabs__link').on('click', function(){
-   
+
     if($(this).data('tab') == 'myReports') {
         $('.reportsHeaderMenu').addClass('nav__link--active');
     }else {

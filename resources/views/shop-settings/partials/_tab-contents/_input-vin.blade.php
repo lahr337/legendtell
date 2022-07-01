@@ -16,7 +16,7 @@
               <div class="col-lg-8 col-12">
                 <span class="input-wrap">
                   <input type="text" class="form-control vin" id="vin" name="vin">
-                  <span class="errorShow vin_error" id="vin_error"></span> 
+                  <span class="errorShow vin_error" id="vin_error"></span>
                  </span>
               </div>
             </div>
@@ -32,7 +32,7 @@
                  <div class="col-lg-8 col-12">
                   <span class="input-wrap">
                     <input type="text" class="form-control owner_firstname " id="owner_firstname" name="ownerfirstname">
-                    <span class="errorShow owner_firstname_error" id="owner_firstname_error"></span> 
+                    <span class="errorShow owner_firstname_error" id="owner_firstname_error"></span>
                    </span>
                  </div>
               </div>
@@ -46,7 +46,7 @@
              </div>
                <div class="col-lg-8 col-12">
                 <span class="input-wrap">
-                  <input type="text" class="form-control owner_lastname "  id="owner_lastname" name="ownerlastname">             
+                  <input type="text" class="form-control owner_lastname "  id="owner_lastname" name="ownerlastname">
                  </span>
                </div>
             </div>
@@ -61,12 +61,12 @@
               <div class="col-lg-8 col-12">
                 <span class="input-wrap">
                   <input type="text" class="form-control owner_email" id="owner_email" name="owner_email">
-                  <span class="errorShow owner_email_error" id="owner_email_error"></span> 
+                  <span class="errorShow owner_email_error" id="owner_email_error"></span>
                  </span>
               </div>
             </div>
            </div>
-          
+
            <div class="form-group">
             <div class="row d-flex align-items-center">
               <div class="col-lg-4 col-12">
@@ -84,14 +84,14 @@
               <div class="col-lg-4 col-12">
                 <span class="label-title">
                   <label>Owner Date:</label>
-               </span> 
+               </span>
               </div>
             <div class="col-lg-8 col-12">
               <span class="input-wrap">
                 <input type="date" class="form-control owner_date"  id="owner_date" name="owner_date">
              </span>
             </div>
-            
+
             </div>
            </div>
            <div class="form-group" style="display: none">
@@ -122,30 +122,61 @@
              </div>
             </div>
            </div>
+           <div class="form-group">
+            <div class="row d-flex align-items-center">
+              <div class="col-lg-4 col-12">
+                <span class="label-title">
+                  <label>Mileage: <span class="astrick">*</span></label>
+                 </span>
+              </div>
+              <div class="col-lg-8 col-12">
+                <span class="input-wrap">
+                  <input type="text" class="form-control owner_mileage" id="owner_mileage" name="owner_mileage">
+                  <span class="errorShow owner_mileage_error" id="owner_mileage_error"></span>
+                 </span>
+              </div>
+            </div>
+           </div>
 
-           
+           <div class="form-group">
+            <div class="row d-flex align-items-center">
+              <div class="col-lg-4 col-12">
+                <span class="label-title">
+                  <label>Color: <span class="astrick">*</span></label>
+                 </span>
+              </div>
+              <div class="col-lg-8 col-12">
+                <span class="input-wrap">
+                  <input type="text" class="form-control owner_color" id="owner_color" name="color">
+                  <span class="errorShow owner_color_error" id="owner_color_error"></span>
+                 </span>
+              </div>
+            </div>
+           </div>
+
+
            <div class="form-group">
             <div class="upload-wrap">
              <div class="row d-flex align-items-center">
                    <div class="col-lg-4 col-12">
                     <button class="btn uplaod">Upload documents <input type="file" name="products_uploaded[]" id="insert_products_uploaded" class="form-control products_uploaded" value="Upload" multiple="multiple" accept=".pdf,.doc,.docx,image/png,image/jpg,image/jpeg"> </button>
                    </div>
- 
+
                    <div class="col-lg-8 col-12 text-center display_product_list"  id="display_product_list">
-                    <ul></ul>                  
+                    <ul></ul>
                   </div>
                  </div>
          </div>
           </div>
-           
+
         <button class="car-adding__btn btn btn--accent insertvinform" type="submit">Next</button>
-     
+
          </div>
         </form>
-     
-      
+
+
       <script>
-   
+
 
         </script>
       </section>

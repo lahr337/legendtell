@@ -1,5 +1,5 @@
     <div class="content-tab" id="WindowSticker">
-      <section class="dashboard-media">
+      <section class="container dashboard-media">
         <div class="section-heading section-heading--justify-between">
           <h1 class="section-heading__title">Window Sticker</h1>
           <div class="

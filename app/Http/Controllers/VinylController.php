@@ -74,11 +74,11 @@ class VinylController extends Controller
        
         
         $vinlyservice=new Vinyl;
-        $checkAcData=Vinyl::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->where('type',$request->outType)->first();
-        if($checkAcData)
-        {
-        $vinlyservice=$vinlyservice->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->where('type',$request->outType)->first();   
-        }
+        // $checkAcData=Vinyl::where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->where('type',$request->outType)->first();
+        // if($checkAcData)
+        // {
+        // $vinlyservice=$vinlyservice->where('car_id',$car_id)->where('service_id',$serviceId)->where('user_id',auth()->user()->id)->where('type',$request->outType)->first();   
+        // }
         $msg="";
 
         $img_arr = array();
@@ -87,31 +87,32 @@ class VinylController extends Controller
         $vinyl_service_check =  Vinyl::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($vinyl_service_check) {
-            if (!empty($vinyl_service_check->document)) {
+        // if ($vinyl_service_check) {
+        //     if (!empty($vinyl_service_check->document)) {
 
-                $documents = explode(',', $vinyl_service_check->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $vinyl_service_check->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         if ($request->hasfile('image_uploaded')) {
             $acdoc = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('image_uploaded'), 'vinly', $img_arr);
-        } else {
-            $acdoc = implode(" , ", array_column($img_arr, 'path'));
         }
+        //  else {
+        //     $acdoc = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
         
         $vinlyservice->user_id=auth()->user()->id;

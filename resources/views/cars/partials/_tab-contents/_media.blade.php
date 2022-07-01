@@ -1,5 +1,5 @@
     <div class="content-tab" id="media">
-      <section class="dashboard-media">
+      <section class="container dashboard-media">
         <div class="section-heading section-heading--justify-between">
           <h1 class="section-heading__title">Video & Photos</h1>
           <div class="

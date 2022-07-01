@@ -62,106 +62,110 @@ class CollisionRepairController extends Controller
         $after_image_arr = array();
         $document_of_repair_arr = array();
 
-        $collision_repair =  CollisionRepair::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
-        if ($collision_repair) {
-            if (!empty($collision_repair->before_image)) {
+        // $collision_repair =  CollisionRepair::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // if ($collision_repair) {
+        //     if (!empty($collision_repair->before_image)) {
 
-                $before_image_document = explode(',', $collision_repair->before_image);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids_four']);
+        //         $before_image_document = explode(',', $collision_repair->before_image);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids_four']);
 
-                if (isset($_POST['remove_products_ids_four']) && $remove_products_ids[0] != "") {
-                    foreach ($before_image_document as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $before_image_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($before_image_document as $doc_key => $doc_value) {
-                        $before_image_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-            if (!empty($collision_repair->document_of_estimate)) {
-                $document_of_estimate = explode(',', $collision_repair->document_of_estimate);
-                $remove_products_ids_one = explode(",", $_POST['remove_products_ids_one']);
-                if (isset($_POST['remove_products_ids_one']) && $remove_products_ids_one[0] != "") {
-                    foreach ($document_of_estimate as $est_key => $est_value) {
-                        if (!in_array($est_key, $remove_products_ids_one)) {
-                            $document_of_estimate_arr[$est_key]['path'] = $est_value;
-                        }
-                    }
-                } else {
-                    foreach ($document_of_estimate as $est_key => $est_value) {
-                        $document_of_estimate_arr[$est_key]['path'] = $est_value;
-                    }
-                }
-            }
+        //         if (isset($_POST['remove_products_ids_four']) && $remove_products_ids[0] != "") {
+        //             foreach ($before_image_document as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $before_image_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($before_image_document as $doc_key => $doc_value) {
+        //                 $before_image_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        //     if (!empty($collision_repair->document_of_estimate)) {
+        //         $document_of_estimate = explode(',', $collision_repair->document_of_estimate);
+        //         $remove_products_ids_one = explode(",", $_POST['remove_products_ids_one']);
+        //         if (isset($_POST['remove_products_ids_one']) && $remove_products_ids_one[0] != "") {
+        //             foreach ($document_of_estimate as $est_key => $est_value) {
+        //                 if (!in_array($est_key, $remove_products_ids_one)) {
+        //                     $document_of_estimate_arr[$est_key]['path'] = $est_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($document_of_estimate as $est_key => $est_value) {
+        //                 $document_of_estimate_arr[$est_key]['path'] = $est_value;
+        //             }
+        //         }
+        //     }
 
-            if (!empty($collision_repair->document_of_repair)) {
-                $document_of_repair = explode(',', $collision_repair->document_of_repair);
-                $remove_products_ids_two = explode(",", $_POST['remove_products_ids_two']);
-                if (isset($_POST['remove_products_ids_two']) && $remove_products_ids_two[0] != "") {
-                    foreach ($document_of_repair as $repair_key => $repair_value) {
-                        if (!in_array($repair_key, $remove_products_ids_two)) {
-                            $document_of_repair_arr[$repair_key]['path'] = $repair_value;
-                        }
-                    }
-                } else {
-                    foreach ($document_of_repair as $repair_key => $repair_value) {
-                        $document_of_repair_arr[$repair_key]['path'] = $repair_value;
-                    }
-                }
-            }
+        //     if (!empty($collision_repair->document_of_repair)) {
+        //         $document_of_repair = explode(',', $collision_repair->document_of_repair);
+        //         $remove_products_ids_two = explode(",", $_POST['remove_products_ids_two']);
+        //         if (isset($_POST['remove_products_ids_two']) && $remove_products_ids_two[0] != "") {
+        //             foreach ($document_of_repair as $repair_key => $repair_value) {
+        //                 if (!in_array($repair_key, $remove_products_ids_two)) {
+        //                     $document_of_repair_arr[$repair_key]['path'] = $repair_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($document_of_repair as $repair_key => $repair_value) {
+        //                 $document_of_repair_arr[$repair_key]['path'] = $repair_value;
+        //             }
+        //         }
+        //     }
 
-            if (!empty($collision_repair->after_image)) {
-                $after_image = explode(',', $collision_repair->after_image);
-                $remove_products_ids_three = explode(",", $_POST['remove_products_ids_three']);
+        //     if (!empty($collision_repair->after_image)) {
+        //         $after_image = explode(',', $collision_repair->after_image);
+        //         $remove_products_ids_three = explode(",", $_POST['remove_products_ids_three']);
 
-                if (isset($_POST['remove_products_ids_three']) && $remove_products_ids_three[0] != "") {
-                    foreach ($after_image as $after_key => $after_value) {
-                        if (!in_array($after_key, $remove_products_ids_three)) {
-                            $after_image_arr[$after_key]['path'] = $after_value;
-                        }
-                    }
-                } else {
-                    foreach ($after_image as $after_key => $after_value) {
-                        $after_image_arr[$after_key]['path'] = $after_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids_three']) && $remove_products_ids_three[0] != "") {
+        //             foreach ($after_image as $after_key => $after_value) {
+        //                 if (!in_array($after_key, $remove_products_ids_three)) {
+        //                     $after_image_arr[$after_key]['path'] = $after_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($after_image as $after_key => $after_value) {
+        //                 $after_image_arr[$after_key]['path'] = $after_value;
+        //             }
+        //         }
+        //     }
+        // }
 
         
 
         if ($request->hasfile('before_image')) {
             $before_image = $commonClass->uplodeimages($_POST['remove_products_ids_four'], $request->file('before_image'), 'collisionrepair', $before_image_arr);
-        } else {
-            $before_image = implode(" , ", array_column($before_image_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $before_image = implode(" , ", array_column($before_image_arr, 'path'));
+        // }
         if ($request->hasfile('document_of_estimate')) {
             $document_of_estimate = $commonClass->uplodeimages($_POST['remove_products_ids_one'], $request->file('document_of_estimate'), 'collisionrepair', $document_of_estimate_arr);
-        } else {
-            $document_of_estimate = implode(" , ", array_column($document_of_estimate_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $document_of_estimate = implode(" , ", array_column($document_of_estimate_arr, 'path'));
+        // }
         if ($request->hasfile('document_of_repair')) {
             $document_of_repair = $commonClass->uplodeimages($_POST['remove_products_ids_two'], $request->file('document_of_repair'), 'collisionrepair',$document_of_repair_arr);
-        }else{
-            $document_of_repair = implode(" , ", array_column($document_of_repair_arr, 'path'));
         }
+        // else{
+        //     $document_of_repair = implode(" , ", array_column($document_of_repair_arr, 'path'));
+        // }
         if ($request->hasfile('after_image')) {
             $after_image = $commonClass->uplodeimages($_POST['remove_products_ids_three'], $request->file('after_image'), 'collisionrepair',$after_image_arr);
-        }else{
-            $after_image = implode(" , ", array_column($after_image_arr, 'path'));
         }
+        // else{
+        //     $after_image = implode(" , ", array_column($after_image_arr, 'path'));
+        // }
 
         // echo "<pre>"; print_r($after_image); echo "<pre>"; print_r($document_of_repair);
         // echo "<pre>"; print_r($document_of_estimate) ; echo "<pre>"; print_r($before_image); die;
 
         $collision_service = new CollisionRepair();
-        $serviceData = CollisionRepair::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $collision_service = $collision_service->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $serviceData = CollisionRepair::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $collision_service = $collision_service->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
         $collision_service->user_id = auth()->user()->id;
         $collision_service->car_id = $car_id;
         $collision_service->service_id = $serviceId;

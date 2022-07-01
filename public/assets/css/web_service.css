@@ -297,6 +297,7 @@ body {
     transform: translate(-50%, -50%);
     border: 5px solid #0076C6;
     border-radius: 50px;
+    background-color: #ffffff;
 }
 
 ul.slider-container>li:nth-child(2n+0) .shop-logo {
@@ -336,9 +337,10 @@ ul.slider-container>li:nth-child(2n+0) {
     left: -20%;
 }
 
-.slider-container>li+li {
+
+/* .slider-container>li+li {
     left: -35%;
-}
+} */
 
 #sliderWrapper:after {
     content: "";
@@ -348,7 +350,7 @@ ul.slider-container>li:nth-child(2n+0) {
     height: 15px;
     top: 45%;
     left: 0;
-    width: 2700px;
+    width: 8800px;
 }
 
 ul.slider-container>li:nth-child(2n+0) .shop-content {
@@ -616,7 +618,9 @@ button.owl-next img {
 .nxt-service-btn {
     padding: 15px;
 }
-
+.dashboard-media, .appraisal, .dashboard-media {
+    padding-bottom: 60px;
+}
 
 /*** Media query ***/
 

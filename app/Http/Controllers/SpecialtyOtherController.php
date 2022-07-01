@@ -54,36 +54,37 @@ class SpecialtyOtherController extends Controller
         $img_arr = array();
 
 
-        $specialty_other =  SpecialtyOther::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
+        // $specialty_other =  SpecialtyOther::where('car_id', $car_id)->where('user_id', auth()->user()->id)->first();
 
 
-        if ($specialty_other) {
-            if (!empty($specialty_other->document)) {
+        // if ($specialty_other) {
+        //     if (!empty($specialty_other->document)) {
 
-                $documents = explode(',', $specialty_other->document);
-                $remove_products_ids = explode(",", $_POST['remove_products_ids']);
+        //         $documents = explode(',', $specialty_other->document);
+        //         $remove_products_ids = explode(",", $_POST['remove_products_ids']);
 
-                if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        if (!in_array($doc_key, $remove_products_ids)) {
-                            $img_arr[$doc_key]['path'] = $doc_value;
-                        }
-                    }
-                } else {
-                    foreach ($documents as $doc_key => $doc_value) {
-                        $img_arr[$doc_key]['path'] = $doc_value;
-                    }
-                }
-            }
-        }
+        //         if (isset($_POST['remove_products_ids']) && $remove_products_ids[0] != "") {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 if (!in_array($doc_key, $remove_products_ids)) {
+        //                     $img_arr[$doc_key]['path'] = $doc_value;
+        //                 }
+        //             }
+        //         } else {
+        //             foreach ($documents as $doc_key => $doc_value) {
+        //                 $img_arr[$doc_key]['path'] = $doc_value;
+        //             }
+        //         }
+        //     }
+        // }
 
 
 
         if ($request->hasfile('products_uploaded')) {
             $products_uploaded = $commonClass->uplodeimages($_POST['remove_products_ids'], $request->file('products_uploaded'), 'specialty_other', $img_arr);
-        } else {
-            $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
-        }
+        } 
+        // else {
+        //     $products_uploaded = implode(" , ", array_column($img_arr, 'path'));
+        // }
 
 
 
@@ -108,10 +109,10 @@ class SpecialtyOtherController extends Controller
 
      
         $other_speciality = new SpecialtyOther();
-        $serviceData = SpecialtyOther::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        if ($serviceData) {
-            $other_speciality = $other_speciality->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
-        }
+        // $serviceData = SpecialtyOther::where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // if ($serviceData) {
+        //     $other_speciality = $other_speciality->where('car_id', $car_id)->where('service_id', $serviceId)->where('user_id', auth()->user()->id)->first();
+        // }
         $other_speciality->user_id = auth()->user()->id;
         $other_speciality->car_id = $car_id;
         $other_speciality->service_id = $serviceId;
@@ -121,10 +122,8 @@ class SpecialtyOtherController extends Controller
         if ($other_speciality->save()) {
             $commonClass = new CommonController;
             $commonClass->addServiceData($car_id, $serviceId);
-
             $checkservice = explode(',', auth()->user()->shop_services);
             if (count($checkservice) < 1) {
-
                 return redirect()->route('shop-settings.mydashboard', ['myshopServices']);
                 $redirecturl = '/shop-settings/mydashboard';
             } else {

@@ -4667,29 +4667,281 @@ input.camper-lg-284 {
     left: 85%;
     top: 37%;
 }
+
 input.camper-lg-285 {
     left: 15%;
     top: 45%;
 }
+
 input.camper-lg-286 {
     left: 34%;
     top: 45%;
 }
+
 input.camper-lg-287 {
     left: 55%;
     top: 45%;
 }
+
 input.camper-lg-288 {
     left: 76%;
     top: 45%;
 }
+
 input.camper-lg-289 {
     left: 5%;
     top: 51%;
 }
+
 input.camper-lg-290 {
     left: 85%;
     top: 51%;
+}
+
+input.camper-lg-291 {
+    left: 15%;
+    top: 57%;
+}
+
+input.camper-lg-292 {
+    left: 34%;
+    top: 57%;
+}
+
+input.camper-lg-293 {
+    left: 55%;
+    top: 57%;
+}
+
+input.camper-lg-294 {
+    left: 76%;
+    top: 57%;
+}
+
+input.camper-lg-295 {
+    left: 5%;
+    top: 65%;
+}
+
+input.camper-lg-296 {
+    left: 24%;
+    top: 67%;
+}
+
+input.camper-lg-297 {
+    left: 45%;
+    top: 67%;
+}
+
+input.camper-lg-298 {
+    left: 66%;
+    top: 67%;
+}
+
+input.camper-lg-299 {
+    left: 85%;
+    top: 65%;
+}
+
+input.camper-lg-300 {
+    left: 5%;
+    top: 78%;
+}
+
+input.camper-lg-301 {
+    left: 15%;
+    top: 73%;
+}
+
+input.camper-lg-302 {
+    left: 54%;
+    top: 74%;
+}
+
+input.camper-lg-303 {
+    left: 72%;
+    top: 73%;
+}
+
+input.camper-lg-304 {
+    left: 85%;
+    top: 78%;
+}
+
+input.camper-lg-305 {
+    left: 9%;
+    top: 9%;
+}
+
+input.camper-lg-306 {
+    left: 25%;
+    top: 9%;
+}
+
+input.camper-lg-307 {
+    left: 44%;
+    top: 9%;
+}
+
+input.camper-lg-308 {
+    left: 67%;
+    top: 7%;
+}
+
+input.camper-lg-309 {
+    left: 81%;
+    top: 9%;
+}
+
+input.camper-lg-310 {
+    left: 17%;
+    top: 17%;
+}
+
+input.camper-lg-311 {
+    left: 34%;
+    top: 17%;
+}
+
+input.camper-lg-312 {
+    left: 54%;
+    top: 17%;
+}
+
+input.camper-lg-313 {
+    left: 67%;
+    top: 14%;
+}
+
+input.camper-lg-314 {
+    left: 81%;
+    top: 18%;
+}
+
+input.camper-lg-315 {
+    left: 9%;
+    top: 27%;
+}
+
+input.camper-lg-316 {
+    left: 67%;
+    top: 22%;
+}
+
+input.camper-lg-317 {
+    left: 81%;
+    top: 29%;
+}
+
+input.camper-lg-318 {
+    left: 15%;
+    top: 34%;
+}
+
+input.camper-lg-319 {
+    left: 81%;
+    top: 40%;
+}
+
+input.camper-lg-320 {
+    left: 81%;
+    top: 48%;
+}
+
+input.camper-lg-321 {
+    left: 9%;
+    top: 41%;
+}
+
+input.camper-lg-322 {
+    left: 17%;
+    top: 48%;
+}
+
+input.camper-lg-323 {
+    left: 34%;
+    top: 48%;
+}
+
+input.camper-lg-324 {
+    left: 54%;
+    top: 48%;
+}
+
+input.camper-lg-325 {
+    left: 67%;
+    top: 50%;
+}
+
+input.camper-lg-326 {
+    left: 27%;
+    top: 54%;
+}
+
+input.camper-lg-327 {
+    left: 43%;
+    top: 54%;
+}
+
+input.camper-lg-328 {
+    left: 17%;
+    top: 60%;
+}
+
+input.camper-lg-329 {
+    left: 67%;
+    top: 58%;
+}
+
+input.camper-lg-330 {
+    left: 67%;
+    top: 65%;
+}
+
+input.camper-lg-331 {
+    left: 17%;
+    top: 70%;
+}
+
+input.camper-lg-332 {
+    left: 34%;
+    top: 70%;
+}
+
+input.camper-lg-333 {
+    left: 54%;
+    top: 70%;
+}
+
+input.camper-lg-334 {
+    left: 67%;
+    top: 72%;
+}
+
+input.camper-lg-335 {
+    left: 9%;
+    top: 77%;
+}
+
+input.camper-lg-336 {
+    left: 25%;
+    top: 77%;
+}
+
+input.camper-lg-337 {
+    left: 43%;
+    top: 77%;
+}
+
+input.camper-lg-338 {
+    left: 80%;
+    top: 77%;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .detailing-correction .nav-tabs button {
@@ -4785,13 +5037,22 @@ input.camper-lg-290 {
 button#SaveServicesnew {
     margin-top: 20px;
 }
-.carviewimg{
+
+.carviewimg {
     text-align: right;
     margin-left: auto;
     display: block;
     height: 240px;
     width: auto!important;
 }
+
+ul.slider-container>li:nth-child(2n+0) .view-shop-slider .shop-logo {
+    bottom: -100%;
+    transform: translate(-50%, 0);
+    background: #fff;
+}
+
+
 /******* MEDIA QUERY ********/
 
 @media (min-width: 1400px) {

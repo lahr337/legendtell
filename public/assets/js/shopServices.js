@@ -1,16 +1,33 @@
-$(document).ready(function() {
+$(document).ready(function () {
+    // driver_front_break
+
+    $(".driver_front_break").click(function () {
+        var id = $(this).attr("id");
+
+        if (
+            $("#" + id).prop("checked") === true &&
+            $("#" + id).hasClass("checked")
+        ) {
+            $(this).removeClass("checked");
+            $(this).prop("checked", true);
+        } else {
+            $(this).addClass("checked");
+            $(this).prop("checked", false);
+        }
+    });
+
     // Car Select All start
-    $(".selectallcar").click(function() {
+    $(".selectallcar").click(function () {
         $(".car_check").prop("checked", this.checked);
     });
 
-    $(".car_check").change(function() {
+    $(".car_check").change(function () {
         var check =
             $(".car_check").filter(":checked").length == $(".car_check").length;
         $(".selectallcar").prop("checked", check);
     });
 
-    $(".check_car").change(function() {
+    $(".check_car").change(function () {
         var check =
             $(".car_check").filter(":checked").length == $(".car_check").length;
         $(".selectallcar").prop("checked", check);
@@ -20,17 +37,17 @@ $(document).ready(function() {
 
     // van select all start
 
-    $(".vanselectall").click(function() {
+    $(".vanselectall").click(function () {
         $(".van_check").prop("checked", this.checked);
     });
 
-    $(".van_check").change(function() {
+    $(".van_check").change(function () {
         var check =
             $(".van_check").filter(":checked").length == $(".van_check").length;
         $(".vanselectall").prop("checked", check);
     });
 
-    $(".check_van").change(function() {
+    $(".check_van").change(function () {
         var check =
             $(".van_check").filter(":checked").length == $(".van_check").length;
         $(".vanselectall").prop("checked", check);
@@ -40,17 +57,17 @@ $(document).ready(function() {
 
     // rv select all start
 
-    $(".rvselectall").click(function() {
+    $(".rvselectall").click(function () {
         $(".rv_check").prop("checked", this.checked);
     });
 
-    $(".rv_check").change(function() {
+    $(".rv_check").change(function () {
         var check =
             $(".rv_check").filter(":checked").length == $(".rv_check").length;
         $(".rvselectall").prop("checked", check);
     });
 
-    $(".check_rv").change(function() {
+    $(".check_rv").change(function () {
         var check =
             $(".rv_check").filter(":checked").length == $(".rv_check").length;
         $(".rvselectall").prop("checked", check);
@@ -60,18 +77,18 @@ $(document).ready(function() {
 
     // trailer select all start
 
-    $(".trailorselectall").click(function() {
+    $(".trailorselectall").click(function () {
         $(".trailor_check").prop("checked", this.checked);
     });
 
-    $(".trailor_check").change(function() {
+    $(".trailor_check").change(function () {
         var check =
             $(".trailor_check").filter(":checked").length ==
             $(".trailor_check").length;
         $(".trailorselectall").prop("checked", check);
     });
 
-    $(".check_trailor").change(function() {
+    $(".check_trailor").change(function () {
         var check =
             $(".trailor_check").filter(":checked").length ==
             $(".trailor_check").length;
@@ -81,17 +98,17 @@ $(document).ready(function() {
     // trailer select all end
 
     // bus select all start
-    $(".busselectall").click(function() {
+    $(".busselectall").click(function () {
         $(".bus_check").prop("checked", this.checked);
     });
 
-    $(".bus_check").change(function() {
+    $(".bus_check").change(function () {
         var check =
             $(".bus_check").filter(":checked").length == $(".bus_check").length;
         $(".busselectall").prop("checked", check);
     });
 
-    $(".check_bus").change(function() {
+    $(".check_bus").change(function () {
         var check =
             $(".bus_check").filter(":checked").length == $(".bus_check").length;
         $(".busselectall").prop("checked", check);
@@ -99,7 +116,106 @@ $(document).ready(function() {
 
     // bus select all end
 
-    $(".static_pressure_low_check").on("click", function() {
+    // Waranty readyonly start for all types
+    $(".yes_waranty_car").on("click", function () {
+        $(".company_waranty").val("");
+        $(".company_waranty").prop("readonly", false);
+    });
+
+    $(".no_waranty_car").on("click", function () {
+        $(".company_waranty").val("");
+        $(".company_waranty").prop("readonly", true);
+    });
+
+    $(".yes_waranty_van").on("click", function () {
+        $(".company_waranty_van").val("");
+        $(".company_waranty_van").prop("readonly", false);
+    });
+
+    $(".no_waranty_van").on("click", function () {
+        $(".company_waranty_van").val("");
+        $(".company_waranty_van").prop("readonly", true);
+    });
+
+    $(".yes_waranty_rv").on("click", function () {
+        $(".company_waranty_rv").val("");
+        $(".company_waranty_rv").prop("readonly", false);
+    });
+
+    $(".no_waranty_rv").on("click", function () {
+        $(".company_waranty_rv").val("");
+        $(".company_waranty_rv").prop("readonly", true);
+    });
+
+    $(".yes_waranty_trailer").on("click", function () {
+        $(".company_waranty_trailer").val("");
+        $(".company_waranty_trailer").prop("readonly", false);
+    });
+
+    $(".no_waranty_trailer").on("click", function () {
+        $(".company_waranty_trailer").val("");
+        $(".company_waranty_trailer").prop("readonly", true);
+    });
+
+    $(".yes_waranty_bus").on("click", function () {
+        $(".company_waranty_bus").val("");
+        $(".company_waranty_bus").prop("readonly", false);
+    });
+
+    $(".no_waranty_bus").on("click", function () {
+        $(".company_waranty_bus").val("");
+        $(".company_waranty_bus").prop("readonly", true);
+    });
+
+    $(".yes_waranty_other").on("click", function () {
+        $(".company_waranty_other").val("");
+        $(".company_waranty_other").prop("readonly", false);
+    });
+
+    $(".no_waranty_other").on("click", function () {
+        $(".company_waranty_other").val("");
+        $(".company_waranty_other").prop("readonly", true);
+    });
+
+    $(".check_waranty_yes").on("click", function () {
+        $(".waranty_company").val("");
+        $(".waranty_company").prop("readonly", false);
+    });
+
+    $(".check_waranty_no").on("click", function () {
+        $(".waranty_company").val("");
+        $(".waranty_company").prop("readonly", true);
+    });
+
+    $(".check_register_yes").on("click", function () {
+        $(".registered_company").val("");
+        $(".registered_company").prop("readonly", false);
+    });
+
+    $(".check_register_no").on("click", function () {
+        $(".registered_company").val("");
+        $(".registered_company").prop("readonly", true);
+    });
+
+    $(".yes_incident_condition").on("click", function () {
+        $(".incident_detail").val("");
+        $(".incident_detail").prop("readonly", false);
+    });
+
+    $(".no_incident_condition").on("click", function () {
+        $(".incident_detail").val("");
+        $(".incident_detail").prop("readonly", true);
+    });
+
+    // Waranty readyonly end for all types
+
+    $(".reset").on("click", function () {
+        $(".uncheck").prop("checked", false);
+        $("#display_image_list ul").html("");
+        $("#paintless_note").html("");
+    });
+
+    $(".static_pressure_low_check").on("click", function () {
         if ($(".static_pressure_low_check:checkbox:checked").length > 0) {
             $(".static_pressure_low").removeAttr("readonly");
         } else {
@@ -108,7 +224,7 @@ $(document).ready(function() {
         }
     });
 
-    $(".static_pressure_high_check").on("click", function() {
+    $(".static_pressure_high_check").on("click", function () {
         if ($(".static_pressure_high_check:checkbox:checked").length > 0) {
             $(".static_pressure_high").removeAttr("readonly");
         } else {
@@ -117,7 +233,7 @@ $(document).ready(function() {
         }
     });
 
-    $(".dynamic_pressure_low_check").on("click", function() {
+    $(".dynamic_pressure_low_check").on("click", function () {
         if ($(".dynamic_pressure_low_check:checkbox:checked").length > 0) {
             $(".dynamic_pressure_low").removeAttr("readonly");
         } else {
@@ -126,7 +242,7 @@ $(document).ready(function() {
         }
     });
 
-    $(".dynamic_pressure_high_check").on("click", function() {
+    $(".dynamic_pressure_high_check").on("click", function () {
         if ($(".dynamic_pressure_high_check:checkbox:checked").length > 0) {
             $(".dynamic_pressure_high").removeAttr("readonly");
         } else {
@@ -136,6 +252,47 @@ $(document).ready(function() {
         }
     });
 
+    $(function () {
+        var today = new Date();
+        $("#datepicker")
+            .datepicker({
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                endDate: "today",
+                maxDate: today,
+            })
+            .on("changeDate", function (ev) {
+                $(this).datepicker("hide");
+            });
+    });
+
+    // only float number allowed
+
+    $(function () {
+        $("input.decimal").bind("change keyup input", function () {
+            var position = this.selectionStart - 1;
+            //remove all but number and .
+            var fixed = this.value.replace(/[^0-9\.]/g, "");
+            if (fixed.charAt(0) === ".")
+                //can't start with .
+                fixed = fixed.slice(1);
+
+            var pos = fixed.indexOf(".") + 1;
+            if (pos >= 0)
+                //avoid more than one .
+                fixed =
+                    fixed.substr(0, pos) + fixed.slice(pos).replace(".", "");
+
+            if (this.value !== fixed) {
+                this.value = fixed;
+                this.selectionStart = position;
+                this.selectionEnd = position;
+            }
+        });
+    });
+
+    //End float number only script
+
     var remove_products_ids = [];
     var image_dynamic_id = 0;
     var image_dynamic_id2 = 0;
@@ -143,23 +300,19 @@ $(document).ready(function() {
     var image_dynamic_id4 = 0;
     var image_dynamic_id5 = 0;
 
-    $(document).on("click", ".issueBtn", function() {
+    $(document).on("click", ".issueBtn", function () {
         console.log($("#text_" + this.id));
         $("#" + this.id).toggleClass("mynewcl");
         $("#text_" + this.id).val("");
-        // $('.mynewcl').removeClass('active');
         $("#" + this.id).toggleClass("active");
-        // $(".txt_issueBtn").attr("readonly", true);
-        // $(".txt_issueBtn").removeClass('active');
         $("#text_" + this.id).toggleClass("active");
         $("#text_" + this.id).toggleClass("mynewactive");
         $("#text_" + this.id).toggleClass("mynewcsl");
-        // $("#text_" + this.id).attr('readonly', !$(this).attr(''));
         $("#text_" + this.id).attr("readonly", false);
     });
-    $(document).on("click", ".insertussueform", function() {
+    $(document).on("click", ".insertussueform", function () {
         var error = 0;
-        $(".mynewactive").each(function() {
+        $(".mynewactive").each(function () {
             console.log("chkid", this.id);
             if ($("#" + this.id).val() == "") {
                 error++;
@@ -169,49 +322,13 @@ $(document).ready(function() {
                 $("#" + this.id).css("border", "");
             }
         });
-        console.log("ee", error);
-        // return;
-        // if ($('#text_general_repair').val() == "") {
-        //     error++;
-        //     console.log('sddssd', $('#text_general_repair').val())
-        //     console.log('enterdara')
-        //     $('#text_general_repair').css('border', '2px solid red');
-        // } else {
-        //     console.log('done')
-        //     $('#text_general_repair').css('border', '');
-        // }
-        // if ($('#text_known_issue').val() == "") {
-        //     error++;
-        //     $('#text_known_issue').css('border', '2px solid red');
-        // } else {
-        //     $('#text_known_issue').css('border', '');
-        // }
-        // if ($('#text_manfacture_recall').val() == "") {
-        //     error++;
-        //     $('#text_manfacture_recall').css('border', '2px solid red');
-        // } else {
-        //     $('#text_manfacture_recall').css('border', '');
-        // }
-        // if ($('#text_new_install').val() == "") {
-        //     error++;
-        //     $('#text_new_install').css('border', '2px solid red');
-        // } else {
-        //     $('#text_new_install').css('border', '');
-        // }
 
-        // if ($('#text_new_issue').val() == "") {
-        //     error++;
-        //     $('#text_new_issue').css('border', '2px solid red');
-        // } else {
-        //     $('#text_new_issue').css('border', '');
-        // }
         if (error == 0) {
             let _token = $('meta[name="csrf-token"]').attr("content");
             var formdataIssue = new FormData(
                 document.getElementById("saveIssueForm")
             );
 
-            // $('.loader').show();
             $.ajax({
                 url: "/shop-settings/save-issue-repair",
                 type: "POST",
@@ -219,12 +336,10 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     window.location.replace(response);
-                    // window.location.replace = 'shop-settings/ac-service?servicedata=TXpBPSUlJTE=';
-                    // window.location.href = response;
                     toastr.success(
                         "Issue/Repair successfully!",
                         "Shop Settings"
@@ -234,7 +349,7 @@ $(document).ready(function() {
         }
         console.log("error", error);
     });
-    $(document).on("click", ".insertAcdata", function() {
+    $(document).on("click", ".insertAcdata", function () {
         let _token = $('meta[name="csrf-token"]').attr("content");
         var formdataAC = new FormData(document.getElementById("saveACForm"));
         formdataAC.append("remove_products_ids", remove_products_ids);
@@ -247,7 +362,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
 
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 $(".loader").hide();
                 window.location.replace(response);
@@ -263,7 +378,7 @@ $(document).ready(function() {
     });
 
     // car wash
-    $(document).on("click", ".insertHandle", function() {
+    $(document).on("click", ".insertHandle", function () {
         let _token = $('meta[name="csrf-token"]').attr("content");
         var formdataCarHandle = new FormData(
             document.getElementById("saveCarHandleForm")
@@ -278,7 +393,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
 
-            success: function(response) {
+            success: function (response) {
                 console.log("esfds", response);
                 $(".loader").hide();
                 if (response == "fail") {
@@ -290,7 +405,7 @@ $(document).ready(function() {
             },
         });
     });
-    $(document).on("click", ".inserttunnel", function() {
+    $(document).on("click", ".inserttunnel", function () {
         console.log("click data");
         let _token = $('meta[name="csrf-token"]').attr("content");
         var formdataTunnelHandle = new FormData(
@@ -309,7 +424,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
 
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 $(".loader").hide();
 
@@ -322,7 +437,7 @@ $(document).ready(function() {
             },
         });
     });
-    $(document).on("click", ".inserttouchless", function() {
+    $(document).on("click", ".inserttouchless", function () {
         console.log("click data");
         let _token = $('meta[name="csrf-token"]').attr("content");
         var formdataTunnelHandle = new FormData(
@@ -341,7 +456,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
 
-            success: function(response) {
+            success: function (response) {
                 console.log("fggg", response);
                 $(".loader").hide();
                 if (response == "fail") {
@@ -356,14 +471,12 @@ $(document).ready(function() {
     // end car wash
     //function image uploaded
 
-    $(".image_uploaded").change(function(event) {
+    $(".image_uploaded").change(function (event) {
         console.log("tst", this.id);
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
-        console.log("click", input_file);
-        console.log("click22");
+
         var len = input_file.files.length;
-        // $(".display_image_list ul").html("");
 
         for (var j = 0; j < len; j++) {
             var src = "";
@@ -379,23 +492,23 @@ $(document).ready(function() {
             }
             $(".display_image_list ul").append(
                 " <li id='" +
-                image_dynamic_id +
-                "'><span><button type='button' class='btn cross'  id='" +
-                image_dynamic_id +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id +
+                    "'><span><button type='button' class='btn cross'  id='" +
+                    image_dynamic_id +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id++;
         }
     });
     //image2
-    $(".image_uploaded2").change(function(event) {
+    $(".image_uploaded2").change(function (event) {
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
 
@@ -418,16 +531,16 @@ $(document).ready(function() {
 
             $(".display_image_list2 ul").append(
                 " <li id='" +
-                image_dynamic_id2 +
-                "'><span><button class='btn cross'  id='" +
-                image_dynamic_id2 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id2 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id2 +
+                    "'><span><button class='btn cross'  id='" +
+                    image_dynamic_id2 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id2 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id2++;
@@ -435,7 +548,7 @@ $(document).ready(function() {
     });
     //end img2
     //image3
-    $(".products_uploaded").change(function(event) {
+    $(".products_uploaded").change(function (event) {
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
 
@@ -458,16 +571,16 @@ $(document).ready(function() {
 
             $(".display_image_list3 ul").append(
                 " <li id='" +
-                image_dynamic_id2 +
-                "'><span><button class='btn cross'  id='" +
-                image_dynamic_id2 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id2 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id2 +
+                    "'><span><button class='btn cross'  id='" +
+                    image_dynamic_id2 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id2 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id2++;
@@ -476,7 +589,7 @@ $(document).ready(function() {
     //end image 3
 
     //image3
-    $(".products_uploaded_image").change(function(event) {
+    $(".products_uploaded_image").change(function (event) {
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
 
@@ -499,23 +612,23 @@ $(document).ready(function() {
 
             $(".display_image_list3 ul").append(
                 " <li id='" +
-                image_dynamic_id2 +
-                "'><span><button class='btn cross_img'  id='" +
-                image_dynamic_id2 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id2 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id2 +
+                    "'><span><button class='btn cross_img'  id='" +
+                    image_dynamic_id2 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id2 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id2++;
         }
     });
     //end image 3
-    $(".products_uploaded_img").change(function(event) {
+    $(".products_uploaded_img").change(function (event) {
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
 
@@ -538,23 +651,23 @@ $(document).ready(function() {
 
             $(".display_image_list4 ul").append(
                 " <li id='" +
-                image_dynamic_id2 +
-                "'><span><button class='btn cross_img'  id='" +
-                image_dynamic_id2 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id2 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id2 +
+                    "'><span><button class='btn cross_img'  id='" +
+                    image_dynamic_id2 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id2 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id2++;
         }
     });
     //image3
-    $(".file_upload").change(function(event) {
+    $(".file_upload").change(function (event) {
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
 
@@ -577,16 +690,16 @@ $(document).ready(function() {
 
             $(".display_image_list5 ul").append(
                 " <li id='" +
-                image_dynamic_id2 +
-                "'><span><button class='btn cross_img'  id='" +
-                image_dynamic_id2 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id2 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id2 +
+                    "'><span><button class='btn cross_img'  id='" +
+                    image_dynamic_id2 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id2 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id2++;
@@ -594,7 +707,7 @@ $(document).ready(function() {
     });
     //end image 4
 
-    $(".before_image").change(function(event) {
+    $(".before_image").change(function (event) {
         console.log("tst", this.id);
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
@@ -617,28 +730,26 @@ $(document).ready(function() {
             }
             $(".display_product_list_before ul").append(
                 " <li id='before" +
-                image_dynamic_id3 +
-                "'><span><button class='btn cross_before' type='button'  id='" +
-                image_dynamic_id3 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id3 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id3 +
+                    "'><span><button class='btn cross_before' type='button'  id='" +
+                    image_dynamic_id3 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id3 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id3++;
         }
     });
 
-    $(".estimated_document").change(function(event) {
+    $(".estimated_document").change(function (event) {
         console.log("tst", this.id);
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
-        console.log("click", input_file);
-        console.log("click22");
         var len = input_file.files.length;
         $(".display_product_list_estimate ul").html("");
 
@@ -655,28 +766,27 @@ $(document).ready(function() {
                 src = "icons/file.png";
             }
             $(".display_product_list_estimate ul").append(
-                " <li id='" +
-                image_dynamic_id4 +
-                "'><span><button class='btn cross' type='button'  id='" +
-                image_dynamic_id4 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id4 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                " <li id='estimate" +
+                    image_dynamic_id4 +
+                    "'><span><button class='btn cross_one' type='button'  id='" +
+                    image_dynamic_id4 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id4 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id4++;
         }
     });
 
-    $(".repair_document").change(function(event) {
+    $(".repair_document").change(function (event) {
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
-        console.log("click", input_file);
-        console.log("click22");
+
         var len = input_file.files.length;
         $(".display_product_list_repair_document ul").html("");
 
@@ -694,23 +804,23 @@ $(document).ready(function() {
             }
             $(".display_product_list_repair_document ul").append(
                 " <li id='" +
-                image_dynamic_id5 +
-                "'><span><button class='btn cross' type='button'  id='" +
-                image_dynamic_id5 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id5 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id5 +
+                    "'><span><button class='btn cross' type='button'  id='" +
+                    image_dynamic_id5 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id5 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id5++;
         }
     });
 
-    $(".after_image").change(function(event) {
+    $(".after_image").change(function (event) {
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
         console.log("click", input_file);
@@ -732,16 +842,16 @@ $(document).ready(function() {
             }
             $(".display_product_list_after_image ul").append(
                 " <li id='" +
-                image_dynamic_id5 +
-                "'><span><button class='btn cross' type='button'  id='" +
-                image_dynamic_id5 +
-                "'>&nbsp;</button><img id='" +
-                image_dynamic_id5 +
-                "' src='" +
-                src +
-                "' title='" +
-                name +
-                "' class='imgupdate'></span></li>"
+                    image_dynamic_id5 +
+                    "'><span><button class='btn cross' type='button'  id='" +
+                    image_dynamic_id5 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id5 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
             );
 
             image_dynamic_id5++;
@@ -752,7 +862,7 @@ $(document).ready(function() {
     var remove_products_ids_three = [];
     var remove_products_ids_four = [];
 
-    $(document).on("click", ".cross", function() {
+    $(document).on("click", ".cross", function () {
         var id = $(this).attr("id");
         remove_products_ids.push(id);
         console.log("hererere", remove_products_ids);
@@ -761,7 +871,7 @@ $(document).ready(function() {
             document.getElementById("products_uploaded").value = "";
     });
 
-    $(document).on("click", ".cross_before", function() {
+    $(document).on("click", ".cross_before", function () {
         var id = $(this).attr("id");
         remove_products_ids_four.push(id);
         console.log("hererere", remove_products_ids_four);
@@ -770,7 +880,7 @@ $(document).ready(function() {
             document.getElementById("products_uploaded").value = "";
     });
 
-    $(document).on("click", ".cross_img", function() {
+    $(document).on("click", ".cross_img", function () {
         var id = $(this).attr("id");
         remove_products_ids.push(id);
         $("li#" + id).remove();
@@ -778,7 +888,7 @@ $(document).ready(function() {
             document.getElementById("products_uploaded").value = "";
     });
 
-    $(document).on("click", ".cross_one", function() {
+    $(document).on("click", ".cross_one", function () {
         var id = $(this).attr("id");
         remove_products_ids_one.push(id);
         $("li#estimate" + id).remove();
@@ -786,7 +896,7 @@ $(document).ready(function() {
             document.getElementById("products_uploaded").value = "";
     });
 
-    $(document).on("click", ".cross_two", function() {
+    $(document).on("click", ".cross_two", function () {
         var id = $(this).attr("id");
         remove_products_ids_two.push(id);
         $("li#repair" + id).remove();
@@ -794,7 +904,7 @@ $(document).ready(function() {
             document.getElementById("products_uploaded").value = "";
     });
 
-    $(document).on("click", ".cross_three", function() {
+    $(document).on("click", ".cross_three", function () {
         console.log("ida", this.id);
         var id = $(this).attr("id");
         var data_id = $(this).attr("data-id");
@@ -805,7 +915,7 @@ $(document).ready(function() {
     });
 
     //end uploaded
-    $(document).on("click", ".appiralsubmit", function() {
+    $(document).on("click", ".appiralsubmit", function () {
         let _token = $('meta[name="csrf-token"]').attr("content");
         var formdataTunnelHandle = new FormData(
             document.getElementById("apperialapproved")
@@ -820,7 +930,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
 
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 $(".loader").hide();
                 if (response == "fail") {
@@ -832,69 +942,228 @@ $(document).ready(function() {
             },
         });
     });
-    $(document).on("click", ".saveVinly", function() {
+    $(document).on("click", ".saveVinly", function () {
         // return;
         var msg = "";
         let _token = $('meta[name="csrf-token"]').attr("content");
         if (this.id == "saveCarVinly") {
+            var err = 0;
+            if ($(".wrap_brand_car").val().trim() == "") {
+                $(".wrap_brand_err_car").addClass("erradd");
+                err++;
+            } else {
+                $(".wrap_brand_err_car").removeClass("erradd");
+            }
+            if ($(".wrap_color_car").val().trim() == "") {
+                $(".wrap_color_err_car").addClass("erradd");
+                err++;
+            } else {
+                $(".wrap_color_err_car").removeClass("erradd");
+            }
+
+            if ($("input[name=warranty_radio]:checked").length > 0) {
+                $(".is_waranty_car").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_car").addClass("erradd");
+            }
+            var action_waranty = $("input[name=warranty_radio]:checked").val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty").val().trim() == "") {
+                    err++;
+                    $(".company_waranty").addClass("erradd");
+                } else {
+                    $(".company_waranty").removeClass("erradd");
+                }
+            }
             var formdataTunnelHandle = new FormData(
                 document.getElementById("carvinlyIn")
             );
             msg = "Car/Truck/Suv Added successfully!";
         } else if (this.id == "saveVanVinly") {
+            var err = 0;
+            if ($(".wrap_brand_van").val().trim() == "") {
+                $(".wrap_brand_err_van").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_van").val().trim() == "") {
+                $(".wrap_color_err_van").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=vantab7]:checked").length > 0) {
+                $(".is_waranty_van").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_van").addClass("erradd");
+            }
+            var action_waranty = $("input[name=vantab7]:checked").val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty_van").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_van").addClass("erradd");
+                } else {
+                    $(".company_waranty_van").removeClass("erradd");
+                }
+            }
+
             var formdataTunnelHandle = new FormData(
                 document.getElementById("InsertVanVinly")
             );
             msg = "Van Added successfully!";
         } else if (this.id == "saveRvVinly") {
+            var err = 0;
+            if ($(".wrap_brand_rv").val().trim() == "") {
+                $(".wrap_brand_err_rv").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_rv").val().trim() == "") {
+                $(".wrap_color_err_rv").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=rvtab4]:checked").length > 0) {
+                $(".is_waranty_rv").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_rv").addClass("erradd");
+            }
+            var action_waranty = $("input[name=rvtab4]:checked").val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty_rv").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_rv").addClass("erradd");
+                } else {
+                    $(".company_waranty_rv").removeClass("erradd");
+                }
+            }
+
             var formdataTunnelHandle = new FormData(
                 document.getElementById("InsertRvVinly1")
             );
             msg = "RV Added successfully!";
         } else if (this.id == "savetrailerVinly") {
+            var err = 0;
+            if ($(".wrap_brand_trailer").val().trim() == "") {
+                $(".wrap_brand_err_trailer").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_trailer").val().trim() == "") {
+                $(".wrap_color_err_trailer").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=trailertab4]:checked").length > 0) {
+                $(".is_waranty_trailer").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_trailer").addClass("erradd");
+            }
+            var action_waranty = $("input[name=trailertab4]:checked").val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty_trailer").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_trailer").addClass("erradd");
+                } else {
+                    $(".company_waranty_trailer").removeClass("erradd");
+                }
+            }
+
             msg = "Trailer Added successfully!";
             var formdataTunnelHandle = new FormData(
                 document.getElementById("InsertTrailerVinly")
             );
         } else if (this.id == "saveBusVinly") {
+            var err = 0;
+            if ($(".wrap_brand_bus").val().trim() == "") {
+                $(".wrap_brand_err_bus").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_bus").val().trim() == "") {
+                $(".wrap_color_err_bus").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=bustab4]:checked").length > 0) {
+                $(".is_waranty_bus").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_bus").addClass("erradd");
+            }
+            var action_waranty = $("input[name=bustab4]:checked").val();
+            if (action_waranty == "Yes") {
+                if ($(".company_waranty_bus").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_bus").addClass("erradd");
+                } else {
+                    $(".company_waranty_bus").removeClass("erradd");
+                }
+            }
+
             msg = "Bus Added successfully!";
             var formdataTunnelHandle = new FormData(
                 document.getElementById("InsertBusVinly")
             );
         } else if (this.id == "saveOtherVinly") {
+            var err = 0;
+            if ($(".wrap_brand_other").val().trim() == "") {
+                $(".wrap_brand_err_other").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_other").val().trim() == "") {
+                $(".wrap_color_err_other").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=vinyl_other_warranty]:checked").length > 0) {
+                $(".is_waranty_other").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_other").addClass("erradd");
+            }
+            var action_waranty = $(
+                "input[name=vinyl_other_warranty]:checked"
+            ).val();
+            if (action_waranty == "Yes") {
+                if ($(".company_waranty_other").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_other").addClass("erradd");
+                } else {
+                    $(".company_waranty_other").removeClass("erradd");
+                }
+            }
+
             msg = "Other Added successfully!";
             var formdataTunnelHandle = new FormData(
                 document.getElementById("InsertOtherVinly")
             );
         }
 
-        formdataTunnelHandle.append(
-            "remove_products_ids",
-            remove_products_ids
-        );
+        formdataTunnelHandle.append("remove_products_ids", remove_products_ids);
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-vinly-car",
+                type: "POST",
+                data: formdataTunnelHandle,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
 
-        $(".loader").show();
-        $.ajax({
-            url: "/shop-settings/save-vinly-car",
-            type: "POST",
-            data: formdataTunnelHandle,
-            enctype: "multipart/form-data",
-            contentType: false,
-            processData: false,
-
-            success: function(response) {
-                console.log(response);
-                $(".loader").hide();
-                if (response == "fail") {
-                    toastr.error("Services not added", "Shop Settings");
-                } else {
-                    window.location.replace(response);
-                    toastr.success(" Service Added", "Shop Settings");
-                }
-            },
-        });
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success(" Service Added", "Shop Settings");
+                    }
+                },
+            });
+        }
     });
-    $(document).on("click", ".insertTireForm", function() {
+    $(document).on("click", ".insertTireForm", function () {
         let _token = $('meta[name="csrf-token"]').attr("content");
         var err = 0;
         $(".myerr").removeClass("erradd");
@@ -987,7 +1256,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
 
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     if (response == "fail") {
@@ -1001,7 +1270,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#tintSave", function() {
+    $(document).on("click", "#tintSave", function () {
         var err = 0;
         $(".myerr").removeClass("erradd");
         if ($("#tint_id").val().trim() == "") {
@@ -1029,7 +1298,6 @@ $(document).ready(function() {
             } else {
                 $(".oem_manufacturer").removeClass("erradd");
             }
-
 
             // if ($("input[name=tint_warranty]:checked").length > 0) {
             //     $(".tints_warranty").removeClass("erradd");
@@ -1076,7 +1344,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
@@ -1089,7 +1357,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#saveCollision", function() {
+    $(document).on("click", "#saveCollision", function () {
         var err = 0;
 
         var formDatacollision = new FormData(
@@ -1121,7 +1389,7 @@ $(document).ready(function() {
             enctype: "multipart/form-data",
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 $(".loader").hide();
                 if (response == "fail") {
                     toastr.error("Services not added", "Shop Settings");
@@ -1136,7 +1404,7 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on("click", "#electricSave", function() {
+    $(document).on("click", "#electricSave", function () {
         var err = 0;
         $(".myerr").removeClass("erradd");
 
@@ -1201,7 +1469,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
@@ -1237,7 +1505,7 @@ $(document).ready(function() {
         return modal_error;
     }
 
-    $(document).on("click", "#specialtyOtherSave", function() {
+    $(document).on("click", "#specialtyOtherSave", function () {
         var err = 0;
         $(".myerr").removeClass("erradd");
 
@@ -1253,7 +1521,6 @@ $(document).ready(function() {
         } else {
             $(".list_of_specialty").removeClass("erradd");
         }
-
 
         if (err == 0) {
             var formDataspecialty = new FormData(
@@ -1273,7 +1540,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     // response = JSON.parse(response);
                     if (response == "fail") {
@@ -1290,7 +1557,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#savePowderCoating", function() {
+    $(document).on("click", "#savePowderCoating", function () {
         var err = 0;
         $(".myerr").removeClass("erradd");
 
@@ -1364,7 +1631,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
@@ -1380,7 +1647,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#transmissionSave", function() {
+    $(document).on("click", "#transmissionSave", function () {
         var err = 0;
         $(".myerr").removeClass("erradd");
 
@@ -1428,7 +1695,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
@@ -1444,7 +1711,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#saveSuspension", function() {
+    $(document).on("click", "#saveSuspension", function () {
         var err = 0;
         if (err == 0) {
             var formsuspensionData = new FormData(
@@ -1464,7 +1731,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
@@ -1480,7 +1747,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#saveRaceTrack", function() {
+    $(document).on("click", "#saveRaceTrack", function () {
         let track_name = $("#track_name").val();
         let track_location = $("#track_location").val();
         let track_type = $("#track_type").val();
@@ -1495,7 +1762,7 @@ $(document).ready(function() {
         let lap_four_sec = $(".lap_four_sec").val();
         let products_uploaded = $(".products_uploaded_image")[0].files;
         let carShopService = $("#servicedata").val();
-
+        let race_track_id = $(".race_track_id").val();
         let l = products_uploaded.length;
 
         var formdataRace = new FormData();
@@ -1505,6 +1772,7 @@ $(document).ready(function() {
                 products_uploaded[i]
             );
         }
+        formdataRace.append("race_track_id", race_track_id);
         formdataRace.append("track_name", track_name);
         formdataRace.append("track_location", track_location);
         formdataRace.append("track_type", track_type);
@@ -1554,7 +1822,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
@@ -1570,8 +1838,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#saveRunOne", function() {
-
+    $(document).on("click", "#saveRunOne", function () {
         let stripe_name_run_one = $("#stripe_name_run_one").val();
         let stripe_location_run_one = $("#stripe_location_run_one").val();
         let stripe_opponent_run_one = $("#stripe_opponent_run_one").val();
@@ -1637,7 +1904,7 @@ $(document).ready(function() {
         formdataRace_run_one.append("carShopService", carShopService);
         var err = 0;
         if (stripe_name_run_one == "") {
-            err++
+            err++;
         }
 
         if ($("#stripe_name_run_one").val().trim() == "") {
@@ -1679,19 +1946,28 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
+                    var data = JSON.parse(response);
+                    if (data.status == "tab") {
+                        $(".race_track_id").val(data.id);
+                    }
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
-                        toastr.success("Run 1 Added Successfully", "Shop Settings");
+                        $(".run_two").css("pointer-events", "auto");
+
+                        toastr.success(
+                            "Run 1 Added Successfully",
+                            "Shop Settings"
+                        );
                     }
                 },
             });
         }
     });
 
-    $(document).on("click", "#saveRunTwo", function() {
+    $(document).on("click", "#saveRunTwo", function () {
         let stripe_name_run_two = $(".stripe_name_run_two").val();
         let stripe_location_run_two = $(".stripe_location_run_two").val();
         let stripe_opponent_run_two = $(".stripe_opponent_run_two").val();
@@ -1707,7 +1983,7 @@ $(document).ready(function() {
         let mph_run_two = $(".mph_run_two").val();
         let one_or_four_mile_run_two = $(".one_or_four_mile_run_two").val();
         let status_two = $("input[name='status_two']:checked").val();
-
+        let race_track_id = $(".race_track_id").val();
         let carShopService = $("#servicedata").val();
 
         var formdataRace_run_one = new FormData();
@@ -1717,6 +1993,7 @@ $(document).ready(function() {
             "stripe_location_run_two",
             stripe_location_run_two
         );
+        formdataRace_run_one.append("race_track_id", race_track_id);
         formdataRace_run_one.append(
             "stripe_opponent_run_two",
             stripe_opponent_run_two
@@ -1755,7 +2032,10 @@ $(document).ready(function() {
         formdataRace_run_one.append("status_two", status_two);
         formdataRace_run_one.append("tab", $(".tab_two").val());
         formdataRace_run_one.append("carShopService", carShopService);
-        formdataRace_run_one.append("runonecheck", $("#stripe_name_run_one").val().trim());
+        formdataRace_run_one.append(
+            "runonecheck",
+            $("#stripe_name_run_one").val().trim()
+        );
         var err = 0;
 
         if ($(".stripe_name_run_two").val().trim() == "") {
@@ -1797,33 +2077,37 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
+                    var data = JSON.parse(response);
+                    if (data.status == "tab") {
+                        $(".race_track_id").val(data.id);
+                    }
 
-                    // if (response == "fail") {
-                    //     toastr.error("Services not added", "Shop Settings");
-                    // } else {
-                    //     window.location.replace(response);
-                    //     toastr.success(
-                    //         "Transmission Services Added",
-                    //         "Shop Settings"
-                    //     );
-                    // }
                     if (response.trim() == "runout1") {
-                        toastr.error("Please Enter Run 1 First", "Shop Settings");
+                        toastr.error(
+                            "Please Enter Run 1 First",
+                            "Shop Settings"
+                        );
                     } else {
-                        toastr.success("Run 2 Added Successfully", "Shop Settings");
+                        $(".run_three").css("pointer-events", "auto");
+
+                        toastr.success(
+                            "Run 2 Added Successfully",
+                            "Shop Settings"
+                        );
                     }
                 },
             });
         }
     });
 
-    $(document).on("click", "#saveRunThree", function() {
+    $(document).on("click", "#saveRunThree", function () {
         let stripe_name_run_three = $(".stripe_name_run_three").val();
         let stripe_location_run_three = $(".stripe_location_run_three").val();
         let stripe_opponent_run_three = $(".stripe_opponent_run_three").val();
         let stripe_r_or_t_run_three = $(".stripe_r_or_t_run_three").val();
+        let race_track_id = $(".race_track_id").val();
         let stripe_sixty_degree_run_three = $(
             ".stripe_sixty_degree_run_three"
         ).val();
@@ -1848,6 +2132,7 @@ $(document).ready(function() {
             "stripe_name_run_three",
             stripe_name_run_three
         );
+        formdataRace_run_one.append("race_track_id", race_track_id);
         formdataRace_run_one.append(
             "stripe_location_run_three",
             stripe_location_run_three
@@ -1890,8 +2175,14 @@ $(document).ready(function() {
         formdataRace_run_one.append("status_three", status_three);
         formdataRace_run_one.append("tab", $(".tab_three").val());
         formdataRace_run_one.append("carShopService", carShopService);
-        formdataRace_run_one.append("runtwocheck", $(".stripe_name_run_two").val().trim());
-        formdataRace_run_one.append("runonecheck", $("#stripe_name_run_one").val().trim());
+        formdataRace_run_one.append(
+            "runtwocheck",
+            $(".stripe_name_run_two").val().trim()
+        );
+        formdataRace_run_one.append(
+            "runonecheck",
+            $("#stripe_name_run_one").val().trim()
+        );
         var err = 0;
         if ($(".stripe_name_run_three").val().trim() == "") {
             err++;
@@ -1914,12 +2205,18 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
+                    var data = JSON.parse(response);
+                    if (data.status == "tab") {
+                        $(".race_track_id").val(data.id);
+                    }
                     if (response.trim() == "runtwocheck") {
-                        toastr.error("Please enter run 2 first", "Shop Settings");
+                        toastr.error(
+                            "Please enter run 2 first",
+                            "Shop Settings"
+                        );
                     } else {
-
                         toastr.success(
                             "Run 3 successfully add",
                             "Shop Settings"
@@ -1930,7 +2227,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", "#savePaintBody", function() {
+    $(document).on("click", "#savePaintBody", function () {
         var formPaintBodyData = new FormData(
             document.getElementById("paintbodyData")
         );
@@ -1977,23 +2274,20 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success(
-                            "Paint Body Added",
-                            "Shop Settings"
-                        );
+                        toastr.success("Paint Body Added", "Shop Settings");
                     }
                 },
             });
         }
     });
 
-    $(document).on("click", "#saveMechanic", function() {
+    $(document).on("click", "#saveMechanic", function () {
         var formMechanicData = new FormData(
             document.getElementById("mechanicData")
         );
@@ -2008,7 +2302,7 @@ $(document).ready(function() {
             enctype: "multipart/form-data",
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 $(".loader").hide();
                 if (response == "fail") {
                     toastr.error("Services not added", "Shop Settings");
@@ -2020,14 +2314,17 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on("click", "#saveFabricationWelding", function() {
+    $(document).on("click", "#saveFabricationWelding", function () {
         var formfabricationweldingData = new FormData(
             document.getElementById("fabricationweldingData")
         );
 
         $(".loader").show();
 
-        formfabricationweldingData.append("remove_products_ids", remove_products_ids);
+        formfabricationweldingData.append(
+            "remove_products_ids",
+            remove_products_ids
+        );
         $.ajax({
             url: "/shop-settings/save-fabrication-welding",
             type: "POST",
@@ -2035,26 +2332,148 @@ $(document).ready(function() {
             enctype: "multipart/form-data",
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 $(".loader").hide();
                 if (response == "fail") {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success("Fabrication Welding Services Added", "Shop Settings");
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
                 }
             },
         });
     });
 
-    $(document).on("click", "#saveCustomBuildBody", function() {
+    $(document).on("click", "#saveFuelSystem", function () {
+        var fuelsystemData = new FormData(
+            document.getElementById("fuelsystemData")
+        );
+
+        $(".loader").show();
+
+        fuelsystemData.append("remove_products_ids", remove_products_ids);
+        $.ajax({
+            url: "/shop-settings/save-fuel-system",
+            type: "POST",
+            data: fuelsystemData,
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $(".loader").hide();
+                if (response == "fail") {
+                    toastr.error("Services not added", "Shop Settings");
+                } else {
+                    window.location.replace(response);
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
+                }
+            },
+        });
+    });
+
+    $(document).on("click", "#saveFuelSystem", function () {
+        var fuelsystemData = new FormData(
+            document.getElementById("fuelsystemData")
+        );
+
+        $(".loader").show();
+
+        fuelsystemData.append("remove_products_ids", remove_products_ids);
+        $.ajax({
+            url: "/shop-settings/save-fuel-system",
+            type: "POST",
+            data: fuelsystemData,
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $(".loader").hide();
+                if (response == "fail") {
+                    toastr.error("Services not added", "Shop Settings");
+                } else {
+                    window.location.replace(response);
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
+                }
+            },
+        });
+    });
+
+    $(document).on("click", "#saveNitrous", function () {
+        var nitrousData = new FormData(document.getElementById("nitrousData"));
+
+        $(".loader").show();
+
+        nitrousData.append("remove_products_ids", remove_products_ids);
+        $.ajax({
+            url: "/shop-settings/save-nitrous",
+            type: "POST",
+            data: nitrousData,
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $(".loader").hide();
+                if (response == "fail") {
+                    toastr.error("Services not added", "Shop Settings");
+                } else {
+                    window.location.replace(response);
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
+                }
+            },
+        });
+    });
+
+    $(document).on("click", "#savePDT", function () {
+        var pdtData = new FormData(document.getElementById("pdtData"));
+
+        $(".loader").show();
+
+        pdtData.append("remove_products_ids", remove_products_ids);
+        $.ajax({
+            url: "/shop-settings/save-performance-dyno-tuning",
+            type: "POST",
+            data: pdtData,
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $(".loader").hide();
+                if (response == "fail") {
+                    toastr.error("Services not added", "Shop Settings");
+                } else {
+                    window.location.replace(response);
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
+                }
+            },
+        });
+    });
+
+    $(document).on("click", "#saveCustomBuildBody", function () {
         var formcustombuildbodyData = new FormData(
             document.getElementById("custombuildbodyData")
         );
 
         $(".loader").show();
 
-        formcustombuildbodyData.append("remove_products_ids", remove_products_ids);
+        formcustombuildbodyData.append(
+            "remove_products_ids",
+            remove_products_ids
+        );
         $.ajax({
             url: "/shop-settings/save-custom-build-body",
             type: "POST",
@@ -2062,19 +2481,82 @@ $(document).ready(function() {
             enctype: "multipart/form-data",
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 $(".loader").hide();
                 if (response == "fail") {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success("Fabrication Welding Services Added", "Shop Settings");
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
                 }
             },
         });
     });
 
-    $(document).on("click", "#saveBatteryService", function() {
+    $(document).on("click", "#saveDealerShip", function () {
+        var formdealerShipData = new FormData(
+            document.getElementById("dealerShipData")
+        );
+
+        $(".loader").show();
+
+        formdealerShipData.append("remove_products_ids", remove_products_ids);
+        $.ajax({
+            url: "/shop-settings/save-dealership-service",
+            type: "POST",
+            data: formdealerShipData,
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $(".loader").hide();
+                if (response == "fail") {
+                    toastr.error("Services not added", "Shop Settings");
+                } else {
+                    window.location.replace(response);
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
+                }
+            },
+        });
+    });
+
+    $(document).on("click", "#saveLubrication", function () {
+        var lubricationData = new FormData(
+            document.getElementById("lubricationData")
+        );
+
+        $(".loader").show();
+
+        lubricationData.append("remove_products_ids", remove_products_ids);
+        $.ajax({
+            url: "/shop-settings/save-lubrication",
+            type: "POST",
+            data: lubricationData,
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $(".loader").hide();
+                if (response == "fail") {
+                    toastr.error("Services not added", "Shop Settings");
+                } else {
+                    window.location.replace(response);
+                    toastr.success(
+                        "Fabrication Welding Services Added",
+                        "Shop Settings"
+                    );
+                }
+            },
+        });
+    });
+
+    $(document).on("click", "#saveBatteryService", function () {
         var formbatteryServiceData = new FormData(
             document.getElementById("batteryServiceData")
         );
@@ -2092,7 +2574,7 @@ $(document).ready(function() {
             enctype: "multipart/form-data",
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 $(".loader").hide();
                 if (response == "fail") {
                     toastr.error("Services not added", "Shop Settings");
@@ -2104,7 +2586,7 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on("click", "#rimRepairSave", function() {
+    $(document).on("click", "#rimRepairSave", function () {
         var formrimRepairData = new FormData(
             document.getElementById("rimRepairData")
         );
@@ -2126,7 +2608,7 @@ $(document).ready(function() {
             enctype: "multipart/form-data",
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function (response) {
                 $(".loader").hide();
                 if (response == "fail") {
                     toastr.error("Services not added", "Shop Settings");
@@ -2138,7 +2620,7 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on("click", "#savePart", function() {
+    $(document).on("click", "#savePart", function () {
         var err = 0;
         $(".myerr").removeClass("erradd");
 
@@ -2207,7 +2689,7 @@ $(document).ready(function() {
                 enctype: "multipart/form-data",
                 contentType: false,
                 processData: false,
-                success: function(response) {
+                success: function (response) {
                     $(".loader").hide();
                     if (response == "fail") {
                         toastr.error("Services not added", "Shop Settings");
@@ -2220,7 +2702,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", ".insertOilServices", function() {
+    $(document).on("click", ".insertOilServices", function () {
         let _token = $('meta[name="csrf-token"]').attr("content");
         var err = 0;
         var favProgramming = [];
@@ -2260,7 +2742,7 @@ $(document).ready(function() {
 
         if (err == 0) {
             var fluidServices = $("input[name='oil_fluid_service']:checked")
-                .map(function() {
+                .map(function () {
                     return this.value;
                 })
                 .get()
@@ -2279,7 +2761,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
 
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     if (response == "fail") {
@@ -2293,12 +2775,12 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", ".InsertBreakService", function() {
+    $(document).on("click", ".InsertBreakService", function () {
         var formDataOil = new FormData(document.getElementById("saveBreak"));
         formDataOil.append("remove_products_ids", remove_products_ids);
         var err = 0;
         $("#brake_fluid").removeClass("erradd");
-        if ($("#chkfluiddate").val() == 1) {
+        if ($("#chkfluiddate").val() == 0) {
             if ($("#brake_fluid").val().trim() == "") {
                 err++;
                 $("#brake_fluid").addClass("erradd");
@@ -2315,7 +2797,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
 
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     if (response == "fail") {
@@ -2328,7 +2810,601 @@ $(document).ready(function() {
             });
         }
     });
-    $(document).on("click", ".cartabdata", function() {
+
+    $(".vehicle_type").on("click", function () {
+        var type = $(this).attr("aria-controls");
+        $("#vehicle_type").val(type);
+    });
+
+    $(document).on("click", "#savePaintlessDentRepair", function () {
+        var formDataPaintlessDentRepair = new FormData(
+            document.getElementById("storePaintlessDentRepair")
+        );
+        formDataPaintlessDentRepair.append(
+            "remove_products_ids",
+            remove_products_ids
+        );
+        var err = 0;
+
+        // var repaired_pannels = $("input[name='repaired_panels[]']:checked").length;
+        // if(repaired_pannels == 0)
+        // {
+        //     err++;
+        //     $("#repaired_pannels_err").addClass("erradd");
+        // }
+
+        var damage_type = $("input[name=damage_type]:checked").val();
+        if (damage_type === undefined) {
+            err++;
+            $("#damage_type_err").addClass("erradd");
+        }
+
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-paintless-dent-repair-pdr",
+                type: "POST",
+                data: formDataPaintlessDentRepair,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success("Break Services Added", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+    $(".check_inp").on("keyup", function () {
+        var inputs = $(".check_inp");
+        var check_input = 0;
+        for (var i = 0; i < inputs.length; i++) {
+            var val = $(inputs[i]).val().trim();
+            if (val == "") {
+                check_input++;
+                $(".next-btn").prop("disabled", true);
+                $(".current").prop("disabled", true);
+            }
+        }
+        if (check_input == 0) {
+            $(".next-btn").prop("disabled", false);
+            $(".current").prop("disabled", false);
+        }
+    });
+
+    $(document).ready(function () {
+        var inputs = $(".check_inp");
+        var check_input = 0;
+        for (var i = 0; i < inputs.length; i++) {
+            var val = $(inputs[i]).val().trim();
+            if (val == "") {
+                check_input++;
+                $(".next-btn").prop("disabled", true);
+                $(".current").prop("disabled", true);
+            }
+        }
+
+        if (check_input == 0) {
+            $(".next-btn").prop("disabled", false);
+            $(".current").prop("disabled", false);
+        }
+    });
+
+    $(".next-btn").on("click", function () {
+        $("#align-after-tab").click();
+    });
+
+    $("#align-after-tab").click(function () {
+        $("#align-before-tab").removeClass("active");
+        $("#align-before-tab").removeClass("show");
+        $("#align-before").removeClass("active");
+        $("#align-before").removeClass("show");
+        $(this).addClass("show");
+        $(this).addClass("active");
+        $("#align-after").addClass("active");
+        $("#align-after").addClass("show");
+    });
+
+    $(document).on("click", "#saveFrameAlignment", function () {
+        var formDataFrameAlignment = new FormData(
+            document.getElementById("storeFrameAlignment")
+        );
+        var err = 0;
+
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-frame-alignment",
+                type: "POST",
+                data: formDataFrameAlignment,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success("Break Services Added", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on("click", "#saveCreamicCoating", function () {
+        var err = 0;
+
+        if ($(".coating_manufacturer").val().trim() == "") {
+            err++;
+            $(".coating_manufacturer").addClass("erradd");
+        }
+
+        if ($("input[name=registered]:checked").length > 0) {
+            $(".registered_err").removeClass("erradd");
+        } else {
+            err++;
+            $(".registered_err").addClass("erradd");
+        }
+
+        var action_registered_company = $(
+            "input[name=registered]:checked"
+        ).val();
+
+        if (action_registered_company == "Yes") {
+            if ($(".registered_company").val().trim() == "") {
+                err++;
+                $(".registered_company").addClass("erradd");
+            } else {
+                $(".registered_company").removeClass("erradd");
+            }
+        }
+
+        if ($("input[name=is_waranty]:checked").length > 0) {
+            $(".is_waranty").removeClass("erradd");
+        } else {
+            err++;
+            $(".is_waranty").addClass("erradd");
+        }
+
+        var action_waranty = $("input[name=is_waranty]:checked").val();
+
+        if (action_waranty == "Yes") {
+            if ($(".company_waranty").val().trim() == "") {
+                err++;
+                $(".company_waranty").addClass("erradd");
+            } else {
+                $(".company_waranty").removeClass("erradd");
+            }
+        }
+
+        if ($("input[name=annual_required]:checked").length > 0) {
+            $(".annual_required").removeClass("erradd");
+        } else {
+            err++;
+            $(".annual_required").addClass("erradd");
+        }
+
+        var formDataCreamicCoating = new FormData(
+            document.getElementById("creamicCoatingData")
+        );
+        formDataCreamicCoating.append(
+            "remove_products_ids",
+            remove_products_ids
+        );
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-ceramic-coating",
+                type: "POST",
+                data: formDataCreamicCoating,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success("Break Services Added", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on("click", "#saveCorrection", function () {
+        var err = 0;
+        var formDatacorrectionData = new FormData(
+            document.getElementById("correctionData")
+        );
+        formDatacorrectionData.append(
+            "remove_products_ids",
+            remove_products_ids
+        );
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-detailing",
+                type: "POST",
+                data: formDatacorrectionData,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success("Break Services Added", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on("click", "#saveCleaning", function () {
+        var err = 0;
+        var formDatacleaningData = new FormData(
+            document.getElementById("cleaningData")
+        );
+        formDatacleaningData.append(
+            "remove_products_ids",
+            remove_products_ids
+        );
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-detailing",
+                type: "POST",
+                data: formDatacleaningData,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success("Break Services Added", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on("click", "#savePPF", function () {
+        var err = 0;
+
+        if ($(".film_manufacturer").val().trim() == "") {
+            err++;
+            $(".film_manufacturer_err").addClass("erradd");
+        }
+
+        if ($("input[name=film_thickness]:checked").length > 0) {
+            $(".film_thickness_err").removeClass("erradd");
+        } else {
+            err++;
+            $(".film_thickness_err").addClass("erradd");
+        }
+
+        if ($("input[name=registered]:checked").length > 0) {
+            $(".registered_err").removeClass("erradd");
+        } else {
+            err++;
+            $(".registered_err").addClass("erradd");
+        }
+
+        var action_registered_company = $(
+            "input[name=registered]:checked"
+        ).val();
+
+        if (action_registered_company == "Yes") {
+            if ($(".registered_company").val().trim() == "") {
+                err++;
+                $(".registered_company").addClass("erradd");
+            } else {
+                $(".registered_company").removeClass("erradd");
+            }
+        }
+
+        if ($("input[name=is_waranty]:checked").length > 0) {
+            $(".is_waranty").removeClass("erradd");
+        } else {
+            err++;
+            $(".is_waranty").addClass("erradd");
+        }
+        var action_waranty = $("input[name=is_waranty]:checked").val();
+
+        if (action_waranty == "Yes") {
+            if ($(".waranty_company").val().trim() == "") {
+                err++;
+                $(".waranty_company").addClass("erradd");
+            } else {
+                $(".waranty_company").removeClass("erradd");
+            }
+        }
+
+        if ($("input[name=annual_required]:checked").length > 0) {
+            $(".annual_required").removeClass("erradd");
+        } else {
+            err++;
+            $(".annual_required").addClass("erradd");
+        }
+
+        var formDataPPF = new FormData(document.getElementById("storePPF"));
+        formDataPPF.append("remove_products_ids", remove_products_ids);
+
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-paint-protection-film-ppf",
+                type: "POST",
+                data: formDataPPF,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        $(".url-disable").attr("href", response);
+                        $(".url-disable").css("pointer-events", "auto");
+
+                        // window.location.replace(response);
+                        toastr.success("Break Services Added", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on("click", ".saveCarDataInsertDetail", function () {
+        var msg = "";
+        let _token = $('meta[name="csrf-token"]').attr("content");
+        if (this.id == "saveCarDataPPF") {
+            var err = 0;
+            if ($(".wrap_brand_car").val().trim() == "") {
+                $(".wrap_brand_err_car").addClass("erradd");
+                err++;
+            } else {
+                $(".wrap_brand_err_car").removeClass("erradd");
+            }
+            if ($(".wrap_color_car").val().trim() == "") {
+                $(".wrap_color_err_car").addClass("erradd");
+                err++;
+            } else {
+                $(".wrap_color_err_car").removeClass("erradd");
+            }
+
+            if ($("input[name=is_waranty_car]:checked").length > 0) {
+                $(".is_waranty_car").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_car").addClass("erradd");
+            }
+            var action_waranty = $("input[name=is_waranty_car]:checked").val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty").val().trim() == "") {
+                    err++;
+                    $(".company_waranty").addClass("erradd");
+                } else {
+                    $(".company_waranty").removeClass("erradd");
+                }
+            }
+
+            var formdataPPF = new FormData(
+                document.getElementById("savecarPPF")
+            );
+            msg = "Car/Truck/Suv Added successfully!";
+        } else if (this.id == "saveVan") {
+            var err = 0;
+            if ($(".wrap_brand_van").val().trim() == "") {
+                $(".wrap_brand_err_van").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_van").val().trim() == "") {
+                $(".wrap_color_err_van").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=is_waranty_van]:checked").length > 0) {
+                $(".is_waranty_van").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_van").addClass("erradd");
+            }
+            var action_waranty = $("input[name=is_waranty_van]:checked").val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty_van").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_van").addClass("erradd");
+                } else {
+                    $(".company_waranty_van").removeClass("erradd");
+                }
+            }
+
+            var formdataPPF = new FormData(
+                document.getElementById("savevanPPF")
+            );
+            msg = "Van Added successfully!";
+        } else if (this.id == "saveRV") {
+            var err = 0;
+            if ($(".wrap_brand_rv").val().trim() == "") {
+                $(".wrap_brand_err_rv").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_rv").val().trim() == "") {
+                $(".wrap_color_err_rv").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=is_waranty_rv]:checked").length > 0) {
+                $(".is_waranty_rv").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_rv").addClass("erradd");
+            }
+            var action_waranty = $("input[name=is_waranty_rv]:checked").val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty_rv").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_rv").addClass("erradd");
+                } else {
+                    $(".company_waranty_rv").removeClass("erradd");
+                }
+            }
+
+            var formdataPPF = new FormData(
+                document.getElementById("savervPPF")
+            );
+            msg = "RV Added successfully!";
+        } else if (this.id == "saveTrailer") {
+            var err = 0;
+            if ($(".wrap_brand_trailer").val().trim() == "") {
+                $(".wrap_brand_err_trailer").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_trailer").val().trim() == "") {
+                $(".wrap_color_err_trailer").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=is_waranty_trailer]:checked").length > 0) {
+                $(".is_waranty_trailer").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_trailer").addClass("erradd");
+            }
+            var action_waranty = $(
+                "input[name=is_waranty_trailer]:checked"
+            ).val();
+            if (action_waranty == "YES") {
+                if ($(".company_waranty_trailer").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_trailer").addClass("erradd");
+                } else {
+                    $(".company_waranty_trailer").removeClass("erradd");
+                }
+            }
+
+            msg = "Trailer Added successfully!";
+            var formdataPPF = new FormData(
+                document.getElementById("savetrailerPPF")
+            );
+        } else if (this.id == "saveBus") {
+            var err = 0;
+            if ($(".wrap_brand_bus").val().trim() == "") {
+                $(".wrap_brand_err_bus").addClass("erradd");
+                err++;
+            }
+            if ($(".wrap_color_bus").val().trim() == "") {
+                $(".wrap_color_err_bus").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=is_waranty_bus]:checked").length > 0) {
+                $(".is_waranty_bus").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_bus").addClass("erradd");
+            }
+            var action_waranty = $("input[name=is_waranty_bus]:checked").val();
+            if (action_waranty == "Yes") {
+                if ($(".company_waranty_bus").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_bus").addClass("erradd");
+                } else {
+                    $(".company_waranty_bus").removeClass("erradd");
+                }
+            }
+
+            msg = "Bus Added successfully!";
+            var formdataPPF = new FormData(
+                document.getElementById("savebusPPF")
+            );
+        } else if (this.id == "saveOther") {
+            var err = 0;
+            if ($(".wrap_brand_other").val().trim() == "") {
+                $(".wrap_brand_err_other").addClass("erradd");
+                err++;
+            }
+
+            if ($("input[name=is_waranty_other]:checked").length > 0) {
+                $(".is_waranty_other").removeClass("erradd");
+            } else {
+                err++;
+                $(".is_waranty_other").addClass("erradd");
+            }
+            var action_waranty = $(
+                "input[name=is_waranty_other]:checked"
+            ).val();
+            if (action_waranty == "Yes") {
+                if ($(".company_waranty_other").val().trim() == "") {
+                    err++;
+                    $(".company_waranty_other").addClass("erradd");
+                } else {
+                    $(".company_waranty_other").removeClass("erradd");
+                }
+            }
+
+            msg = "Other Added successfully!";
+            var formdataPPF = new FormData(
+                document.getElementById("saveotherPPF")
+            );
+        }
+
+        formdataPPF.append("remove_products_ids", remove_products_ids);
+        var err = 0;
+
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-ppf-install-details",
+                type: "POST",
+                data: formdataPPF,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success("Break Services Added", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on("click", ".cartabdata", function () {
         console.log("chkid", this.id);
         var newserviceid = this.id.split("%%%");
         var car_id = $("#last_Car_id").val();
@@ -2341,14 +3417,14 @@ $(document).ready(function() {
                 service_id: newserviceid[1],
             },
 
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
             },
         });
         // var lastserviceid = $('#testservicedata').val();
         // console.log('lastid', lastserviceid);
     });
-    $(document).on("click", "#SaveServicesnew", function() {
+    $(document).on("click", "#SaveServicesnew", function () {
         if ($(".myallservices:checked").length) {
             $(".myserviceerr").hide();
             $(".loader").show();
@@ -2363,7 +3439,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
 
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     if (response == 1) {
@@ -2386,7 +3462,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", ".insertconcierge", function() {
+    $(document).on("click", ".insertconcierge", function () {
         var error = 0;
         var timeOptions = {
             timeFormat: "h:i A",
@@ -2401,7 +3477,7 @@ $(document).ready(function() {
         // var checkbegentime = chkcurrentdate(dtToday, tripbegin, "current");
         // var checkbegen = chkcurrentdate(tripbegin, tripend, "trip");
 
-        $(".myrequire").each(function() {
+        $(".myrequire").each(function () {
             if ($("#" + this.id).val() == "") {
                 error++;
                 $("#" + this.id).addClass("erradd");
@@ -2427,7 +3503,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
 
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     if (response == "fail") {
@@ -2465,25 +3541,25 @@ $(document).ready(function() {
         //convert both time into timestamp
         var stt = new Date(
             dt.getMonth() +
-            1 +
-            "/" +
-            dt.getDate() +
-            "/" +
-            dt.getFullYear() +
-            " " +
-            start_time
+                1 +
+                "/" +
+                dt.getDate() +
+                "/" +
+                dt.getFullYear() +
+                " " +
+                start_time
         );
 
         stt = stt.getTime();
         var endt = new Date(
             dt.getMonth() +
-            1 +
-            "/" +
-            dt.getDate() +
-            "/" +
-            dt.getFullYear() +
-            " " +
-            end_time
+                1 +
+                "/" +
+                dt.getDate() +
+                "/" +
+                dt.getFullYear() +
+                " " +
+                end_time
         );
 
         endt = endt.getTime();
@@ -2505,7 +3581,7 @@ $(document).ready(function() {
             }
         }
     }
-    $(".myallservices").change(function() {
+    $(".myallservices").change(function () {
         if ($(this).is(":checked")) {
             $("#mm-" + this.id).addClass("mychkcls");
         } else {
@@ -2513,9 +3589,10 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", ".fluidactive", function() {
+    $(document).on("click", ".fluidactive", function () {
         $(".brake_fluid").toggleClass("mynewcsl");
-        $('#brake_fluid').val('');
+        $(this).toggleClass("disable_btn");
+        $("#brake_fluid").val("");
         var chkdfluid = $("#chkfluiddate").val();
         if ($("#chkfluiddate").val() == 0) {
             $("#chkfluiddate").val(1);
@@ -2524,7 +3601,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", ".InsertExhaust", function() {
+    $(document).on("click", ".InsertExhaust", function () {
         $(".loader").show();
         var formDataservices = new FormData(
             document.getElementById("saveExhaust")
@@ -2538,7 +3615,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
 
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 $(".loader").hide();
                 if (response == "fail") {
@@ -2550,7 +3627,7 @@ $(document).ready(function() {
             },
         });
     });
-    $(document).on("click", ".insertglassServices", function() {
+    $(document).on("click", ".insertglassServices", function () {
         var err = 0;
         if ($("#brand").val() == "") {
             $("#brand").addClass("erradd");
@@ -2577,13 +3654,13 @@ $(document).ready(function() {
         console.log("errrr", err);
         if (err == 0) {
             var windServices = $("input[name='windhshield']:checked")
-                .map(function() {
+                .map(function () {
                     return this.value;
                 })
                 .get()
                 .join(", ");
             var serviced = $("input[name='sensor_data']:checked")
-                .map(function() {
+                .map(function () {
                     return this.value;
                 })
                 .get()
@@ -2603,7 +3680,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
 
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     if (response == "fail") {
@@ -2616,7 +3693,7 @@ $(document).ready(function() {
             });
         }
     });
-    $(document).on("click", ".insertEngine", function() {
+    $(document).on("click", ".insertEngine", function () {
         var err = 0;
         if ($("#issue_diagnosis").val() == "") {
             $("#issue_diagnosis").addClass("erradd");
@@ -2634,7 +3711,7 @@ $(document).ready(function() {
         }
         if (err == 0) {
             var engineServices = $("input[name='engine_services']:checked")
-                .map(function() {
+                .map(function () {
                     return this.value;
                 })
                 .get()
@@ -2654,7 +3731,7 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
 
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                     $(".loader").hide();
                     if (response == "fail") {
@@ -2668,84 +3745,79 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('change', '.powderWarrenty', function() {
+    $(document).on("change", ".powderWarrenty", function () {
         var powderct = $("input[name=is_waranty]:checked").val();
-        $('.powderwarentycompany').val('');
-        if (powderct == 'Yes') {
-            $('.powderwarentycompany').attr('readonly', false);
+        $(".powderwarentycompany").val("");
+        if (powderct == "Yes") {
+            $(".powderwarentycompany").attr("readonly", false);
         } else {
-            $('.powderwarentycompany').attr('readonly', true);
+            $(".powderwarentycompany").attr("readonly", true);
         }
-    })
-
-    $(document).on('change', '.partWarrenty', function() {
-        var powderct = $("input[name=is_waranty]:checked").val();
-        $('.powderwarentycompany').val('');
-
-        if (powderct == 'Yes') {
-            $('.powderwarentycompany').attr('readonly', false);
-        } else {
-            $('.powderwarentycompany').attr('readonly', true);
-        }
-    })
-    $(document).on('change', '.elictricalWarrenty', function() {
-        var electricalct = $("input[name=is_waranty]:checked").val();
-        $('.electricalwarentycompany').val('');
-
-        if (electricalct == 'Yes') {
-            $('.electricalwarentycompany').attr('readonly', false);
-        } else {
-            $('.electricalwarentycompany').attr('readonly', true);
-        }
-    })
-
-    $(document).on('change', '.tintWarrenty', function() {
-        var tintct = $("input[name=tint_warranty]:checked").val();
-        $('.tintwarentycompany').val('');
-
-        if (tintct == 'Yes') {
-            $('.tintwarentycompany').attr('readonly', false);
-        } else {
-            $('.tintwarentycompany').attr('readonly', true);
-        }
-    })
-
-    $(document).on('change', '.elictricalWarrenty', function() {
-        var electricalct = $("input[name=is_waranty]:checked").val();
-        $('.electricalwarentycompany').val('');
-        $('.electricalwarentycompany').attr('readonly', true);
-
-        if (electricalct == 'Yes') {
-            $('.electricalwarentycompany').attr('readonly', false);
-        } else {
-            $('.electricalwarentycompany').attr('readonly', true);
-        }
-    })
-
-
-    $(document).on('change', '.glassWarrenty', function() {
-        var glassct = $("input[name=warranty]:checked").val();
-        $('.glasswarentycompany').val('');
-
-        if (glassct == 'Yes') {
-            $('.glasswarentycompany').attr('readonly', false);
-        } else {
-            $('.glasswarentycompany').attr('readonly', true);
-        }
-    })
-
-    $('.numberonly').keypress(function(e) {
-
-        var charCode = (e.which) ? e.which : event.keyCode
-
-        if (String.fromCharCode(charCode).match(/[^0-9]/g))
-
-            return false;
-
     });
-    $(document).on('keydown', '.issuetabclose', function(t) {
+
+    $(document).on("change", ".partWarrenty", function () {
+        var powderct = $("input[name=is_waranty]:checked").val();
+        $(".powderwarentycompany").val("");
+
+        if (powderct == "Yes") {
+            $(".powderwarentycompany").attr("readonly", false);
+        } else {
+            $(".powderwarentycompany").attr("readonly", true);
+        }
+    });
+    $(document).on("change", ".elictricalWarrenty", function () {
+        var electricalct = $("input[name=is_waranty]:checked").val();
+        $(".electricalwarentycompany").val("");
+
+        if (electricalct == "Yes") {
+            $(".electricalwarentycompany").attr("readonly", false);
+        } else {
+            $(".electricalwarentycompany").attr("readonly", true);
+        }
+    });
+
+    $(document).on("change", ".tintWarrenty", function () {
+        var tintct = $("input[name=tint_warranty]:checked").val();
+        $(".tintwarentycompany").val("");
+
+        if (tintct == "Yes") {
+            $(".tintwarentycompany").attr("readonly", false);
+        } else {
+            $(".tintwarentycompany").attr("readonly", true);
+        }
+    });
+
+    $(document).on("change", ".elictricalWarrenty", function () {
+        var electricalct = $("input[name=is_waranty]:checked").val();
+        $(".electricalwarentycompany").val("");
+        $(".electricalwarentycompany").attr("readonly", true);
+
+        if (electricalct == "Yes") {
+            $(".electricalwarentycompany").attr("readonly", false);
+        } else {
+            $(".electricalwarentycompany").attr("readonly", true);
+        }
+    });
+
+    $(document).on("change", ".glassWarrenty", function () {
+        var glassct = $("input[name=warranty]:checked").val();
+        $(".glasswarentycompany").val("");
+
+        if (glassct == "Yes") {
+            $(".glasswarentycompany").attr("readonly", false);
+        } else {
+            $(".glasswarentycompany").attr("readonly", true);
+        }
+    });
+
+    $(".numberonly").keypress(function (e) {
+        var charCode = e.which ? e.which : event.keyCode;
+
+        if (String.fromCharCode(charCode).match(/[^0-9]/g)) return false;
+    });
+    $(document).on("keydown", ".issuetabclose", function (t) {
         if (t.which == 9) {
             return false;
         }
-    })
+    });
 });
