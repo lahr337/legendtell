@@ -133,7 +133,6 @@ class VinShopController extends Controller
             if (isset($data['Results'])) {
                 $result = current($data['Results']);
                 if (isset($result['ModelYear']) && !empty($result['ModelYear'])) {
-                    // $car = Car::updateOrCreate($input + ['user_id' => auth()->user()->id]);
                     $car = new Car;
 
                     $car->trims = $result;
@@ -168,22 +167,7 @@ class VinShopController extends Controller
                 }
             }
         }
-        //elseif($request->year && $request->make && $request->model) {
-        //     $data = CarQueryApi::getTrims($request->year, $request->make, $request->model);
-        //     if(isset($data['Trims']) && is_array($data['Trims'])){
-        //         $car = Car::updateOrCreate($input + ['user_id' => auth()->user()->id]);
-        //         $car_user = CarUser::create(['car_id' => $car->id, 'user_id' => auth()->user()->id]);
-        //         $car->trims = $data['Trims'];
-        //         $car->ref_type = 'carquery';
-        //         $trim = current($data['Trims']);
-        //         $car->drive = $trim['model_drive'];
-        //         $car->model_engine_cc = $trim['model_engine_cc'];
-        //         $car->model_engine_cyl = $trim['model_engine_cyl'];
-        //         $car->model_engine_type = $trim['model_engine_type'];
-        //         $car->save();
-        //     }
-        // }
-        // return redirect()->back();
+      
     }
     public function store(Request $request)
     {

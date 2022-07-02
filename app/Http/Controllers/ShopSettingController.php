@@ -154,6 +154,8 @@ class ShopSettingController extends Controller
 
             $user->update($input+['status' => 'active']);
         }
+
+        print_r($user); die;
         return $this->sendResponse();
     }
 

@@ -44,7 +44,7 @@
                             </svg>
                         </div>
                     </span>
-                    <input type="file" id="shop_photo" name="shop_photo" class="account-avatar__field" />
+                    <input type="file" id="shop_photo" name="shop_photo" class="account-avatar__field" accept="image/jpeg,image/jpg,image/BMP,image/png,image/webp,image/gif,image/svg+xml,image/bmp,image/x-icon,image/apng,image/avif" />
                 </div>
 
 

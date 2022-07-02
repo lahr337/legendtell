@@ -209,22 +209,65 @@ use App\Http\Controllers\CommonController; ?>
    <div class="content-cmn-wrap">
       <div class="row">
          <div class="col-12 col-md-6">
-            @if($CarData->car_user->ownerHistory && $CarData->car_user->ownerHistory->owner_document)
-            <?php
-            $testdata = explode(',', $CarData->car_user->ownerHistory->owner_document);
-            ?>
+           @if($CarData->car_user->ownerHistory && $CarData->car_user->ownerHistory->owner_document)
+                  <?php
+                  $testdata = explode(',', $CarData->car_user->ownerHistory->owner_document);
 
-            <?php $chkextension = explode('.', $testdata[0]);
-            error_reporting(0); ?>
-            @if( trim($chkextension[5]) !='pdf' && trim($chkextension[5]) !='docx' && trim($chkextension[5]) !='doc')
+                  ?>
 
-            <img class="w-100" src="{{$testdata[0]}}">
-            @else
-            <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
-            @endif
+                  <?php $chkextension = explode('.', $testdata[0]);
+                  error_reporting(0); ?>
+                  @if( trim($chkextension[5]) !='pdf' && trim($chkextension[5]) !='docx' && trim($chkextension[5]) !='doc')
+
+                  @if($car->medias_picture && $car->medias_picture->filename)
+
+                  @if($car->medias_picture->type == "image")
+
+                  <img class="w-100" src="{{$car->medias_picture->filename}}">
+                  @else
+                  <video width="320" height="240" controls>
+                     <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+                     <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+                     Your browser does not support the video tag.
+                  </video>
+                  @endif
+                  @else
+                  <img class="w-100" src="{{$testdata[0]}}">
+                  @endif
+                  @else
+                  @if($car->medias_picture && $car->medias_picture->filename)
+
+                  @if($car->medias_picture->type == "image")
 
 
-            @endif
+                  <img class="w-100" src="{{$car->medias_picture->filename}}">
+                  @else
+                  <video width="320" height="240" controls>
+                     <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+                     <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+                     Your browser does not support the video tag.
+                  </video>
+                  @endif
+                  @else
+                  <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
+                  @endif
+                  @endif
+
+                  @else
+                  @if($car->medias_picture && $car->medias_picture->filename)
+                  @if($car->medias_picture->type == "image")
+                  <img class="w-100" src="{{$car->medias_picture->filename}}">
+                  @else
+                  <video width="320" height="240" controls>
+                     <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+                     <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+                     Your browser does not support the video tag.
+                  </video>
+                  @endif
+                  @else
+                  <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
+                  @endif
+                  @endif
             {{-- <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}"> --}}
          </div>
          <div class="col-12 col-md-6">
@@ -334,7 +377,7 @@ use App\Http\Controllers\CommonController; ?>
       </div>
       <div class="col-6 col-md-6">
          <div class="services-details">
-            <p>{{ucwords($CarData->static_pressure_low)}} PSI</p>
+            <p>{{ucwords($CarData->static_pressure_low)}} @if(!empty($CarData->static_pressure_low))PSI @endif</p>
          </div>
       </div>
       <div class="col-6 col-md-6">
@@ -344,7 +387,7 @@ use App\Http\Controllers\CommonController; ?>
       </div>
       <div class="col-6 col-md-6">
          <div class="services-details">
-            <p> {{ucwords($CarData->static_pressure_high)}} PSI</p>
+            <p> {{ucwords($CarData->static_pressure_high)}} @if(!empty($CarData->static_pressure_high))PSI @endif</p>
          </div>
       </div>
       <div class="col-6 col-md-6">
@@ -362,7 +405,7 @@ use App\Http\Controllers\CommonController; ?>
       </div>
       <div class="col-6 col-md-6">
          <div class="services-details">
-            <p> {{ucwords($CarData->dynamic_pressure_low)}} PSI</p>
+            <p> {{ucwords($CarData->dynamic_pressure_low)}} @if(!empty($CarData->dynamic_pressure_low))PSI @endif</p>
          </div>
       </div>
       <div class="col-6 col-md-6">
@@ -372,7 +415,7 @@ use App\Http\Controllers\CommonController; ?>
       </div>
       <div class="col-6 col-md-6">
          <div class="services-details">
-            <p>{{ucwords($CarData->dynamic_pressure_high)}} PSI</p>
+            <p>{{ucwords($CarData->dynamic_pressure_high)}} @if(!empty($CarData->dynamic_pressure_high))PSI @endif</p>
          </div>
       </div>
    </div>
@@ -7188,5 +7231,35 @@ use App\Http\Controllers\CommonController; ?>
       });
 
    });
+
+   if (document.getElementById('userInfo')) {
+  var userInfo = document.getElementById('userInfo'),
+      userNav = document.getElementById('userNav');
+  var userInfoActiveClass = 'user-info--active',
+      userNavActiveClass = 'user-nav--active';
+  userInfo.addEventListener('click', function () {
+    return showUserMenu();
+  }); // Outside el click listener
+
+  var clickOutside = function clickOutside() {
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.user')) hideUserMenu();
+    });
+  }; // Hide/show functions
+
+
+  var showUserMenu = function showUserMenu() {
+    if (!userInfo.classList.contains(userInfoActiveClass)) {
+      userInfo.classList.add(userInfoActiveClass);
+      userNav.classList.add(userNavActiveClass);
+      clickOutside();
+    } else hideUserMenu();
+  };
+
+  var hideUserMenu = function hideUserMenu() {
+    userInfo.classList.remove(userInfoActiveClass);
+    userNav.classList.remove(userNavActiveClass);
+  };
+}
 </script>
 @endsection

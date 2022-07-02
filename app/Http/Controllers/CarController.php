@@ -260,14 +260,15 @@ class CarController extends Controller
 
 
             $vin = $car['vin'];
-
+            
             $car = Car::with(['medias_picture'])->where('vin', $vin)->where('service_id', '!=','')->orderBy('service_date', 'DESC')->first();
 
-
+            
+       
             $CarData = $CarData->where('vin', $vin)->with('ownerHistory')->with('acHistory')->with('breakHistory')->with('carwashHistory')->with('userData')->orderBy('service_date', 'DESC')->first();
 
-            $car_by_vin = Car::where('vin', $car['vin'])->orderBy('service_date', 'ASC')->where('service_id', '!=','')->get()->pluck('service_id');
-            $car_by_vin_car = Car::where('vin', $car['vin'])->orderBy('service_date', 'ASC')->where('service_id', '!=','')->get()->pluck('id');
+            $car_by_vin = Car::where('vin', $vin)->orderBy('service_date', 'ASC')->where('service_id', '!=','')->get()->pluck('service_id');
+            $car_by_vin_car = Car::where('vin', $vin)->orderBy('service_date', 'ASC')->where('service_id', '!=','')->get()->pluck('id');
 
 
             $car_service_arr = array();
@@ -301,9 +302,12 @@ class CarController extends Controller
 
           
             
-            $carsShop = Car::where('vin', $car->vin)->with('ownerHistory')->with('userData')->where('user_id', '!=', Auth::user()->id)->orderBy('service_date', 'DESC')->get();
+            $carsShop = Car::where('vin', $vin)->with('ownerHistory')->with('userData')->where('user_id', '!=', Auth::user()->id)->orderBy('service_date', 'DESC')->get();
             if (!empty($CarData->service_id)) {
                 $SelectServices = ShopServices::whereIn('service_id', explode(',', $CarData->service_id))->get();
+            }
+            if(empty($car)){
+                $car = Car::with(['medias_picture'])->where('vin', $vin)->orderBy('service_date', 'DESC')->first();
             }
         }
     

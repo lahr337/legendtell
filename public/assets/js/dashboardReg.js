@@ -33273,7 +33273,7 @@ function initGallery(_ref) {
             media_id: media_id,
             car_id: carId
           }, function (response) {
-            toastr.success('media deleted successfully!', 'Media');
+            toastr.success('Media added successfully!', 'Media');
           }, function (error) {});
         }
       });

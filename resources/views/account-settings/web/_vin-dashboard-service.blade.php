@@ -250,18 +250,61 @@ use App\Http\Controllers\CommonController; ?>
             @if($CarData->car_user->ownerHistory && $CarData->car_user->ownerHistory->owner_document)
             <?php
             $testdata = explode(',', $CarData->car_user->ownerHistory->owner_document);
+
             ?>
 
             <?php $chkextension = explode('.', $testdata[0]);
             error_reporting(0); ?>
             @if( trim($chkextension[5]) !='pdf' && trim($chkextension[5]) !='docx' && trim($chkextension[5]) !='doc')
 
+            @if($car->medias_picture && $car->medias_picture->filename)
+
+            @if($car->medias_picture->type == "image")
+
+            <img class="w-100" src="{{$car->medias_picture->filename}}">
+            @else
+            <video width="320" height="240" controls>
+               <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+               <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+               Your browser does not support the video tag.
+            </video>
+            @endif
+            @else
             <img class="w-100" src="{{$testdata[0]}}">
+            @endif
+            @else
+            @if($car->medias_picture && $car->medias_picture->filename)
+
+            @if($car->medias_picture->type == "image")
+
+
+            <img class="w-100" src="{{$car->medias_picture->filename}}">
+            @else
+            <video width="320" height="240" controls>
+               <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+               <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+               Your browser does not support the video tag.
+            </video>
+            @endif
             @else
             <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
             @endif
+            @endif
 
-
+            @else
+            @if($car->medias_picture && $car->medias_picture->filename)
+            @if($car->medias_picture->type == "image")
+            <img class="w-100" src="{{$car->medias_picture->filename}}">
+            @else
+            <video width="320" height="240" controls>
+               <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+               <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+               Your browser does not support the video tag.
+            </video>
+            @endif
+            @else
+            <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
+            @endif
             @endif
             {{-- <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}"> --}}
          </div>
@@ -369,7 +412,7 @@ use App\Http\Controllers\CommonController; ?>
          </div>
          <div class="col-6 col-md-6">
             <div class="services-details">
-               <p>{{ucwords($CarData->static_pressure_low)}} PSI</p>
+               <p>{{ucwords($CarData->static_pressure_low)}} @if(!empty($CarData->static_pressure_low))PSI @endif</p>
             </div>
          </div>
          <div class="col-6 col-md-6">
@@ -379,7 +422,7 @@ use App\Http\Controllers\CommonController; ?>
          </div>
          <div class="col-6 col-md-6">
             <div class="services-details">
-               <p> {{ucwords($CarData->static_pressure_high)}} PSI</p>
+               <p> {{ucwords($CarData->static_pressure_high)}} @if(!empty($CarData->static_pressure_high))PSI @endif</p>
             </div>
          </div>
          <div class="col-6 col-md-6">
@@ -397,7 +440,7 @@ use App\Http\Controllers\CommonController; ?>
          </div>
          <div class="col-6 col-md-6">
             <div class="services-details">
-               <p> {{ucwords($CarData->dynamic_pressure_low)}} PSI</p>
+               <p> {{ucwords($CarData->dynamic_pressure_low)}} @if(!empty($CarData->dynamic_pressure_low))PSI @endif</p>
             </div>
          </div>
          <div class="col-6 col-md-6">
@@ -407,7 +450,7 @@ use App\Http\Controllers\CommonController; ?>
          </div>
          <div class="col-6 col-md-6">
             <div class="services-details">
-               <p>{{ucwords($CarData->dynamic_pressure_high)}} PSI</p>
+               <p>{{ucwords($CarData->dynamic_pressure_high)}} @if(!empty($CarData->dynamic_pressure_high))PSI @endif</p>
             </div>
          </div>
       </div>
@@ -5208,107 +5251,79 @@ use App\Http\Controllers\CommonController; ?>
 {{-- end ceramic  service --}}
 
 {{-- Ceramic service --}}
-   @if($serviceId==10)
-   @if($CarData)
-   <div class="row border-bb">
-      
+@if($serviceId==10)
+@if($CarData)
+<div class="row border-bb">
 
-      <div class="col-6 col-md-6">
-         <div class="services-details text-right">
-            <p>Service TYPE: </p>
-         </div>
-      </div>
-      <div class="col-6 col-md-6">
-         <div class="services-details">
-            <p>{{ucwords($CarData->service_type)}} </p>
-         </div>
-      </div>
 
-      @if($CarData->service_type == 'correction')
-      <div class="col-6 col-md-6">
-         <div class="services-details text-right">
-            <p>Correction: </p>
-         </div>
-      </div>
-      <div class="col-6 col-md-6">
-         <div class="services-details">
-            <p>{{ucwords($CarData->correction)}} </p>
-         </div>
-      </div>
-
-      <div class="col-6 col-md-6">
-         <div class="services-details text-right">
-            <p>Vehicle Type: </p>
-         </div>
-      </div>
-      <div class="col-6 col-md-6">
-         <div class="services-details">
-            <p>{{ucwords($CarData->vehicle_type)}} </p>
-         </div>
-      </div>
-      @endif
-      @if($CarData->service_type == 'cleaning mobile')
-
-      <div class="col-6 col-md-6">
-         <div class="services-details text-right">
-            <p>Cleaning Mobile: </p>
-         </div>
-      </div>
-      <div class="col-6 col-md-6">
-         <div class="services-details">
-            <p>{{ucwords($CarData->cleaning_mobile)}} </p>
-         </div>
-      </div>
-      @endif
-      
-   </div>
-   </div>
-
-   <div class="service-desc-content border-bb">
-      <h4>PHOTOS</h4>
-      <div class="cmn-slider-wrap">
-         @if($CarData && $CarData->document)
-         <div class="owl-carousel owl-theme photos-slider">
-            @foreach(explode(',',$CarData->document) as $key=>$value)
-            <?php $chkextension = explode('.', $value);
-            error_reporting(0); ?>
-            @if( trim($chkextension[5]) !='pdf' && trim($chkextension[5]) !='docx' && trim($chkextension[5]) !='doc')
-
-            <div class="item">
-               <div class="slider-img lightbox" id="{{ $value}}">
-                  <img src="{{ $value}}">
-                  <span class="plus-overlay ">
-
-                     <img src="{{ asset('/assets/images/plus.png') }}">
-                  </span>
-               </div>
-            </div>
-            @endif
-            @endforeach
-
-         </div>
-         @endif
+   <div class="col-6 col-md-6">
+      <div class="services-details text-right">
+         <p>Service TYPE: </p>
       </div>
    </div>
-   <div class="service-desc-content border-bb">
-      <h4>DOCUMENTS</h4>
-      <div class="cmn-slider-wrap">
-         @if($CarData && $CarData->document)
-         <div class="owl-carousel owl-theme document-slider">
-            @foreach(explode(',',$CarData->document) as $key=>$value)
-            <?php $chkextension = explode('.', $value); ?>
-            @if( trim($chkextension[5]) =='pdf')
+   <div class="col-6 col-md-6">
+      <div class="services-details">
+         <p>{{ucwords($CarData->service_type)}} </p>
+      </div>
+   </div>
 
-            <div class="item">
-               <a href="{{ $value}}" target="_blank">
-                  <div class="slider-img" id="{{ $value}}" style="background:none">
-                     <img src="/assets/images/pdf.png">
-                     <span class="plus-overlay ">
+   @if($CarData->service_type == 'correction')
+   <div class="col-6 col-md-6">
+      <div class="services-details text-right">
+         <p>Correction: </p>
+      </div>
+   </div>
+   <div class="col-6 col-md-6">
+      <div class="services-details">
+         <p>{{ucwords($CarData->correction)}} </p>
+      </div>
+   </div>
 
-                        <img src="{{ asset('/assets/images/plus.png') }}">
+   <div class="col-6 col-md-6">
+      <div class="services-details text-right">
+         <p>Vehicle Type: </p>
+      </div>
+   </div>
+   <div class="col-6 col-md-6">
+      <div class="services-details">
+         <p>{{ucwords($CarData->vehicle_type)}} </p>
+      </div>
+   </div>
+   @endif
+   @if($CarData->service_type == 'cleaning mobile')
 
-                     </span>
-               </a>
+   <div class="col-6 col-md-6">
+      <div class="services-details text-right">
+         <p>Cleaning Mobile: </p>
+      </div>
+   </div>
+   <div class="col-6 col-md-6">
+      <div class="services-details">
+         <p>{{ucwords($CarData->cleaning_mobile)}} </p>
+      </div>
+   </div>
+   @endif
+
+</div>
+</div>
+
+<div class="service-desc-content border-bb">
+   <h4>PHOTOS</h4>
+   <div class="cmn-slider-wrap">
+      @if($CarData && $CarData->document)
+      <div class="owl-carousel owl-theme photos-slider">
+         @foreach(explode(',',$CarData->document) as $key=>$value)
+         <?php $chkextension = explode('.', $value);
+         error_reporting(0); ?>
+         @if( trim($chkextension[5]) !='pdf' && trim($chkextension[5]) !='docx' && trim($chkextension[5]) !='doc')
+
+         <div class="item">
+            <div class="slider-img lightbox" id="{{ $value}}">
+               <img src="{{ $value}}">
+               <span class="plus-overlay ">
+
+                  <img src="{{ asset('/assets/images/plus.png') }}">
+               </span>
             </div>
          </div>
          @endif
@@ -5317,10 +5332,38 @@ use App\Http\Controllers\CommonController; ?>
       </div>
       @endif
    </div>
+</div>
+<div class="service-desc-content border-bb">
+   <h4>DOCUMENTS</h4>
+   <div class="cmn-slider-wrap">
+      @if($CarData && $CarData->document)
+      <div class="owl-carousel owl-theme document-slider">
+         @foreach(explode(',',$CarData->document) as $key=>$value)
+         <?php $chkextension = explode('.', $value); ?>
+         @if( trim($chkextension[5]) =='pdf')
+
+         <div class="item">
+            <a href="{{ $value}}" target="_blank">
+               <div class="slider-img" id="{{ $value}}" style="background:none">
+                  <img src="/assets/images/pdf.png">
+                  <span class="plus-overlay ">
+
+                     <img src="{{ asset('/assets/images/plus.png') }}">
+
+                  </span>
+            </a>
+         </div>
+      </div>
+      @endif
+      @endforeach
+
    </div>
    @endif
-   @endif
-   {{-- end Detailing  service --}}
+</div>
+</div>
+@endif
+@endif
+{{-- end Detailing  service --}}
 
 
 {{-- paint_body service --}}

@@ -25,7 +25,7 @@
                   @if($car->medias_picture && $car->medias_picture->filename)
 
                   @if($car->medias_picture->type == "image")
-               
+
                   <img class="w-100" src="{{$car->medias_picture->filename}}">
                   @else
                   <video width="320" height="240" controls>
@@ -38,7 +38,22 @@
                   <img class="w-100" src="{{$testdata[0]}}">
                   @endif
                   @else
+                  @if($car->medias_picture && $car->medias_picture->filename)
+
+                  @if($car->medias_picture->type == "image")
+
+
+                  <img class="w-100" src="{{$car->medias_picture->filename}}">
+                  @else
+                  <video width="320" height="240" controls>
+                     <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+                     <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+                     Your browser does not support the video tag.
+                  </video>
+                  @endif
+                  @else
                   <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
+                  @endif
                   @endif
 
                   @else
@@ -252,6 +267,7 @@
                if ($carslide->service_id == '37') {
                   $id = $carslide->vinyl_id;
                }
+               $chkarrlength = 0;
                ?>
                <li>
                   <div class="shop-content-wrap">
@@ -300,7 +316,8 @@
 
 
 
-            $servicename = App\Http\Controllers\CommonController::getServiceName($value);
+
+            $servicename = App\Http\Controllers\CommonController::getServiceName($carService->service_id);
             // echo "<pre>"; print_r($servicename); die;
             $servicedate = App\Http\Controllers\CommonController::latest_services($carService['service_name'], $car->id, $carService->service_id);
 

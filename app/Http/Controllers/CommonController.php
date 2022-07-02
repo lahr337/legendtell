@@ -18,6 +18,7 @@ use App\Models\CollisionRepair;
 use App\Models\ConciergeServices;
 use App\Models\CustomBuildBody;
 use App\Models\DealerShip;
+use App\Models\DetailingCorrection;
 use App\Models\ElectricControl;
 use App\Models\EngineBlockServices;
 use App\Models\ExhaustServices;
@@ -280,10 +281,10 @@ class CommonController extends Controller
             return $shopAllServices;
         }
 
-        // if ($shop_service == "Detailing - Professional") {
-        //     $shopAllServices = AcServices::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('battery_service_id', 'DESC')->latest('created_at')->first();
-        //     return $shopAllServices;
-        // }
+        if ($shop_service == "Detailing - Professional") {
+            $shopAllServices = DetailingCorrection::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('detailing_correction_id', 'DESC')->latest('created_at')->first();
+            return $shopAllServices;
+        }
 
         if ($shop_service == "Electrical|Controls /Specialty") {
             $shopAllServices = ElectricControl::with(['shop_user', 'shop_service.shop_detail'])->whereIn('car_id', $car_id)->where('service_id', $serviceId)->orderBy('electric_controls_id', 'DESC')->latest('created_at')->first();

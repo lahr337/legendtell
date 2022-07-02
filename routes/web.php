@@ -287,6 +287,7 @@ Route::group(['middleware' => ['auth']], function(){
 
        
        Route::post('/save-detailing-professional','DetailingProfessionalController@saveDetailingProfessional')->name('.save-detailing-professional');
+       Route::post('/save-vehicle-data','DetailingProfessionalController@savevehicleData')->name('.save-vehicle-data');
        Route::get('/install-details','PaintProtectionFilmController@installDetails')->name('.install-details');
        Route::post('/save-ppf-install-details','PaintProtectionFilmController@savePPFDetails')->name('.save-ppf-install-details');
        Route::get('/ceramic-coating','CeramicCoatingController@indexCreamicCoating')->name('.ceramic-coating');

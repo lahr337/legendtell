@@ -135,6 +135,9 @@ class AccountSettingsController extends Controller
             if (!empty($CarData->service_id)) {
                 $SelectServices = ShopServices::whereIn('service_id', explode(',', $CarData->service_id))->get();
             }
+            if(empty($car)){
+                $car = Car::with(['medias_picture'])->where('vin', $vin)->orderBy('service_date', 'DESC')->first();
+            }
         }
         return view('account-settings.index', compact('page_title', 'tab','service_data', 'car_service_data', 'reported_cars', 'payment_methods', 'idByCardIds', 'page_title', 'car', 'CarData', 'SelectServices', 'shopDetails', 'carsShop', 'states', 'shopAllServices'));
     }

@@ -1145,9 +1145,9 @@
                                     <div class="row align-items-center">
                                        <div class="col-lg-4 col-12">
                                           <button class="btn uplaod">UPLOAD <br />
-                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded" class="form-control image_uploaded" value="Upload" multiple="multiple"> </button>
+                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded2" class="form-control image_uploaded2" value="Upload" multiple="multiple"> </button>
                                        </div>
-                                       <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
+                                       <div class="col-lg-8 col-12 text-center display_image_list2" id="display_image_list">
                                           <ul></ul>
                                        </div>
                                        <!--col-->
@@ -1452,9 +1452,9 @@
                                     <div class="row align-items-center">
                                        <div class="col-lg-4 col-12">
                                           <button class="btn uplaod">UPLOAD <br />
-                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded" class="form-control image_uploaded" value="Upload" multiple="multiple"> </button>
+                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded3" class="form-control image_uploaded3" value="Upload" multiple="multiple"> </button>
                                        </div>
-                                       <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
+                                       <div class="col-lg-8 col-12 text-center display_image_list3" id="display_image_list">
                                           <ul></ul>
                                        </div>
                                        <!--col-->
@@ -1763,9 +1763,9 @@
                                     <div class="row align-items-center">
                                        <div class="col-lg-4 col-12">
                                           <button class="btn uplaod">UPLOAD <br />
-                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded" class="form-control image_uploaded" value="Upload" multiple="multiple"> </button>
+                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded4" class="form-control image_uploaded4" value="Upload" multiple="multiple"> </button>
                                        </div>
-                                       <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
+                                       <div class="col-lg-8 col-12 text-center display_image_list4" id="display_image_list">
                                           <ul></ul>
                                        </div>
                                        <!--col-->
@@ -2069,9 +2069,9 @@
                                     <div class="row align-items-center">
                                        <div class="col-lg-4 col-12">
                                           <button class="btn uplaod">UPLOAD <br />
-                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded" class="form-control image_uploaded" value="Upload" multiple="multiple"> </button>
+                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded5" class="form-control image_uploaded5" value="Upload" multiple="multiple"> </button>
                                        </div>
-                                       <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
+                                       <div class="col-lg-8 col-12 text-center display_image_list5" id="display_image_list">
                                           <ul>
                                           </ul>
                                        </div>
@@ -2168,9 +2168,9 @@
                                     <div class="row align-items-center">
                                        <div class="col-lg-4 col-12">
                                           <button class="btn uplaod">UPLOAD <br />
-                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded" class="form-control image_uploaded" value="Upload" multiple="multiple"> </button>
+                                             Photos & Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded6" class="form-control image_uploaded6" value="Upload" multiple="multiple"> </button>
                                        </div>
-                                       <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
+                                       <div class="col-lg-8 col-12 text-center display_image_list6" id="display_image_list">
                                           <ul></ul>
                                        </div>
                                        <!--col-->

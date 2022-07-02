@@ -36,7 +36,7 @@
                         <div class="vinyl-content">
                            <form id="correctionData">
                               @csrf
-                              <input type="hidden" id="servicedata" name="carShopService" value="@if(isset($_GET['servicedata'])){{ $_GET['servicedata'] }} @endif">
+                              <input type="hidden" id="servicedata" name="carShopService" value="@if(isset($_GET['servicedata'])){{$_GET['servicedata']}} @endif">
                               <input type="hidden" name="service_type" value="correction">
                               <div class="row">
                                  <div class="col-12 col-md-4">
@@ -44,7 +44,7 @@
                                        <h4 class="text-center">Select vehicle type from dropdown menu to record paint thickness</h4>
                                        <div class="custom-input custom-input--default custom-input--with-label-above settings-form__field settings-form__field--state">
                                           <div class="custom-input__field-wr fv-row">
-                                             <select class="custom-input__field bg-white p-3" id="state" name="vehicle_type" type="text">
+                                             <select class="custom-input__field bg-white p-3" id="type_vehicle" name="vehicle_type" type="text">
                                                 <option value="">-select </option>
                                                 <option value="Car - Sedan">Car - Sedan</option>
                                                 <option value="Car - Coupe">Car - Coupe</option>
@@ -53,16 +53,16 @@
                                                 <option value="SUV">SUV</option>
                                                 <option value="RV">RV</option>
                                                 <option value="Camper - Small">Camper - Small</option>
-                                                <option value="Camper - Large">Camper - Large</option>
+                                                <option value="Camper - Large" data-id="camper-lg">Camper - Large</option>
                                                 <option value="Van - Family">Van - Family</option>
                                                 <option value="Van - Small">Van - Small</option>
                                                 <option value="Van - Large">Van - Large</option>
                                                 <option value="Van - Hauler">Van - Hauler</option>
-                                                <option value="Bus">Bus</option>
+                                                <option value="Bus" data-id="bus">Bus</option>
                                                 <option value="Commercial Truck - Small">Commercial Truck - Small</option>
                                                 <option value="Commercial Truck - Medium">Commercial Truck - Medium</option>
                                                 <option value="Commercial Truck - Large">Commercial Truck - Large</option>
-                                                <option value="18-Wheeler Cab">18-Wheeler Cab</option>
+                                                <option value="18-Wheeler Cab" data-id="wheeler-cab">18-Wheeler Cab</option>
                                                 <option value="Travel Trailer">Travel Trailer</option>
                                              </select>
                                           </div>
@@ -322,9 +322,9 @@
                                        <div class="upload-wrap">
                                           <div class="row d-flex align-items-center">
                                              <div class="col-lg-4 col-12">
-                                                <button class="btn uplaod">UPLOAD <br /> Photos | Videos | Docs <input type="file" name="image_uploaded[]" id="insert_image_uploaded2" class="form-control image_uploaded" value="Upload" multiple="multiple"> </button>
+                                                <button class="btn uplaod">UPLOAD <br /> Photos | Videos | Docs <input type="file" name="image_uploaded[]" id="insert_image_uploaded2" class="form-control image_uploaded2" value="Upload" multiple="multiple"> </button>
                                              </div>
-                                             <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
+                                             <div class="col-lg-8 col-12 text-center display_image_list2" id="display_image_list">
                                                 <ul></ul>
                                              </div>
                                           </div>
@@ -391,9 +391,9 @@
                                     <div class="upload-wrap">
                                        <div class="row d-flex align-items-center">
                                           <div class="col-lg-4 col-12">
-                                             <button class="btn uplaod">UPLOAD <br /> Photos | Videos | Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded3" class="form-control image_uploaded" value="Upload" multiple="multiple"> </button>
+                                             <button class="btn uplaod">UPLOAD <br /> Photos | Videos | Docs<input type="file" name="image_uploaded[]" id="insert_image_uploaded3" class="form-control image_uploaded3" value="Upload" multiple="multiple"> </button>
                                           </div>
-                                          <div class="col-lg-8 col-12 text-center display_image_list" id="display_image_list">
+                                          <div class="col-lg-8 col-12 text-center display_image_list3" id="display_image_list">
                                              <ul></ul>
                                           </div>
                                        </div>

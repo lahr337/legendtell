@@ -1,4 +1,23 @@
 $(document).ready(function () {
+
+    $("#vehicle_type").on('change',function(){
+        var id = $('option:selected', this).attr('data-id');
+        var vehicle = $('.vehicle').removeClass('d-none');
+        $('.vehicle').addClass('d-none');
+        $('#'+id).removeClass('d-none');
+    });
+
+    $("#type_vehicle").on('change',function(){
+        var id = $('option:selected', this).attr('data-id');
+        var servicedata = $("#servicedata").val().trim();
+        var url ="/shop-settings/detailing-correction?servicedata="+servicedata+"&vehicle_type="+id+"";
+        window.location.href =url;
+    });
+
+    $("#bus").on("click", function(){
+        $(".vehicle-3").addClass('d-none');
+        $(".vehicle-2").removeClass('d-none');
+    });
     // driver_front_break
 
     $(".driver_front_break").click(function () {
@@ -295,11 +314,11 @@ $(document).ready(function () {
 
     var remove_products_ids = [];
     var image_dynamic_id = 0;
-    var image_dynamic_id2 = 0;
-    var image_dynamic_id3 = 0;
-    var image_dynamic_id4 = 0;
-    var image_dynamic_id5 = 0;
-
+    var image_dynamic_id2 = 100;
+    var image_dynamic_id3 = 200;
+    var image_dynamic_id4 = 300;
+    var image_dynamic_id5 = 400;
+    var image_dynamic_id6 = 500;
     $(document).on("click", ".issueBtn", function () {
         console.log($("#text_" + this.id));
         $("#" + this.id).toggleClass("mynewcl");
@@ -366,11 +385,8 @@ $(document).ready(function () {
                 console.log(response);
                 $(".loader").hide();
                 window.location.replace(response);
-                // window.location.replace(response);
-                // window.location.replace = 'shop-settings/ac-service?servicedata=TXpBPSUlJTE=';
-                // window.location.href = response;
                 toastr.success(
-                    "AC Services Added successfully!",
+                    "Service added successfully",
                     "Shop Settings"
                 );
             },
@@ -400,7 +416,7 @@ $(document).ready(function () {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success(" Service Added", "Shop Settings");
+                    toastr.success("Service added successfully", "Shop Settings");
                 }
             },
         });
@@ -432,7 +448,7 @@ $(document).ready(function () {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success(" Service Added", "Shop Settings");
+                    toastr.success("Service added successfully", "Shop Settings");
                 }
             },
         });
@@ -463,7 +479,7 @@ $(document).ready(function () {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success(" Service Added", "Shop Settings");
+                    toastr.success("Service added successfully", "Shop Settings");
                 }
             },
         });
@@ -472,7 +488,6 @@ $(document).ready(function () {
     //function image uploaded
 
     $(".image_uploaded").change(function (event) {
-        console.log("tst", this.id);
         var pro_id = this.id;
         var input_file = document.getElementById(pro_id);
 
@@ -544,6 +559,162 @@ $(document).ready(function () {
             );
 
             image_dynamic_id2++;
+        }
+    });
+
+     //image2
+     $(".image_uploaded3").change(function (event) {
+        var pro_id = this.id;
+        var input_file = document.getElementById(pro_id);
+
+        var len = input_file.files.length;
+        $(".display_image_list3 ul").html("");
+
+        for (var j = 0; j < len; j++) {
+            var src = "";
+
+            var name = event.target.files[j].name;
+            var mime_type = event.target.files[j].type.split("/");
+            if (mime_type[0] == "image") {
+                src = "/assets/images/jpg.png";
+                //  src = URL.createObjectURL(event.target.files[j]);
+            } else if (mime_type[0] == "application") {
+                src = "/assets/images/pdf.png";
+            } else {
+                src = "icons/file.png";
+            }
+
+            $(".display_image_list3 ul").append(
+                " <li id='" +
+                    image_dynamic_id3 +
+                    "'><span><button class='btn cross'  id='" +
+                    image_dynamic_id3 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id3 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
+            );
+
+            image_dynamic_id3++;
+        }
+    });
+
+    $(".image_uploaded4").change(function (event) {
+        var pro_id = this.id;
+        var input_file = document.getElementById(pro_id);
+
+        var len = input_file.files.length;
+        $(".display_image_list4 ul").html("");
+
+        for (var j = 0; j < len; j++) {
+            var src = "";
+
+            var name = event.target.files[j].name;
+            var mime_type = event.target.files[j].type.split("/");
+            if (mime_type[0] == "image") {
+                src = "/assets/images/jpg.png";
+                //  src = URL.createObjectURL(event.target.files[j]);
+            } else if (mime_type[0] == "application") {
+                src = "/assets/images/pdf.png";
+            } else {
+                src = "icons/file.png";
+            }
+
+            $(".display_image_list4 ul").append(
+                " <li id='" +
+                    image_dynamic_id4 +
+                    "'><span><button class='btn cross'  id='" +
+                    image_dynamic_id4 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id4 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
+            );
+
+            image_dynamic_id4++;
+        }
+    });
+    $(".image_uploaded5").change(function (event) {
+        var pro_id = this.id;
+        var input_file = document.getElementById(pro_id);
+
+        var len = input_file.files.length;
+        $(".display_image_list5 ul").html("");
+
+        for (var j = 0; j < len; j++) {
+            var src = "";
+
+            var name = event.target.files[j].name;
+            var mime_type = event.target.files[j].type.split("/");
+            if (mime_type[0] == "image") {
+                src = "/assets/images/jpg.png";
+                //  src = URL.createObjectURL(event.target.files[j]);
+            } else if (mime_type[0] == "application") {
+                src = "/assets/images/pdf.png";
+            } else {
+                src = "icons/file.png";
+            }
+
+            $(".display_image_list5 ul").append(
+                " <li id='" +
+                    image_dynamic_id5 +
+                    "'><span><button class='btn cross'  id='" +
+                    image_dynamic_id5 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id4 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
+            );
+
+            image_dynamic_id5++;
+        }
+    });
+
+    $(".image_uploaded6").change(function (event) {
+        var pro_id = this.id;
+        var input_file = document.getElementById(pro_id);
+
+        var len = input_file.files.length;
+        $(".display_image_list6 ul").html("");
+
+        for (var j = 0; j < len; j++) {
+            var src = "";
+
+            var name = event.target.files[j].name;
+            var mime_type = event.target.files[j].type.split("/");
+            if (mime_type[0] == "image") {
+                src = "/assets/images/jpg.png";
+                //  src = URL.createObjectURL(event.target.files[j]);
+            } else if (mime_type[0] == "application") {
+                src = "/assets/images/pdf.png";
+            } else {
+                src = "icons/file.png";
+            }
+
+            $(".display_image_list6 ul").append(
+                " <li id='" +
+                    image_dynamic_id6 +
+                    "'><span><button class='btn cross'  id='" +
+                    image_dynamic_id6 +
+                    "'>&nbsp;</button><img id='" +
+                    image_dynamic_id6 +
+                    "' src='" +
+                    src +
+                    "' title='" +
+                    name +
+                    "' class='imgupdate'></span></li>"
+            );
+
+            image_dynamic_id6++;
         }
     });
     //end img2
@@ -937,7 +1108,7 @@ $(document).ready(function () {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success(" Service Added", "Shop Settings");
+                    toastr.success("Service added successfully", "Shop Settings");
                 }
             },
         });
@@ -1157,7 +1328,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success(" Service Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -1263,7 +1434,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Tire Service Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -1350,7 +1521,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Oil Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -1396,7 +1567,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Collision  Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -1476,7 +1647,7 @@ $(document).ready(function () {
                     } else {
                         window.location.replace(response);
                         toastr.success(
-                            "Electric Control  Services Added",
+                            "Service added successfully",
                             "Shop Settings"
                         );
                     }
@@ -1548,7 +1719,7 @@ $(document).ready(function () {
                     } else {
                         window.location.replace(response);
                         toastr.success(
-                            "Specialty Other  Services Added",
+                            "Service added successfully",
                             "Shop Settings"
                         );
                     }
@@ -1638,7 +1809,7 @@ $(document).ready(function () {
                     } else {
                         window.location.replace(response);
                         toastr.success(
-                            "Electric Control  Services Added",
+                            "Service added successfully",
                             "Shop Settings"
                         );
                     }
@@ -1702,7 +1873,7 @@ $(document).ready(function () {
                     } else {
                         window.location.replace(response);
                         toastr.success(
-                            "Transmission Services Added",
+                            "Service added successfully",
                             "Shop Settings"
                         );
                     }
@@ -1738,7 +1909,7 @@ $(document).ready(function () {
                     } else {
                         window.location.replace(response);
                         toastr.success(
-                            "Transmission Services Added",
+                            "Service added successfully",
                             "Shop Settings"
                         );
                     }
@@ -1829,7 +2000,7 @@ $(document).ready(function () {
                     } else {
                         window.location.replace(response);
                         toastr.success(
-                            "Transmission Services Added",
+                            "Service added successfully",
                             "Shop Settings"
                         );
                     }
@@ -2280,7 +2451,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Paint Body Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -2308,7 +2479,7 @@ $(document).ready(function () {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success("Mechanic Services Added", "Shop Settings");
+                    toastr.success("Service added successfully", "Shop Settings");
                 }
             },
         });
@@ -2339,7 +2510,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2369,7 +2540,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2399,7 +2570,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2427,7 +2598,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2455,7 +2626,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2488,7 +2659,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2518,7 +2689,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2548,7 +2719,7 @@ $(document).ready(function () {
                 } else {
                     window.location.replace(response);
                     toastr.success(
-                        "Fabrication Welding Services Added",
+                        "Service added successfully",
                         "Shop Settings"
                     );
                 }
@@ -2580,7 +2751,7 @@ $(document).ready(function () {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success("Mechanic Services Added", "Shop Settings");
+                    toastr.success("Service added successfully", "Shop Settings");
                 }
             },
         });
@@ -2614,7 +2785,7 @@ $(document).ready(function () {
                     toastr.error("Services not added", "Shop Settings");
                 } else {
                     window.location.replace(response);
-                    toastr.success("Mechanic Services Added", "Shop Settings");
+                    toastr.success("Service added successfully", "Shop Settings");
                 }
             },
         });
@@ -2695,7 +2866,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Part  Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -2768,7 +2939,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Oil Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -2804,7 +2975,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -2825,14 +2996,6 @@ $(document).ready(function () {
             remove_products_ids
         );
         var err = 0;
-
-        // var repaired_pannels = $("input[name='repaired_panels[]']:checked").length;
-        // if(repaired_pannels == 0)
-        // {
-        //     err++;
-        //     $("#repaired_pannels_err").addClass("erradd");
-        // }
-
         var damage_type = $("input[name=damage_type]:checked").val();
         if (damage_type === undefined) {
             err++;
@@ -2856,7 +3019,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -2936,7 +3099,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -3020,7 +3183,59 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
+                    }
+                },
+            });
+        }
+    });
+
+
+    $(document).on("click", ".saveVehicle", function () {
+        var err = 0;
+
+        var id = $(this).attr('id');
+
+        if(id == "Wheeler-cab")
+        {
+            var formDataVehicle = new FormData(
+                document.getElementById("wheelercabData")
+            );
+        }
+        if(id == "saveBus")
+        {
+            var formDataVehicle = new FormData(
+                document.getElementById("busData")
+            );
+        }
+
+        if(id == "saveCamperLG")
+        {
+            var formDataVehicle = new FormData(
+                document.getElementById("camperLargeData")
+            );
+        }
+
+       
+     
+        if (err == 0) {
+            $(".loader").show();
+            $.ajax({
+                url: "/shop-settings/save-vehicle-data",
+                type: "POST",
+                data: formDataVehicle,
+                enctype: "multipart/form-data",
+                contentType: false,
+                processData: false,
+
+                success: function (response) {
+                    console.log(response);
+                    $(".loader").hide();
+                    if (response == "fail") {
+                        toastr.error("Services not added", "Shop Settings");
+                    } else {
+                        window.location.replace(response);
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -3053,7 +3268,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -3086,7 +3301,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -3175,7 +3390,7 @@ $(document).ready(function () {
                         $(".url-disable").css("pointer-events", "auto");
 
                         // window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -3397,7 +3612,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success("Break Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });
@@ -3510,7 +3725,7 @@ $(document).ready(function () {
                         toastr.error("Services not added", "Shop Settings");
                     } else {
                         window.location.replace(response);
-                        toastr.success(" Services Added", "Shop Settings");
+                        toastr.success("Service added successfully", "Shop Settings");
                     }
                 },
             });

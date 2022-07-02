@@ -34,7 +34,7 @@ class SaveProfileRequest extends FormRequest
             'state'             =>  'required',
             'zip_code'          =>  'required',
             'country'           =>  'required',
-            'avatar'            =>  'file|max:512|mimes:jpg,bmp,png,webp',
+            'avatar'            =>  'file|mimes:jpg,png,jpeg,webp,jfif,pjpeg,pjp,gif,svg,bmp,ico,cur,tif,tiff,apng,avif',
             // 'current_password'          =>  'nullable',
             // 'password'                  =>  'required_unless:current_password,null|min:8|confirmed'
         ];

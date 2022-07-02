@@ -22,21 +22,17 @@ class DashboardController extends Controller
     {
         $search = $request->all();
         
-        // echo auth()->check();
-        $carsNew = Car::where($search)->where('service_id', '!=', '')->with('ownerHistory')->with('userData')->orderBy('updated_at', 'DESC')->first();
-        // echo "<pre>";
-        // print_r($search);
-        // die;
+ 
+        $carsNew = Car::where($search)->with('ownerHistory')->with('userData')->orderBy('service_date','DESC')->first();
+
         if ($carsNew) {
-            $cars = Car::where($search)->where('service_id', '!=', '')->with('ownerHistory')->with('userData')->orderBy('updated_at', 'DESC')->first();
-            // $cars = Car::where($search)->with('ownerHistory')->with('userData')->where('service_id','!=','')->orderBy('id','DESC')->first();
-            // return $this->sendResponse(view('dashboard.partials._found', compact('cars'))->render());
+            $cars = Car::where($search)->with('ownerHistory')->with('userData')->orderBy('service_date','DESC')->first();
+       
         } else {
 
             if ($search['vin']) {
                 $data = NhtsaApi::getByVIN($search['vin']);
 
-                // $data = CarsxeApi::getSpecsByVin($request->vin);
                 if (isset($data['Results'])) {
 
                     $result = current($data['Results']);
@@ -55,19 +51,13 @@ class DashboardController extends Controller
                         $car->model_engine_cyl = $result['EngineCylinders'];
                         $car->model_engine_type = $result['EngineConfiguration'];
                         $car->save();
-                        $cars = Car::where('vin', $result['VIN'])->with('ownerHistory')->with('userData')->orderBy('updated_at','DESC')->first();
+                        $cars = Car::where('vin', $result['VIN'])->with('ownerHistory')->with('userData')->orderBy('service_date','DESC')->first();
                     } else {
                         echo "";
                     }
                 }
             }
-            // $cars = Car::where('vin',$search['vin'])->with('ownerHistory')->with('userData')->orderBy('id1','DESC')->first();
         }
-        // $cars = Car::where($search)->whereHas('appraisal')->where(function($q){
-        //     if(auth()->check()) $q->where('user_id','!=', auth()->user()->id);
-        // })->get();
-
-        //   return $cars;
         return $this->sendResponse(view('dashboard.partials._found', compact('cars'))->render());
     }
 }

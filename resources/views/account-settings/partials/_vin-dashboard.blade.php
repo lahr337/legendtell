@@ -35,8 +35,22 @@ $UserInfo = App\Http\Controllers\CommonController::getUserInfo(1);
                <img class="w-100" src="{{$testdata[0]}}">
                @endif
                @else
-               <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
+               @if($car->medias_picture && $car->medias_picture->filename)
+
+               @if($car->medias_picture->type == "image")
+
+
+               <img class="w-100" src="{{$car->medias_picture->filename}}">
+               @else
+               <video width="320" height="240" controls>
+                  <source src="{{$car->medias_picture->filename}}" type="video/mp4">
+                  <source src="{{$car->medias_picture->filename}}" type="video/ogg">
+                  Your browser does not support the video tag.
+               </video>
                @endif
+               @else
+               <img class="w-100" src="{{ asset('/assets/images/image-empty-state.jpg') }}">
+               @endif @endif
 
                @else
                @if($car->medias_picture && $car->medias_picture->filename)
@@ -127,147 +141,150 @@ $UserInfo = App\Http\Controllers\CommonController::getUserInfo(1);
    </div>
 
    <div id="imageSlider">
-      <div id="prev">
-         <img src="{{ asset('/assets/images/caret-prev.png') }}">
-      </div>
-      <div id="next">
-         <img src="{{ asset('/assets/images/caret-next.png') }}">
-      </div>
-      <div id="sliderWrapper" class="checklength">
-         <ul class="slider-container ">
-            @if(count($service_data)>0)
-            @foreach($service_data as $carslide)
-            @if($carslide)
+         <div id="prev">
+            <img src="{{ asset('/assets/images/caret-prev.png') }}">
+         </div>
+         <div id="next">
+            <img src="{{ asset('/assets/images/caret-next.png') }}">
+         </div>
+         <div id="sliderWrapper" class="sliderWrapper">
+            <ul class="slider-container">
 
 
-            <?php
+               @if(count($service_data)>0)
+               @foreach($service_data as $carslide)
+               @if($carslide)
+               <?php
 
-            if ($carslide->service_id == '1') {
-               $id = $carslide->ac_id;
-            }
-            if ($carslide->service_id == '2') {
-               $id = $carslide->break_id;
-            }
-            if ($carslide->service_id == '3') {
-               $id = $carslide->battery_service_id;
-            }
-            if ($carslide->service_id == '4') {
-               $id = $carslide->wash_id;
-            }
-            if ($carslide->service_id == '5') {
-               $id = "";
-            }
-            if ($carslide->service_id == '6') {
-               $id = $carslide->collision_id;
-            }
-            if ($carslide->service_id == '7') {
-               $id = $carslide->conc_id;
-            }
-            if ($carslide->service_id == '8') {
-               $id = $carslide->custom_build_body_id;
-            }
-            if ($carslide->service_id == '9') {
-               $id = $carslide->dealer_ship_id;
-            }
-            if ($carslide->service_id == '10') {
-               $id = $carslide->detailing_correction_id;
-            }
-            if ($carslide->service_id == '11') {
-               $id = $carslide->electric_controls_id;
-            }
-            if ($carslide->service_id == '12') {
-               $id = $carslide->engine_id;
-            }
-            if ($carslide->service_id == '13') {
-               $id = $carslide->exhaust_id;
-            }
-            if ($carslide->service_id == '14') {
-               $id = $carslide->fabrication_welding;
-            }
-            if ($carslide->service_id == '15') {
-               $id = $carslide->frame_alignment_id;
-            }
-            if ($carslide->service_id == '16') {
-               $id = $carslide->fuel_system_id;
-            }
-            if ($carslide->service_id == '17') {
-               $id = $carslide->glass_id;
-            }
-            if ($carslide->service_id == '18') {
-               $id = $carslide->lubrication_id;
-            }
-            if ($carslide->service_id == '19') {
-               $id = $carslide->mechanical_id;
-            }
-            if ($carslide->service_id == '20') {
-               $id = $carslide->nitrous_id;
-            }
-            if ($carslide->service_id == '22') {
-               $id = $carslide->oil_id;
-            }
-            if ($carslide->service_id == '23') {
-               $id = $carslide->paint_body_id;
-            }
-            if ($carslide->service_id == '24') {
-               $id = $carslide->paint_protection_film_id;
-            }
-            if ($carslide->service_id == '25') {
-               $id = $carslide->part_id;
-            }
-            if ($carslide->service_id == '26') {
-               $id = $carslide->paintless_dent_repair_id;
-            }
-            if ($carslide->service_id == '27') {
-               $id = $carslide->performance_dyno_tuning_id;
-            }
-            if ($carslide->service_id == '28') {
-               $id = $carslide->powder_coating_id;
-            }
-            if ($carslide->service_id == '29') {
-               $id = $carslide->race_track_id;
-            }
-            if ($carslide->service_id == '31') {
-               $id = $carslide->rim_repair_id;
-            }
-            if ($carslide->service_id == '32') {
-               $id = $carslide->suspension_id;
-            }
-            if ($carslide->service_id == '33') {
-               $id = $carslide->specialty_other_id;
-            }
-            if ($carslide->service_id == '34') {
-               $id = $carslide->tire_id;
-            }
-            if ($carslide->service_id == '35') {
-               $id = $carslide->tint_id;
-            }
-            if ($carslide->service_id == '36') {
-               $id = $carslide->transmission_id;
-            }
-            if ($carslide->service_id == '37') {
-               $id = $carslide->vinyl_id;
-            }
-            ?>
-            <li class="length_check">
-               <div class="shop-content-wrap">
-                  <a href="/account-settings/vin-dashboard-service/{{base64_encode($carslide->car_id.'%%%'.$carslide->service_id.'%%%'.$chkarrlength.'%%%'.$ids)}}">
-                     <div class="shop-logo">
-                        <img src="{{$carslide->shop_user->shop_photo ? $carslide->shop_user->shop_photo : '/shop_photo.png' }}">
-                     </div>
-                  </a>
-                  <ul class="shop-content check_length">
-                     <li>{{ucwords($carslide->shop_user->shop_name)}}</li>
-                     <li class="primary-red">{{date("m/d/Y", strtotime($carslide->created_at)) }}</li>
-                     <li>{{ucwords($carslide->shop_service->service_name)}}</li>
-                  </ul>
-               </div>
-            </li>
-            @endif
-            @endforeach
-            @endif
-         </ul>
+               if ($carslide->service_id == '1') {
+                  $id = $carslide->ac_id;
+               }
+               if ($carslide->service_id == '2') {
+                  $id = $carslide->break_id;
+               }
+               if ($carslide->service_id == '3') {
+                  $id = $carslide->battery_service_id;
+               }
+               if ($carslide->service_id == '4') {
+                  $id = $carslide->wash_id;
+               }
+               if ($carslide->service_id == '5') {
+                  $id = "";
+               }
+               if ($carslide->service_id == '6') {
+                  $id = $carslide->collision_id;
+               }
+               if ($carslide->service_id == '7') {
+                  $id = $carslide->conc_id;
+               }
+               if ($carslide->service_id == '8') {
+                  $id = $carslide->custom_build_body_id;
+               }
+               if ($carslide->service_id == '9') {
+                  $id = $carslide->dealer_ship_id;
+               }
+               if ($carslide->service_id == '10') {
+                  $id = $carslide->detailing_correction_id;
+               }
+               if ($carslide->service_id == '11') {
+                  $id = $carslide->electric_controls_id;
+               }
+               if ($carslide->service_id == '12') {
+                  $id = $carslide->engine_id;
+               }
+               if ($carslide->service_id == '13') {
+                  $id = $carslide->exhaust_id;
+               }
+               if ($carslide->service_id == '14') {
+                  $id = $carslide->fabrication_welding;
+               }
+               if ($carslide->service_id == '15') {
+                  $id = $carslide->frame_alignment_id;
+               }
+               if ($carslide->service_id == '16') {
+                  $id = $carslide->fuel_system_id;
+               }
+               if ($carslide->service_id == '17') {
+                  $id = $carslide->glass_id;
+               }
+               if ($carslide->service_id == '18') {
+                  $id = $carslide->lubrication_id;
+               }
+               if ($carslide->service_id == '19') {
+                  $id = $carslide->mechanical_id;
+               }
+               if ($carslide->service_id == '20') {
+                  $id = $carslide->nitrous_id;
+               }
+               if ($carslide->service_id == '22') {
+                  $id = $carslide->oil_id;
+               }
+               if ($carslide->service_id == '23') {
+                  $id = $carslide->paint_body_id;
+               }
+               if ($carslide->service_id == '24') {
+                  $id = $carslide->paint_protection_film_id;
+               }
+               if ($carslide->service_id == '25') {
+                  $id = $carslide->part_id;
+               }
+               if ($carslide->service_id == '26') {
+                  $id = $carslide->paintless_dent_repair_id;
+               }
+               if ($carslide->service_id == '27') {
+                  $id = $carslide->performance_dyno_tuning_id;
+               }
+               if ($carslide->service_id == '28') {
+                  $id = $carslide->powder_coating_id;
+               }
+               if ($carslide->service_id == '29') {
+                  $id = $carslide->race_track_id;
+               }
+               if ($carslide->service_id == '31') {
+                  $id = $carslide->rim_repair_id;
+               }
+               if ($carslide->service_id == '32') {
+                  $id = $carslide->suspension_id;
+               }
+               if ($carslide->service_id == '33') {
+                  $id = $carslide->specialty_other_id;
+               }
+               if ($carslide->service_id == '34') {
+                  $id = $carslide->tire_id;
+               }
+               if ($carslide->service_id == '35') {
+                  $id = $carslide->tint_id;
+               }
+               if ($carslide->service_id == '36') {
+                  $id = $carslide->transmission_id;
+               }
+               if ($carslide->service_id == '37') {
+                  $id = $carslide->vinyl_id;
+               }
+               $chkarrlength = 0;
+               ?>
+               <li>
+                  <div class="shop-content-wrap">
+                     <a href="/account-settings/vin-dashboard-service/{{base64_encode($carslide->car_id.'%%%'.$carslide->service_id.'%%%'.$chkarrlength.'%%%'.$id)}}">
+                        <div class="shop-logo">
+
+                           <img src="{{$carslide->shop_user->shop_photo ? $carslide->shop_user->shop_photo : '/shop_photo.png' }}">
+                        </div>
+                     </a>
+                     <ul class="shop-content">
+                        <li>{{ucwords($carslide->shop_user->shop_name)}}</li>
+                        <li class="primary-red">{{date("m/d/Y", strtotime($carslide->created_at)) }}</li>
+                        <li>{{ucwords($carslide->shop_service->service_name)}}</li>
+                     </ul>
+                  </div>
+               </li>
+               @endif
+               @endforeach
+               @endif
+
+            </ul>
+         </div>
       </div>
-   </div>
    <div>
 
       <div class="row">
@@ -294,7 +311,7 @@ $UserInfo = App\Http\Controllers\CommonController::getUserInfo(1);
 
 
 
-         $servicename = App\Http\Controllers\CommonController::getServiceName($value);
+         $servicename = App\Http\Controllers\CommonController::getServiceName($carService->service_id);
 
          $servicedate = App\Http\Controllers\CommonController::latest_services($carService['service_name'], $car->id, $carService->service_id);
 
